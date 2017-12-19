@@ -42,7 +42,7 @@ public class MenuDocente extends javax.swing.JFrame {
             new Object [][] {
                 {"9:00", null, null, null, null, null},
                 {"11:00", null, null, null, null, null},
-                {"13:00", null, "", null, null, null},
+                {"13:00", null, null, null, null, null},
                 {"14:00", null, null, null, null, null},
                 {"16:00", null, null, null, null, null}
             },
@@ -58,6 +58,10 @@ public class MenuDocente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setColumnSelectionAllowed(false);
+        jTable1.setRowSelectionAllowed(false);
+        jTable1.setRowHeight(49);
+        jTable1.setRowSelectionAllowed(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
