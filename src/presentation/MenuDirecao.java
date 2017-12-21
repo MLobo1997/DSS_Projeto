@@ -5,9 +5,14 @@
  */
 package presentation;
 
+import business.GesTurno;
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -15,11 +20,14 @@ import javax.swing.JFileChooser;
  * @author diogoleitao
  */
 public class MenuDirecao extends javax.swing.JFrame {
+    
+    private GesTurno gesTurno;
 
     /**
      * Creates new form MenuDirecao
      */
-    public MenuDirecao() {
+    public MenuDirecao(GesTurno gesTurno) {
+        this.gesTurno = gesTurno;
         initComponents();
     }
 
@@ -67,8 +75,18 @@ public class MenuDirecao extends javax.swing.JFrame {
         });
 
         jButton2.setText("Registar Docentes");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Registar Alunos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Alterar UC");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +240,8 @@ public class MenuDirecao extends javax.swing.JFrame {
 
         jTextField2.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
+                jTextField2.setBackground(Color.WHITE);
+                jTextField2.setText("inserir ficheiro... ");
                 JFileChooser chooser = new JFileChooser();
                 chooser.showOpenDialog(null);
                 File f = chooser.getSelectedFile();
@@ -231,6 +251,8 @@ public class MenuDirecao extends javax.swing.JFrame {
         });
         jTextField3.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
+                jTextField3.setBackground(Color.WHITE);
+                jTextField3.setText("inserir ficheiro... ");
                 JFileChooser chooser = new JFileChooser();
                 chooser.showOpenDialog(null);
                 File f = chooser.getSelectedFile();
@@ -240,6 +262,8 @@ public class MenuDirecao extends javax.swing.JFrame {
         });
         jTextField4.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
+                jTextField4.setBackground(Color.WHITE);
+                jTextField4.setText("inserir ficheiro... ");
                 JFileChooser chooser = new JFileChooser();
                 chooser.showOpenDialog(null);
                 File f = chooser.getSelectedFile();
@@ -252,13 +276,28 @@ public class MenuDirecao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        String path = jTextField2.getText();    
+        try {
+            gesTurno.registarUCs(path);
+            jTextField2.setText("Registos Efetuados");
+            jTextField2.setBackground(Color.GREEN);
+        } 
+        catch (FileNotFoundException ex) {
+            MensagemDeErro e = new MensagemDeErro(this, true, "Ficheiro não encontrado!");
+            e.setVisible(true);
+        }
+        catch(Exception ex){
+            MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
+            e.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        /*
         this.setVisible(false);
         Login f = new Login();
         f.setVisible(true); //Confirmar se é mesmo isto que se faz
+        */
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -281,6 +320,40 @@ public class MenuDirecao extends javax.swing.JFrame {
         Informacoes f = new Informacoes(this, true);
         f.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String path = jTextField4.getText();    
+        try {
+            gesTurno.registarAlunos(path);
+            jTextField4.setText("Registos Efetuados");
+            jTextField4.setBackground(Color.GREEN);
+        } 
+        catch (FileNotFoundException ex) {
+            MensagemDeErro e = new MensagemDeErro(this, true, "Ficheiro não encontrado!");
+            e.setVisible(true);
+        }
+        catch(Exception ex){
+            MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
+            e.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String path = jTextField3.getText();    
+        try {
+            gesTurno.registarDocentes(path);
+            jTextField3.setText("Registos Efetuados");
+            jTextField3.setBackground(Color.GREEN);
+        } 
+        catch (FileNotFoundException ex) {
+            MensagemDeErro e = new MensagemDeErro(this, true, "Ficheiro não encontrado!");
+            e.setVisible(true);
+        }
+        catch(Exception ex){
+            MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
+            e.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Canvas canvas1;

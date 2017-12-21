@@ -5,16 +5,22 @@
  */
 package presentation;
 
+import business.GesTurno;
+
 /**
  *
  * @author diogoleitao
  */
 public class Login extends javax.swing.JFrame {
+    
+    private GesTurno gesTurno;
 
     /**
      * Creates new form Login
+     * @param gesTurno
      */
-    public Login() {
+    public Login(GesTurno gesTurno) {
+        this.gesTurno = gesTurno;
         initComponents();
     }
 
@@ -136,6 +142,8 @@ public class Login extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String username = jTextField1.getText();
+        String password = new String(jPasswordField1.getPassword());
+        
         if(username.equals("docente")){
             MenuDocente f = new MenuDocente();
             f.setVisible(true);
@@ -147,7 +155,7 @@ public class Login extends javax.swing.JFrame {
             this.setVisible(false);
         }
         if(username.equals("direcao")){
-            MenuDirecao f = new MenuDirecao();
+            MenuDirecao f = new MenuDirecao(gesTurno);
             f.setVisible(true);
             this.setVisible(false);
         }

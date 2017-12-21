@@ -159,9 +159,11 @@ public class MenuDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        /*
         this.setVisible(false);
         Login f = new Login();
         f.setVisible(true); //Confirmar se é mesmo isto que se faz
+        */
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
