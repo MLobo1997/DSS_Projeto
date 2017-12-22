@@ -19,7 +19,7 @@ import javax.json.JsonReader;
  */
 public class GesTurno {
     
-     private Utilizador utilizador; //Aqui talvez não faça sentido termos o UtilizadorDAO
+     private Utilizador utilizador; 
      
      
      public void registarAlunos(String path) throws FileNotFoundException, Exception { //TODO: Alterar codigo para cirar novos alunos
@@ -85,12 +85,20 @@ public class GesTurno {
             
             try{
                 for (int i = 0; ; i++){
-                    
                     JsonObject uc = ucs.getJsonObject(i);
+                    
+                    String codigo = uc.getString("Codigo");
+                    String nome = uc.getString("UC");
+                    String sigla = uc.getString("Sigla");
+                    int ano = uc.getInt("Ano");
+                    int semestre = uc.getInt("Semestre");
+                    
                     System.out.println("------------------------------");
-                    System.out.println("Codigo  : " + uc.getString("Codigo"));
-                    System.out.println("Nome    : " + uc.getString("UC"));
-                    System.out.println("Sigla   : " + uc.getString("Sigla"));
+                    System.out.println("Codigo  : " + codigo);
+                    System.out.println("Nome    : " + nome);
+                    System.out.println("Sigla   : " + sigla);
+                    System.out.println("Ano     : " + ano);
+                    System.out.println("Semestre: " + semestre);
                     System.out.println("------------------------------");
 
                 }
