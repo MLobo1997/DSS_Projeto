@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Connect;
+package database;
+
+import java.sql.Connection;
 
 /**
  *
  * @author diogoleitao
  */
-public class java {
+public class TurnoDAO {
+
+    private Connection con;
+    
+    
     
 }
