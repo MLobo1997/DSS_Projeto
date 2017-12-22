@@ -5,6 +5,7 @@
  */
 package business;
 
+import database.UtilizadorDAO;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -19,7 +20,13 @@ import javax.json.JsonReader;
  */
 public class GesTurno {
     
-     private Utilizador utilizador; 
+     private Utilizador utilizador;
+     private UtilizadorDAO utilizadores;
+     
+     public GesTurno(){
+         this.utilizador = null;
+         this.utilizadores = new UtilizadorDAO();
+     }
      
      
      public void registarAlunos(String path) throws FileNotFoundException, Exception { //TODO: Alterar codigo para cirar novos alunos
@@ -35,15 +42,21 @@ public class GesTurno {
                     String username = aluno.getString("Username");
                     String nome = aluno.getString("Nome") + " " + aluno.getString("Apelido");
                     String email = aluno.getString("Email");
+                    String ano = aluno.getString("Ano");
+                    String estatuto = aluno.getString("Estatuto");
                     
                     if(!username.matches("A[0-9]{5}")) throw new Exception(); //TODO: criar Exception para este caso????
-                        
+                    /*    
                     System.out.println("------------------------------");
                     System.out.println("Nome    : " + nome);
                     System.out.println("Email   : " + email);
                     System.out.println("Username: " + username);
+                    System.out.println("Ano     : " + ano);
+                    System.out.println("Estatuto: " + estatuto);
                     System.out.println("------------------------------");
-                    
+                    */
+                    Aluno a = new Aluno(nome, email, username, "", estatuto, Integer.parseInt(ano));
+                    this.utilizadores.put(username, a);
                 }
             }catch(IndexOutOfBoundsException e){}
      }
@@ -64,13 +77,16 @@ public class GesTurno {
                     String password = docente.getString("Password");
                     
                     if(!username.matches("D[0-9]{5}")) throw new Exception();
-                    
+                    /*
                     System.out.println("------------------------------");
                     System.out.println("Nome    : " + nome);
                     System.out.println("Email   : " + email);
                     System.out.println("Username: " + username);
                     System.out.println("Password: " + password);
                     System.out.println("------------------------------");
+                    */
+                    Docente d = new Docente(nome, email, username, password);
+                    this.utilizadores.put(username, d);
 
                 }
             }catch(IndexOutOfBoundsException e){}

@@ -333,6 +333,7 @@ public class MenuDirecao extends javax.swing.JFrame {
             e.setVisible(true);
         }
         catch(Exception ex){
+            ex.printStackTrace();
             MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
             e.setVisible(true);
         }

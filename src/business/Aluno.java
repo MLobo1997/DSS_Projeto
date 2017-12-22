@@ -97,6 +97,9 @@ public class Aluno implements Utilizador{
         this.notificacoes = notificacoes;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Aluno{" + "nome=" + nome + ", email=" + email + ", username=" + username + ", password=" + password + ", estatuto=" + estatuto + ", ano=" + ano + ", notificacoes=" + notificacoes + '}';
+    }
 
 }
