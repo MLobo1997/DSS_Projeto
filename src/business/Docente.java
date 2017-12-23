@@ -5,6 +5,9 @@
  */
 package business;
 
+import database.UCDAO;
+import java.util.List;
+
 /**
  *
  * @author diogoleitao
@@ -14,12 +17,14 @@ public class Docente implements Utilizador{
     private String email;
     private String username;
     private String password;  
+    private UCDAO ucs;  
 
     public Docente() {
         this.nome = new String();
         this.email = new String();
         this.username = new String();
         this.password = new String();
+        this.ucs = new UCDAO();
     }
     
     public Docente(String nome, String email, String username, String password) {
@@ -27,6 +32,19 @@ public class Docente implements Utilizador{
         this.email = email;
         this.username = username;
         this.password = password;
+        this.ucs = new UCDAO();
+    }
+
+    public List<UC> getUcs() { 
+        return this.ucs.list(this);
+    }
+
+    public void setUcs(List<UC> ucs) {
+       /*
+        for(UC u: ucs){
+            this.ucs.put(u.getSigla(), u);
+        }
+        */
     }
 
     public String getNome() {

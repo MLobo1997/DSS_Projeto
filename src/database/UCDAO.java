@@ -5,15 +5,19 @@
  */
 package database;
 
+import business.Aluno;
+import business.Docente;
 import business.UC;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -23,10 +27,84 @@ import java.util.logging.Logger;
  *
  * @author diogoleitao
  */
-public class UCDAO implements Map<String,UC>{
+public class UCDAO implements Map<String,UC>{ //TODO: VER O QUE FAZER COM OS TURNOS
     
     private Connection con;
 
+    public List<UC> list(Docente d){
+        ArrayList<UC> res = new ArrayList<UC>();
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("SELECT  * FROM UCs u\n"
+                                                      + "INNER JOIN DocentesTemUCs dtc ON u.Sigla = dtc.UC_Sigla\n"
+                                                      + "WHERE dtc.Docente_Username = ?");
+            ps.setString(1, d.getUsername());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){ 
+                UC u = new UC();
+                u.setSigla(rs.getString("Sigla"));
+                u.setAno(rs.getInt("Ano"));
+                u.setSemester(rs.getInt("Semestre"));
+                u.setNome(rs.getString("Nome"));
+                res.add(u);
+            }
+
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(UCDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+        return res;
+    }
+    
+    public List<UC> list(Aluno a){
+        ArrayList<UC> res = new ArrayList<UC>();
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("SELECT  * FROM UCs u\n"
+                                                      + "INNER JOIN AlunosTemUCs atc ON u.Sigla = atc.UC_Sigla\n"
+                                                      + "WHERE atc.Aluno_Username = ?");
+            ps.setString(1, a.getUsername());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){ 
+                UC u = new UC();
+                u.setSigla(rs.getString("Sigla"));
+                u.setAno(rs.getInt("Ano"));
+                u.setSemester(rs.getInt("Semestre"));
+                u.setNome(rs.getString("Nome"));
+                res.add(u);
+            }
+
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(UCDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+        return res;
+    }
+    
     @Override
     public int size() {
         int size = 0;

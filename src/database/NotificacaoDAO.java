@@ -6,8 +6,7 @@
 package database;
 
 import business.Aluno;
-import business.Docente;
-import business.Utilizador;
+import business.Falta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,32 +20,31 @@ import java.util.logging.Logger;
  *
  * @author diogoleitao
  */
-public class DocenteDAO {
-
-    private Connection con;
+public class NotificacaoDAO {
     
-    public Docente getDocente(String username){
-        Docente doc = null;
+    Connection con;
+    
+    
+    public List<String> list(Aluno a){
+        ArrayList<String> res = new ArrayList<String>();
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Docentes WHERE Username = ?");
-            ps.setString(1,username);
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Notificacoes\n"
+                                                      + "WHERE Alunos_Username = ?");
+            ps.setString(1, a.getUsername());
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                Docente d = new Docente();
-                d.setEmail(rs.getString("Email"));
-                d.setNome(rs.getString("Nome"));
-                d.setPassword(rs.getString("Password"));
-                d.setUsername(rs.getString("Username"));
-                doc = d;  
+            while(rs.next()){ 
+                res.add(rs.getString("Texto"));
             }
+
         }
         catch(SQLException e){
              System.out.printf(e.getMessage());
         } 
         catch (ClassNotFoundException ex) {
-            Logger.getLogger(UtilizadorDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Logger.getLogger(NotificacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
         finally{
             try{
                 Connect.close(con);
@@ -55,7 +53,6 @@ public class DocenteDAO {
                  System.out.printf(e.getMessage());
             }
         }
-        return doc;
+        return res;
     }
-    
 }

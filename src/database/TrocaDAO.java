@@ -5,7 +5,20 @@
  */
 package database;
 
+import business.Aluno;
+import business.Troca;
+import business.Turno;
+import business.UC;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,6 +27,66 @@ import java.sql.Connection;
 public class TrocaDAO {
     
     private Connection con;
+    
+    public List<Troca> list(Turno turno){
+        ArrayList<Troca> res = new ArrayList<Troca>();
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Trocas t\n"
+                                                      + "WHERE t.Turno_Codigo = ?");
+            ps.setString(1, turno.getCodigo());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){ 
+                Troca t = new Troca();
+                t.setData(toGCalendar(rs.getString("Data")));
+                
+                AlunoDAO a = new AlunoDAO();
+                Aluno aluno = a.getAluno(rs.getString("Aluno_Username"));
+                t.setAluno(aluno);
+                
+                TurnoDAO td = new TurnoDAO();
+                Turno atual = td.getTurno(rs.getString("TurnosAtual"));
+                t.setTurnoAtual(atual);
 
+                res.add(t);
+            }
+
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(TurnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+        return res;
+    }
+    
+    public String toSQLDate(GregorianCalendar date) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(date.get(Calendar.YEAR)).append("-");
+        sb.append(date.get(Calendar.MONTH)).append("-");
+        sb.append(date.get(Calendar.DAY_OF_MONTH));
+        return sb.toString();
+    }
+    
+
+    public GregorianCalendar toGCalendar(String date) {
+        int ano, mes, dia;
+        String toks[] = date.split("[- ]");
+        ano = Integer.parseInt(toks[0].trim());
+        mes = Integer.parseInt(toks[1].trim());
+        dia = Integer.parseInt(toks[2].trim());
+        return new GregorianCalendar(ano,mes,dia);      
+    }
     
 }

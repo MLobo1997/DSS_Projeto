@@ -5,6 +5,9 @@
  */
 package business;
 
+import database.TurnoDAO;
+import java.util.List;
+
 /**
  *
  * @author diogoleitao
@@ -15,12 +18,14 @@ public class UC {
     private Integer ano;
     private Integer semester;
     private String nome;
+    private TurnoDAO turnos;
 
     public UC() {
-        this.sigla = new String();
-        this.ano = new Integer(0);
-        this.semester = new Integer(0);
-        this.nome = new String();
+        this.sigla = null;
+        this.ano = null;
+        this.semester = null;
+        this.nome = null;
+        this.turnos = new TurnoDAO();
     }
 
     public UC(String sigla, Integer ano, Integer semester, String nome) {
@@ -28,6 +33,15 @@ public class UC {
         this.ano = ano;
         this.semester = semester;
         this.nome = nome;
+        this.turnos = new TurnoDAO();
+    }
+
+    public List<Turno> getTurnos() {
+        return this.turnos.list(this);
+    }
+
+    public void setTurnos(List<Turno> turnos) {
+        
     }
 
     public String getSigla() {

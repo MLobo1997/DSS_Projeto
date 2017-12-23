@@ -5,6 +5,8 @@
  */
 package business;
 
+import database.NotificacaoDAO;
+import database.UCDAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,23 +14,25 @@ import java.util.List;
  *
  * @author diogoleitao
  */
-public class Aluno implements Utilizador{ 
+public class Aluno implements Utilizador{ //TODO: alterar o DAO ou criar um novo?
     private String nome;
     private String email;
     private String username;
     private String password;
     private String estatuto;
     private Integer ano;
-    private List<String> notificacoes;
+    private NotificacaoDAO notificacoes;
+    private UCDAO ucs;
 
     public Aluno() {
-        this.nome = new String();
-        this.email = new String();
-        this.username = new String();
-        this.password = new String();
-        this.estatuto = new String();
-        this.ano = new Integer(0);
-        this.notificacoes = new ArrayList<String>();
+        this.nome = null;
+        this.email = null;
+        this.username = null;
+        this.password = null;
+        this.estatuto = null;
+        this.ano = null;
+        this.notificacoes = new NotificacaoDAO();
+        this.ucs = new UCDAO();
     }
 
     public Aluno(String nome, String email, String username, String password, String estatuto, Integer ano) {
@@ -38,7 +42,16 @@ public class Aluno implements Utilizador{
         this.password = password;
         this.estatuto = estatuto;
         this.ano = ano;
-        this.notificacoes = new ArrayList<String>();
+        this.notificacoes = new NotificacaoDAO();
+        this.ucs = new UCDAO();
+    }
+
+    public List<UC> getUcs() {
+        return this.ucs.list(this);
+    }
+
+    public void setUcs(List<UC> ucs) {
+        
     }
 
     public String getNome() {
@@ -90,11 +103,11 @@ public class Aluno implements Utilizador{
     }
 
     public List<String> getNotificacoes() {
-        return notificacoes;
+        return notificacoes.list(this);
     }
 
     public void setNotificacoes(List<String> notificacoes) {
-        this.notificacoes = notificacoes;
+        
     }
 
     @Override

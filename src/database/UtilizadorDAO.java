@@ -204,13 +204,15 @@ public class UtilizadorDAO implements Map<String,Utilizador>{
                 ps.setString(6, a.getEmail());
                 ps.executeUpdate(); 
                 
+                
                 List<String> notificacoes = a.getNotificacoes();
                 for(String texto : notificacoes){
-                    ps = con.prepareStatement("INSERT INTO Notificaceos (Alunos_Username, Morador) VALUES (?,?)");
+                    ps = con.prepareStatement("INSERT INTO Notificacoes (Alunos_Username, Texto) VALUES (?,?)");
                     ps.setString(1,a.getUsername());
                     ps.setString(2,texto);
                     ps.executeUpdate();
                 }
+
                 u = (Utilizador) a;
             }
             if(value instanceof Docente){
