@@ -5,16 +5,21 @@
  */
 package presentation;
 
+import business.GesTurno;
+
 /**
  *
  * @author diogoleitao
  */
 public class MenuAluno extends javax.swing.JFrame {
-
+    
+    private GesTurno gesTurno;
+    
     /**
      * Creates new form MenuAluno
      */
-    public MenuAluno() {
+    public MenuAluno(GesTurno gesTurno) {
+        this.gesTurno = gesTurno;
         initComponents();
     }
 

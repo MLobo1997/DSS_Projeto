@@ -19,6 +19,12 @@ public class MensagemDeErro extends javax.swing.JDialog {
         initComponents();
         jLabel1.setText(mensagem);
     }
+    
+    public MensagemDeErro(java.awt.Dialog parent, boolean modal, String mensagem) {
+        super(parent, modal);
+        initComponents();
+        jLabel1.setText(mensagem);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

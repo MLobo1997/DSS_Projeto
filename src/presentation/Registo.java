@@ -5,17 +5,24 @@
  */
 package presentation;
 
+import business.GesTurno;
+import exceptions.RegistoInvalidoException;
+import java.awt.Frame;
+
 /**
  *
  * @author diogoleitao
  */
 public class Registo extends javax.swing.JDialog {
-
+    
+    private GesTurno gesTurno;
+    
     /**
      * Creates new form Registo
      */
-    public Registo(java.awt.Frame parent, boolean modal) {
+    public Registo(java.awt.Frame parent, boolean modal, GesTurno gesTurno) {
         super(parent, modal);
+        this.gesTurno = gesTurno;
         initComponents();
     }
 
@@ -48,6 +55,18 @@ public class Registo extends javax.swing.JDialog {
             }
         });
 
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
@@ -63,6 +82,11 @@ public class Registo extends javax.swing.JDialog {
         jLabel4.setText("Password");
 
         jButton1.setText("Registar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -146,6 +170,28 @@ public class Registo extends javax.swing.JDialog {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String nome = jTextField1.getText();
+        String username = jTextField2.getText();
+        String email = jTextField3.getText();
+        String password = new String(jPasswordField1.getPassword());
+        try{
+            this.gesTurno.registo(nome, username, email, password);
+        }
+        catch(RegistoInvalidoException e){
+            MensagemDeErro f = new MensagemDeErro(this, true, "Registo Inválido!");
+            f.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

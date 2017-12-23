@@ -79,14 +79,17 @@ public class UtilizadorDAO implements Map<String,Utilizador>{
             con = Connect.connect();
             PreparedStatement ps = null;
             if(chave.startsWith("A")){
-                ps = con.prepareStatement("SELECT * FROM Despesa WHERE Username = ?");
+                ps = con.prepareStatement("SELECT * FROM Alunos WHERE Username = ?");
+                ps.setString(1,chave);
+                ResultSet rs = ps.executeQuery();
+                res = rs.next();
             }
             if(chave.startsWith("D")){
-                ps = con.prepareStatement("SELECT * FROM Despesa WHERE Username = ?");
+                ps = con.prepareStatement("SELECT * FROM Docentes WHERE Username = ?");
+                ps.setString(1,chave);
+                ResultSet rs = ps.executeQuery();
+                res = rs.next();
             }
-            ps.setString(1,chave);
-            ResultSet rs = ps.executeQuery();
-            res = rs.next();
         }
         catch(SQLException e){
             System.out.printf(e.getMessage());
@@ -109,7 +112,7 @@ public class UtilizadorDAO implements Map<String,Utilizador>{
     public boolean containsValue(Object value) {
         boolean res = false;
         
-        if(value.getClass().getName().equals("homesplit.business.GestaoDespesas.Despesa")){
+        if(value.getClass().getName().equals("business.Utilizador")){
             Utilizador u = (Utilizador)value;
             String username = u.getUsername();
             Utilizador ut = this.get(username);

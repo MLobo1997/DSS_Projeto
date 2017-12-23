@@ -127,7 +127,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Registo f = new Registo(this,true);
+        Registo f = new Registo(this,true,gesTurno);
         f.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -144,21 +144,25 @@ public class Login extends javax.swing.JFrame {
         String username = jTextField1.getText();
         String password = new String(jPasswordField1.getPassword());
         
-        if(username.equals("docente")){
-            MenuDocente f = new MenuDocente();
+        int tipo = this.gesTurno.iniciarSessao(username, password);
+        
+        if(username.equals("docente") || (tipo == 2)){
+            MenuDocente f = new MenuDocente(gesTurno);
             f.setVisible(true);
             this.setVisible(false);
         }
-        if(username.equals("aluno")){
-            MenuAluno f = new MenuAluno();
+        if(username.equals("aluno") || (tipo == 1)){
+            MenuAluno f = new MenuAluno(gesTurno);
             f.setVisible(true);
             this.setVisible(false);
         }
-        if(username.equals("direcao")){
+        if(username.equals("direcao") || (tipo == 3)){
             MenuDirecao f = new MenuDirecao(gesTurno);
             f.setVisible(true);
             this.setVisible(false);
         }
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
