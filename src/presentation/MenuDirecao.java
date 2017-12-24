@@ -6,13 +6,16 @@
 package presentation;
 
 import business.GesTurno;
+import business.UC;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 
 /**
@@ -29,6 +32,27 @@ public class MenuDirecao extends javax.swing.JFrame {
     public MenuDirecao(GesTurno gesTurno) {
         this.gesTurno = gesTurno;
         initComponents();
+        this.UpdateListUC();
+    }
+    
+    public void UpdateListUC(){
+        DefaultListModel<String> lista = new DefaultListModel<>();
+        try{
+            for(UC u : this.gesTurno.getUCs()){
+                /*
+                StringBuilder nome_username = new StringBuilder();
+                nome_username.append("  ");
+                nome_username.append(entry.getKey());
+                nome_username.append("  ");
+                nome_username.append("(" + entry.getValue() + ")");
+                */
+                lista.addElement(u.getNome());
+            }
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+        jList1.setModel(lista);
     }
 
     /**
@@ -231,11 +255,13 @@ public class MenuDirecao extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton5)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jButton7)
-                .addGap(19, 19, 19))
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton7)
+                        .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
 
         jTextField2.addMouseListener(new MouseAdapter(){
@@ -291,6 +317,7 @@ public class MenuDirecao extends javax.swing.JFrame {
             MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
             e.setVisible(true);
         }
+        this.UpdateListUC();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -314,7 +341,8 @@ public class MenuDirecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        AlterarUC f = new AlterarUC(this, true);
+        f.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

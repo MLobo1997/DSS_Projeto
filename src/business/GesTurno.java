@@ -11,6 +11,7 @@ import exceptions.RegistoInvalidoException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -26,11 +27,15 @@ public class GesTurno {
      private UtilizadorDAO utilizadores;
      private UCDAO ucs;
      
-     public GesTurno(){
-         this.utilizador = null;
-         this.utilizadores = new UtilizadorDAO();
-         this.ucs = new UCDAO();
-     }
+    public GesTurno(){
+        this.utilizador = null;
+        this.utilizadores = new UtilizadorDAO();
+        this.ucs = new UCDAO();
+    }
+     
+    public List<UC> getUCs(){
+        return this.ucs.list();
+    } 
      
     public int iniciarSessao(String username, String password){ //TODO: ser especifico no erro de acesso????
        

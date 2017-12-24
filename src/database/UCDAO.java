@@ -30,7 +30,41 @@ import java.util.logging.Logger;
 public class UCDAO implements Map<String,UC>{ //TODO: VER O QUE FAZER COM OS TURNOS
     
     private Connection con;
+    
+    public List<UC> list(){
+        ArrayList<UC> res = new ArrayList<UC>();
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("SELECT  * FROM UCs");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){ 
+                UC u = new UC();
+                u.setSigla(rs.getString("Sigla"));
+                u.setAno(rs.getInt("Ano"));
+                u.setSemester(rs.getInt("Semestre"));
+                u.setNome(rs.getString("Nome"));
+                res.add(u);
+            }
 
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(UCDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+        return res;
+    }
+    
     public List<UC> list(Docente d){
         ArrayList<UC> res = new ArrayList<UC>();
         try{
