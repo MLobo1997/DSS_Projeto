@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class TurnoDAO {
         ArrayList<Turno> res = new ArrayList<Turno>();
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Turnos t"
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Turnos t\n"
                                                       + "WHERE t.UC_Sigla = ?");
             ps.setString(1, u.getSigla());
             ResultSet rs = ps.executeQuery();
@@ -110,8 +111,41 @@ public class TurnoDAO {
         return tr;                   
     }
     
-    public void add(List<Turno> turnos){ //TODO:::::::::::::::::::::::
-        
+    public void addTurno(Turno t, String SiglaUC){ //TODO: ADICIONAR O DCENTE
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Turnos (Codigo,Capacidade,Tipo,UC_Sigla,Docente_Username,DiaSemana,Hora)\n" +
+                                                        "VALUES (?,?,?,?,?,?,?)\n" +
+                                                        "ON DUPLICATE KEY UPDATE Capacidade=VALUES(Capacidade),Tipo=VALUES(Tipo),UC_Sigla=VALUES(UC_Sigla),Docente_Username=VALUES(Docente_Username),DiaSemana=VALUES(Docente_Username),Hora=VALUES(HORA)", Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, t.getCodigo());
+            ps.setInt(2, t.getCapacidade());
+            ps.setString(3, t.getTipo());
+            ps.setString(4, SiglaUC);
+            ps.setString(5, t.getDocente().getUsername()); //////ALTERAR ISTO!!!!!
+            ps.setString(6, t.getDiaSem());
+            ps.setString(7, t.getHora());
+            ps.executeUpdate(); 
+        }
+        catch(SQLException e){
+            System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(TurnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                System.out.printf(e.getMessage());
+            }
+        }
+    }
+    
+    public void addMTurnos(List<Turno> turnos, String siglaUC){
+        for (Turno t: turnos){
+            this.addTurno(t, siglaUC);
+        }
     }
     
     

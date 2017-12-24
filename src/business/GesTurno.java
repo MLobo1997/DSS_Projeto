@@ -11,6 +11,7 @@ import exceptions.RegistoInvalidoException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -54,9 +55,13 @@ public class GesTurno {
     }
     
     public void registo(String nome, String username, String email, String password) throws RegistoInvalidoException{
-        if(!this.utilizadores.containsKey(username)) throw new RegistoInvalidoException();
+        if(!this.utilizadores.containsKey(username)) 
+            throw new RegistoInvalidoException();
+        
         Utilizador u = this.utilizadores.get(username);
-        if(u instanceof Docente) throw new RegistoInvalidoException();
+        
+        if(u instanceof Docente) 
+            throw new RegistoInvalidoException();
         
         Aluno a = (Aluno) u;
         String n = a.getNome();
@@ -71,7 +76,7 @@ public class GesTurno {
                 
     }
      
-    public void registarAlunos(String path) throws FileNotFoundException, Exception { //TODO: Alterar codigo para cirar novos alunos
+    public void registarAlunos(String path) throws FileNotFoundException, Exception { 
          InputStream fis = new FileInputStream(path);
 
             JsonReader reader = Json.createReader(fis);
@@ -87,7 +92,7 @@ public class GesTurno {
                     String ano = aluno.getString("Ano");
                     String estatuto = aluno.getString("Estatuto");
                     
-                    if(!username.matches("A[0-9]{5}")) throw new Exception(); //TODO: criar Exception para este caso????
+                    if(!username.matches("A[0-9]{5}")) throw new Exception(); 
                     /*    
                     System.out.println("------------------------------");
                     System.out.println("Nome    : " + nome);
@@ -159,6 +164,43 @@ public class GesTurno {
                     */
                     UC u = new UC(sigla, ano, semestre, nome);
                     this.ucs.put(sigla, u);
+                    
+                    JsonArray turnos = uc.getJsonArray("Turnos");
+                    ArrayList<Turno> ts = new ArrayList<Turno>();
+                    try{
+                        for (int j = 0; ; j++) {
+                            Turno turno = new Turno();
+                            JsonObject t = turnos.getJsonObject(j);
+                            String codigo = t.getString("Codigo");
+                            int capacidade = t.getInt("Capacidade");
+                            String tipo = t.getString("Tipo");
+                            String diaSem = t.getString("DiaSem");
+                            String hora = t.getString("Hora");
+                            String docente = t.getString("Docente");
+                            
+                            turno.setCodigo(codigo); 
+                            turno.setCapacidade(capacidade);
+                            turno.setTipo(tipo);
+                            turno.setDiaSem(diaSem);
+                            turno.setHora(hora);
+                            turno.setDocente((Docente)this.utilizadores.get(docente));
+                            
+                            /*
+                            System.out.println("------------------------------");
+                            System.out.println("Codigo     : " + codigo);
+                            System.out.println("Capacidade : " + capacidade);
+                            System.out.println("Tipo       : " + tipo);
+                            System.out.println("DiaSem     : " + diaSem);
+                            System.out.println("Hora       : " + hora);
+                            System.out.println("Docente    : " + docente);
+                            System.out.println("------------------------------");
+                            */
+                            ts.add(turno);
+                        }
+                    }catch(IndexOutOfBoundsException e){}
+                    u.setTurnos(ts);//vai inserir na base da dados
+                    
+                    
                 }
             }catch(IndexOutOfBoundsException e){}
     }

@@ -9,12 +9,12 @@ package presentation;
  *
  * @author diogoleitao
  */
-public class Informacoes extends javax.swing.JDialog {
+public class InformacoesMDocente extends javax.swing.JDialog {
 
     /**
      * Creates new form RegistarFaltas
      */
-    public Informacoes(java.awt.Frame parent, boolean modal) {
+    public InformacoesMDocente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }

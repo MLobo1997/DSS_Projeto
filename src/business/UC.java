@@ -41,7 +41,8 @@ public class UC {
     }
 
     public void setTurnos(List<Turno> turnos) {
-        
+        TurnoDAO d = new TurnoDAO();
+        d.addMTurnos(turnos, sigla);
     }
 
     public String getSigla() {
@@ -74,6 +75,11 @@ public class UC {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return "UC{" + "sigla=" + sigla + ", ano=" + ano + ", semester=" + semester + ", nome=" + nome + ", turnos=" + turnos + '}';
     }
     
     

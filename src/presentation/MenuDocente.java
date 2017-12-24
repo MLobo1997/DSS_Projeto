@@ -159,7 +159,7 @@ public class MenuDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-        Informacoes f = new Informacoes(this, true);
+        InformacoesMDocente f = new InformacoesMDocente(this, true);
         f.setVisible(true);
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 

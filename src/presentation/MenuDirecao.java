@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 
@@ -39,13 +40,6 @@ public class MenuDirecao extends javax.swing.JFrame {
         DefaultListModel<String> lista = new DefaultListModel<>();
         try{
             for(UC u : this.gesTurno.getUCs()){
-                /*
-                StringBuilder nome_username = new StringBuilder();
-                nome_username.append("  ");
-                nome_username.append(entry.getKey());
-                nome_username.append("  ");
-                nome_username.append("(" + entry.getValue() + ")");
-                */
                 lista.addElement(u.getNome());
             }
         }
@@ -127,6 +121,11 @@ public class MenuDirecao extends javax.swing.JFrame {
         });
 
         jButton6.setText("Remover UC");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Gerar Turnos");
 
@@ -346,8 +345,16 @@ public class MenuDirecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Informacoes f = new Informacoes(this, true);
-        f.setVisible(true);
+        String n = null;
+        if((n = jList1.getSelectedValue()) != null){
+            for(UC uc: this.gesTurno.getUCs()){
+                if(uc.getNome().equals(n)){
+                    InformacoesMDirecao f = new InformacoesMDirecao(this, true, uc);
+                    f.setVisible(true);
+                    break;
+                }
+            }
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -384,6 +391,10 @@ public class MenuDirecao extends javax.swing.JFrame {
             e.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Canvas canvas1;
