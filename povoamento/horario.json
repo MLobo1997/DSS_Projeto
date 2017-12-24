@@ -1,0 +1,31 @@
+[
+    {"H1.1":[
+        ["Calc-TP1","AL-TP4","TMD-TP1","PF-TP1","LI1-PL6","EES-PL4"],
+        ["Calc-TP1","AL-TP4","TMD-TP1","PF-TP2","LI1-PL3","EES-PL6"],
+        ["Calc-TP2","AL-TP3","TMD-TP2","PF-TP3","LI1-PL7","EES-PL3"],
+        ["Calc-TP2","AL-TP3","TMD-TP2","PF-TP6","LI1-PL1","EES-PL7"],
+        ["Calc-TP3", "AL-TP2", "TMD-TP3", "PF-TP5", "LI1-PL5", "EES-PL5"],
+        ["Calc-TP3", "AL-TP2", "TMD-TP3", "PF-TP7", "LI-PL2", "EES-PL7"],
+        ["Calc-TP4", "AL-TP1", "TMD-TP4", "PF-TP4", "LI1-PL4", "EES-PL1"],
+        ["Calc-TP4", "AL-TP1", "TMD-TP4", "PF-TP8", "LI1-PL8", "EES-PL2"]
+        ]
+    },
+
+    {"H2.1":[
+        ["EA-TP3","EE-TP4","ISD-TP3","CD-TP1","ALG-TP7","AC-PL2"],
+        ["EA-TP3","EE-TP4","ISD-TP3","CD-TP1","ALG-TP4","AC-PL1"],
+        ["EA-TP2","EE-TP2","ISD-TP1","CD-TP4","ALG-TP1","AC-PL4"],
+        ["EA-TP2","EE-TP2","ISD-TP1","CD-TP4","ALG-TP6","AC-PL6"],
+        ["EA-TP1","EE-TP3","ISD-TP2","CD-TP3","ALG-TP2","AC-PL3"],
+        ["EA-TP1","EE-TP3","ISD-TP2","CD-TP3","ALG-TP5","AC-PL5"]
+        ]
+    },
+
+    {"H3.1":[
+        ["RC-PL4","BD-PL6","SD-PL5","MNOnL-PL1","DSS-PL4","MDIO-TP1"],
+        ["RC-PL1","BD-PL5","SD-PL1","MNOnL-PL5","DSS-PL5","MDIO-TP2"],
+        ["RC-PL3","BD-PL3","SD-PL3","MNOnL-PL2","DSS-PL6","MDIO-TP3"],
+        ["RC-PL6","BD-PL2","SD-PL6","MNOnL-PL4","DSS-PL3","MDIO-TP4"]
+        ]
+    }
+]

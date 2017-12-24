@@ -1,0 +1,1402 @@
+[
+    {         
+        "UC":"Álgebra Linear EI",                                        
+        "Sigla":"AL",
+        "Ano": 1,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"AL-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"AL-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"AL-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"AL-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Cálculo",                                                  
+        "Sigla":"Calc",
+        "Ano": 1,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"Calc-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"Calc-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"Calc-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"Calc-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {    
+        "UC":"Tópicos de Matemática Discreta",                           
+        "Sigla":"TMD",
+        "Ano": 1,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"TMD-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"TMD-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"TMD-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"TMD-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Programação Funcional",                                    
+        "Sigla":"PF",
+        "Ano": 1,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"PF-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"PF-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"PF-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"PF-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Elementos de Engenharia de Sistemas",                      
+        "Sigla":"EES",
+        "Ano": 1,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"EES-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"EES-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"EES-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"EES-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Laboratórios de Informática I",                            
+        "Sigla":"LI1",
+        "Ano": 1,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"LI1-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"LI1-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"LI1-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"LI1-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Sistemas de Computação",                                   
+        "Sigla":"SC",
+        "Ano": 1,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"SC-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"SC-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"SC-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"SC-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Análise",                                                  
+        "Sigla":"ANALISE",
+        "Ano": 1,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"ANALISE-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"ANALISE-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"ANALISE-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"ANALISE-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Tópicos de Física Moderna",                                
+        "Sigla":"TFM",
+        "Ano": 1,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"TFM-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"TFM-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"TFM-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"TFM-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Lógica EI",                                                
+        "Sigla":"Log",
+        "Ano": 1,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"Log-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"Log-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"Log-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"Log-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Programação Imperativa",                                   
+        "Sigla":"PI",
+        "Ano": 1,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"PI-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"PI-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"PI-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"PI-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Laboratórios de Informática II",                           
+        "Sigla":"LI2",
+        "Ano": 1,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"LI2-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"LI2-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"LI2-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"LI2-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Introdução aos Sistemas Dinâmicos",                        
+        "Sigla":"ISD",
+        "Ano": 2,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"ISD-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"ISD-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"ISD-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"ISD-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Estatística Aplicada",                                     
+        "Sigla":"EA",
+        "Ano": 2,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"EA-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"EA-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"EA-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"EA-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Engenharia Económica",                                     
+        "Sigla":"EE",
+        "Ano": 2,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"EE-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"EE-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"EE-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"EE-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Arquitetura de Computadores",                              
+        "Sigla":"AC",
+        "Ano": 2,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"AC-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"AC-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"AC-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"AC-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Comunicação de Dados",                                     
+        "Sigla":"CD",
+        "Ano": 2,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"CD-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"CD-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"CD-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"CD-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Algoritmos e Complexidade",                                
+        "Sigla":"ALG",
+        "Ano": 2,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"ALG-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"ALG-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"ALG-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"ALG-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Sistemas Operativos",                                      
+        "Sigla":"SO",
+        "Ano": 2,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"SO-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"SO-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"SO-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"SO-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Programação Orientada aos Objetos",                        
+        "Sigla":"POO",
+        "Ano": 2,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"POO-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"POO-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"POO-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"POO-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Eletromagnetismo EE",                                      
+        "Sigla":"EM",
+        "Ano": 2,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"EM-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"EM-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"EM-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"EM-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Cálculo de Programas",                                     
+        "Sigla":"CP",
+        "Ano": 2,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"CP-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"CP-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"CP-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"CP-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Laboratórios de Informática III",                          
+        "Sigla":"LI3",
+        "Ano": 2,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"LI3-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"LI3-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"LI3-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"LI3-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Bases de Dados",                                           
+        "Sigla":"BD",
+        "Ano": 3,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"BD-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"BD-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"BD-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"BD-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Desenvolvimento de Sistemas de Software",                  
+        "Sigla":"DSS",
+        "Ano": 3,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"DSS-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"DSS-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"DSS-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"DSS-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Modelos Determinísticos de Investigação Operacional",      
+        "Sigla":"MDIO",
+        "Ano": 3,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"MDIO-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"MDIO-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"MDIO-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"MDIO-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Sistemas Distribuídos",                                    
+        "Sigla":"SD",
+        "Ano": 3,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"SD-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"SD-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"SD-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"SD-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Redes de Computadores",                                    
+        "Sigla":"RC",
+        "Ano": 3,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"RC-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"RC-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"RC-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"RC-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Métodos Numéricos e Otimização não Linear",                
+        "Sigla":"MNOnL",
+        "Ano": 3,
+        "Semestre": 1,
+        "Turnos": [
+            {
+                "Codigo":"MNOnL-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"MNOnL-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"MNOnL-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"MNOnL-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Sistemas de Representação de Conhecimento e Raciocínio",   
+        "Sigla":"SRCR",
+        "Ano": 3,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"SRCR-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"SRCR-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"SRCR-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"SRCR-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {         
+        "UC":"Computação Gráfica",                                       
+        "Sigla":"CG",
+        "Ano": 3,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"CG-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"CG-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"CG-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"CG-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Modelos Estocásticos de Investigação Operacional",         
+        "Sigla":"MEIO",
+        "Ano": 3,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"MEIO-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"MEIO-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"MEIO-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"MEIO-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Comunicações por Computador",                              
+        "Sigla":"CC",
+        "Ano": 3,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"CC-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"CC-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"CC-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"CC-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Processamento de Linguagens",                              
+        "Sigla":"PL",
+        "Ano": 3,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"PL-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"PL-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"PL-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"PL-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    },
+    {        
+        "UC":"Laboratórios de Informática IV",                           
+        "Sigla":"LI4",
+        "Ano": 3,
+        "Semestre": 2,
+        "Turnos": [
+            {
+                "Codigo":"LI4-T",
+                "Capacidade":50,
+                "Tipo":"T",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },
+            {
+                "Codigo":"LI4-TP1",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"LI4-TP2",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            },            
+            {
+                "Codigo":"LI4-TP3",
+                "Capacidade":50,
+                "Tipo":"TP",
+                "DiaSem":"2ª",
+                "Hora":"9:00",
+                "Docente":"D50305"
+            }
+        ]
+    }
+]
