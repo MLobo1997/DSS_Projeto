@@ -82,6 +82,18 @@ public class UC {
         return "UC{" + "sigla=" + sigla + ", ano=" + ano + ", semester=" + semester + ", nome=" + nome + ", turnos=" + turnos + '}';
     }
     
+    public void atualizaTurno(Turno t){
+        this.turnos.addTurno(t, sigla);
+    }
+    
+    public Turno getTurno(String codigo){
+        Turno t = null;
+        for(Turno x: this.getTurnos()){
+            if(x.getCodigo().equals(codigo))
+                t = x;
+        }
+        return t;
+    }
     
     
     

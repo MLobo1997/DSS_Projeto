@@ -32,8 +32,8 @@ public class TurnoDAO {
         ArrayList<Turno> res = new ArrayList<Turno>();
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Turnos t\n"
-                                                      + "WHERE t.UC_Sigla = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Turnos\n"
+                                                      + "WHERE UC_Sigla = ?");
             ps.setString(1, u.getSigla());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){ 

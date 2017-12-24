@@ -37,6 +37,30 @@ public class GesTurno {
     public List<UC> getUCs(){
         return this.ucs.list();
     } 
+    
+    public Turno getTurno(String codigo){
+        Turno t = null;
+        for(UC u: ucs.list()){
+            for(Turno x: u.getTurnos()){
+                if(x.getCodigo().equals(codigo)){
+                    t = x;
+                }
+            }
+        }
+        return t;
+    }
+    
+    public List<Docente> getDocentes(){
+        ArrayList<Docente> docentes = new ArrayList<Docente>();
+        
+        for(Utilizador u : this.utilizadores.values()){
+            if(u instanceof Docente){
+                docentes.add((Docente)u);
+            }
+        }
+        
+        return docentes;
+    }
      
     public int iniciarSessao(String username, String password){ //TODO: ser especifico no erro de acesso????
        
@@ -205,5 +229,15 @@ public class GesTurno {
             }catch(IndexOutOfBoundsException e){}
     }
      
-     
+    public void atualizaUC(UC u){
+        this.ucs.put(u.getSigla(), u);
+    }
+    
+    public void atualizaTurno(UC u,String turnoCodigo, String docUsername, String hora){
+        Turno t = u.getTurno(turnoCodigo);
+        System.out.println(hora);
+        t.setHora(hora);
+        t.setDocente((Docente)this.utilizadores.get(docUsername));
+        u.atualizaTurno(t);
+    }
 }

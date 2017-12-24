@@ -30,7 +30,7 @@ public class FaltaDAO {
         ArrayList<Falta> res = new ArrayList<Falta>();
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Faltas f"
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Faltas f\n"
                                                       + "WHERE f.Turno_Codigo = ?");
             ps.setString(1, t.getCodigo());
             ResultSet rs = ps.executeQuery();

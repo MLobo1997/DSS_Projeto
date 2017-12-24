@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Turno { //TODO: mudar o get e set do DAOS
     
-    private String codigo; //(Ex: TP1-DSS)
+    private String codigo; //(Ex: DSS-TP1)
     private Integer capacidade;
     private String tipo;
     private String diaSem;

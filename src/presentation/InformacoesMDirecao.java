@@ -22,23 +22,21 @@ public class InformacoesMDirecao extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         StringBuilder sb = new StringBuilder();
-        sb.append("UC:            ").append(u.getNome()).append(" (").append(u.getSigla()).append(")\n");
-        sb.append("Ano:          ").append(u.getAno()).append("\n");
-        sb.append("Semestre:  ").append(u.getSemester()).append("\n\n");
+        sb.append("UC:\t\t").append(u.getNome()).append(" (").append(u.getSigla()).append(")\n");
+        sb.append("Ano:\t\t").append(u.getAno()).append("\n");
+        sb.append("Semestre:\t\t").append(u.getSemester()).append("\n\n");
         for(Turno t: u.getTurnos()){
             Docente d = t.getDocente();
             
-            sb.append("Turno:      ").append(t.getCodigo().substring(u.getSigla().length()+1)).append("\n");
-            sb.append("Docente:    ").append(t.getDocente().getNome()).append(" ").append(d.getUsername()).append("\n");
-            sb.append("Capacidade: ").append(t.getCapacidade()).append("\n");
-            sb.append("Tipo:       ").append(t.getTipo()).append("\n");
-            sb.append("Dia:        ").append(t.getDiaSem()).append("\n");
-            sb.append("Hora:       ").append(t.getHora()).append("\n");
-            sb.append("Nº Faltas:  ").append(t.getFaltas().size()).append("\n");
-            sb.append("Nº Alunos:  ").append(t.getAlunos().size()).append("\n");
-            sb.append("Nº Pedidos de Trocas: ").append(t.getTrocas().size()).append("\n\n");
-            
-            
+            sb.append("Turno:\t\t").append(t.getCodigo().substring(u.getSigla().length()+1)).append("\n");
+            sb.append("Docente:\t\t").append(t.getDocente().getNome()).append(" ").append(d.getUsername()).append("\n");
+            sb.append("Capacidade:\t\t").append(t.getCapacidade()).append("\n");
+            sb.append("Tipo:\t\t").append(t.getTipo()).append("\n");
+            sb.append("Dia:\t\t").append(t.getDiaSem()).append("\n");
+            sb.append("Hora:\t\t").append(t.getHora()).append("\n");
+            sb.append("Nº Faltas:\t\t").append(t.getFaltas().size()).append("\n");
+            sb.append("Nº Alunos:\t\t").append(t.getAlunos().size()).append("\n");
+            sb.append("Nº Pedidos de Trocas:\t").append(t.getTrocas().size()).append("\n\n");
         }
         
         jTextArea1.setText(sb.toString());

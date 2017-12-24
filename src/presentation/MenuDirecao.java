@@ -33,10 +33,10 @@ public class MenuDirecao extends javax.swing.JFrame {
     public MenuDirecao(GesTurno gesTurno) {
         this.gesTurno = gesTurno;
         initComponents();
-        this.UpdateListUC();
+        this.updateListUC();
     }
     
-    public void UpdateListUC(){
+    public void updateListUC(){
         DefaultListModel<String> lista = new DefaultListModel<>();
         try{
             for(UC u : this.gesTurno.getUCs()){
@@ -316,7 +316,7 @@ public class MenuDirecao extends javax.swing.JFrame {
             MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
             e.setVisible(true);
         }
-        this.UpdateListUC();
+        this.updateListUC();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -340,8 +340,16 @@ public class MenuDirecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        AlterarUC f = new AlterarUC(this, true);
-        f.setVisible(true);
+        String n = null;
+        if((n = jList1.getSelectedValue()) != null){
+            for(UC uc: this.gesTurno.getUCs()){
+                if(uc.getNome().equals(n)){
+                    AlterarUC f = new AlterarUC(this, true, uc, this.gesTurno);
+                    f.setVisible(true);
+                    break;
+                }
+            }
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
