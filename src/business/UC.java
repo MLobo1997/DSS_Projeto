@@ -95,6 +95,10 @@ public class UC {
         return t;
     }
     
+    public Turno removeTurno(String codigo){
+        return this.turnos.remove(codigo);
+    }
+    
     
     
 }

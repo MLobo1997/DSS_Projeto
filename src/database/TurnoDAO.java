@@ -116,7 +116,7 @@ public class TurnoDAO {
             con = Connect.connect();
             PreparedStatement ps = con.prepareStatement("INSERT INTO Turnos (Codigo,Capacidade,Tipo,UC_Sigla,Docente_Username,DiaSemana,Hora)\n" +
                                                         "VALUES (?,?,?,?,?,?,?)\n" +
-                                                        "ON DUPLICATE KEY UPDATE Capacidade=VALUES(Capacidade),Tipo=VALUES(Tipo),UC_Sigla=VALUES(UC_Sigla),Docente_Username=VALUES(Docente_Username),DiaSemana=VALUES(Docente_Username),Hora=VALUES(HORA)", Statement.RETURN_GENERATED_KEYS);
+                                                        "ON DUPLICATE KEY UPDATE Capacidade=VALUES(Capacidade),Tipo=VALUES(Tipo),UC_Sigla=VALUES(UC_Sigla),Docente_Username=VALUES(Docente_Username),DiaSemana=VALUES(DiaSemana),Hora=VALUES(HORA)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, t.getCodigo());
             ps.setInt(2, t.getCapacidade());
             ps.setString(3, t.getTipo());
@@ -125,6 +125,13 @@ public class TurnoDAO {
             ps.setString(6, t.getDiaSem());
             ps.setString(7, t.getHora());
             ps.executeUpdate(); 
+            
+            ps = con.prepareStatement("INSERT INTO DocentesTemUCs (UC_Sigla,Docente_Username)\n" +
+                                      "VALUES (?,?)\n" +
+                                      "ON DUPLICATE KEY UPDATE UC_Sigla=VALUES(UC_Sigla),Docente_Username=VALUES(Docente_Username)");
+            ps.setString(1, SiglaUC);
+            ps.setString(2, t.getDocente().getUsername());
+            ps.executeUpdate();
         }
         catch(SQLException e){
             System.out.printf(e.getMessage());
@@ -148,5 +155,30 @@ public class TurnoDAO {
         }
     }
     
+    public Turno remove(String codigo){
+        Turno t = this.getTurno(codigo);
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Turnos WHERE Codigo = ?");
+            ps.setString(1, codigo);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(TurnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                System.out.printf(e.getMessage());
+            }
+        } 
+        return t;
+    }
     
 }

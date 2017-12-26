@@ -5,18 +5,40 @@
  */
 package presentation;
 
+import business.Docente;
+import business.GesTurno;
+import business.Turno;
+import business.UC;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 /**
  *
  * @author diogoleitao
  */
 public class InformacoesMDocente extends javax.swing.JDialog {
+    
+    private GesTurno gesTurno;
+    private UC ucEscolhida;
 
     /**
      * Creates new form RegistarFaltas
      */
-    public InformacoesMDocente(java.awt.Frame parent, boolean modal) {
+    public InformacoesMDocente(java.awt.Frame parent, boolean modal, GesTurno gesTurno) {
         super(parent, modal);
+        this.gesTurno = gesTurno;
         initComponents();
+        this.jComboBox1.setSelectedIndex(0); 
+        this.jComboBox2.setSelectedIndex(0);
+
+    }
+    
+    public void informacoes(Turno t){
+        StringBuilder sb = new StringBuilder();
+        sb.append(t.getCodigo());
+        sb.append("POR MAIS CENAS!!");
+        jTextArea1.setText(sb.toString());
     }
 
     /**
@@ -44,7 +66,13 @@ public class InformacoesMDocente extends javax.swing.JDialog {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        String[] n = ((Docente)this.gesTurno.getUtilizador()).getUCs().stream().map(f -> f.getNome()).toArray(String[]::new);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(n));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -63,13 +91,13 @@ public class InformacoesMDocente extends javax.swing.JDialog {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(171, 171, 171)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -93,12 +121,39 @@ public class InformacoesMDocente extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String nomeUC = (String)jComboBox1.getSelectedItem();
+                for(UC uc: gesTurno.getUCs()){
+                    if(uc.getNome().equals(nomeUC)){
+                        ucEscolhida = uc;
+                        int i = uc.getSigla().length()+1;
+                        List<Turno> lt = uc.getTurnos().stream().filter(f -> f.getDocente().getUsername().equals(gesTurno.getUtilizador().getUsername())).collect(Collectors.toList());;
+                        String[] turnos = lt.stream().map(f -> f.getCodigo()).map(f -> f.substring(i)).toArray(String[]::new);
+                        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(turnos));
+                        jComboBox2.setSelectedIndex(0);
+                    }
+                }
+            }
+        });
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String turno = (String)jComboBox2.getSelectedItem();
+                Turno t = gesTurno.getTurno(ucEscolhida.getSigla()+"-"+turno);
+                informacoes(t);
+            }
+        });
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

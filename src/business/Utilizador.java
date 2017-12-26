@@ -12,4 +12,5 @@ package business;
 public interface Utilizador {
     public String getPassword();
     public String getUsername();
+    public String getNome();
 }

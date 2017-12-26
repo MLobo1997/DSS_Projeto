@@ -320,11 +320,9 @@ public class MenuDirecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        /*
-        this.setVisible(false);
-        Login f = new Login();
-        f.setVisible(true); //Confirmar se é mesmo isto que se faz
-        */
+        this.dispose();
+        Login f = new Login(this.gesTurno);
+        f.setVisible(true); 
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -401,7 +399,16 @@ public class MenuDirecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        
+        String n = null;
+        if((n = jList1.getSelectedValue()) != null){
+            for(UC uc: this.gesTurno.getUCs()){
+                if(uc.getNome().equals(n)){
+                    this.gesTurno.removeUC(uc.getSigla());
+                    break;
+                }
+            }
+        }
+        this.updateListUC();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

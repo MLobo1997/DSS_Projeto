@@ -141,7 +141,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="TODO: Nome docente"/>
+        <Property name="text" type="java.lang.String" value="Nome Docente"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton1">
