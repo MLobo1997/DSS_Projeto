@@ -157,7 +157,7 @@ public class MenuDocente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        RegistarFaltas f = new RegistarFaltas(this, true);
+        RegistarFaltas f = new RegistarFaltas(this, true, this.gesTurno);
         f.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
@@ -174,7 +174,7 @@ public class MenuDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        AlterarTurnos f = new AlterarTurnos(this,true);
+        AlterarTurnos f = new AlterarTurnos(this, true, this.gesTurno);
         f.setVisible(true);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 

@@ -91,7 +91,7 @@ public class Turno { //TODO: mudar o get e set do DAOS
     }
 
     public void setFaltas(List<Falta> faltas) {
-        
+        this.faltas.set(faltas, this.codigo);
     }
 
     public List<Troca> getTrocas() {

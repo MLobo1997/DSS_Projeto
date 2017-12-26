@@ -111,7 +111,7 @@ public class TurnoDAO {
         return tr;                   
     }
     
-    public void addTurno(Turno t, String SiglaUC){ //TODO: ADICIONAR O DCENTE
+    public void addTurno(Turno t, String SiglaUC){ 
         try{
             con = Connect.connect();
             PreparedStatement ps = con.prepareStatement("INSERT INTO Turnos (Codigo,Capacidade,Tipo,UC_Sigla,Docente_Username,DiaSemana,Hora)\n" +

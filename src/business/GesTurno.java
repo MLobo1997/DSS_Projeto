@@ -62,6 +62,10 @@ public class GesTurno {
         return docentes;
     }
     
+    public Utilizador getUtilizadorByUsername(String username){
+        return this.utilizadores.get(username);
+    }
+    
     public Utilizador getUtilizador(){
         return this.utilizador;
     }
@@ -266,5 +270,9 @@ public class GesTurno {
     public Turno removeTurno(String siglaUC, String codigoTurno){
         UC u = this.ucs.get(siglaUC);
         return u.removeTurno(codigoTurno);
+    }
+    
+    public void registaFaltas(String turnoCodigo, List<Falta> faltas){
+        this.getTurno(turnoCodigo).setFaltas(faltas);
     }
 }
