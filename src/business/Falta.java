@@ -5,6 +5,7 @@
  */
 package business;
 
+import java.time.LocalDate;
 import java.util.GregorianCalendar;
 
 /**
@@ -14,14 +15,14 @@ import java.util.GregorianCalendar;
 public class Falta {
     
     private Aluno aluno;
-    private GregorianCalendar data;
-
+    private LocalDate data; 
+    
     public Falta() {
         this.aluno = null;
         this.data = null;
     }
 
-    public Falta(Aluno aluno, GregorianCalendar data) {
+    public Falta(Aluno aluno, LocalDate data) {
         this.aluno = aluno;
         this.data = data;
     }
@@ -34,11 +35,11 @@ public class Falta {
         this.aluno = aluno;
     }
 
-    public GregorianCalendar getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(GregorianCalendar data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
     

@@ -5,7 +5,9 @@
  */
 package presentation;
 
+import business.Docente;
 import business.GesTurno;
+import business.UC;
 
 /**
  *
@@ -21,6 +23,7 @@ public class MenuDocente extends javax.swing.JFrame {
     public MenuDocente(GesTurno gesTurno) {
         this.gesTurno = gesTurno;
         initComponents();
+        jLabel1.setText(this.gesTurno.getUtilizador().getNome());
     }
 
     /**
@@ -78,7 +81,7 @@ public class MenuDocente extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        jLabel1.setText("TODO: Nome docente");
+        jLabel1.setText("Nome Docente");
 
         jToggleButton1.setText("Registar Faltas");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -154,25 +157,24 @@ public class MenuDocente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        RegistarFaltas f = new RegistarFaltas(this, true);
+        RegistarFaltas f = new RegistarFaltas(this, true, this.gesTurno);
         f.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-        InformacoesMDocente f = new InformacoesMDocente(this, true);
+        InformacoesMDocente f = new InformacoesMDocente(this, true, this.gesTurno);
         f.setVisible(true);
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*
-        this.setVisible(false);
-        Login f = new Login();
-        f.setVisible(true); //Confirmar se é mesmo isto que se faz
-        */
+        this.gesTurno.setUtilizador(null);
+        this.dispose();
+        Login f = new Login(this.gesTurno);
+        f.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        AlterarTurnos f = new AlterarTurnos(this,true);
+        AlterarTurnos f = new AlterarTurnos(this, true, this.gesTurno);
         f.setVisible(true);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 

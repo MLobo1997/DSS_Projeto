@@ -225,7 +225,7 @@ public class UCDAO implements Map<String,UC>{ //TODO: VER O QUE FAZER COM OS TUR
         String chave = (String) key;
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Alunos WHERE Sigla = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM UCs WHERE Sigla = ?");
             ps.setString(1,chave);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
@@ -291,7 +291,7 @@ public class UCDAO implements Map<String,UC>{ //TODO: VER O QUE FAZER COM OS TUR
         UC u = this.get(key);
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Alunos WHERE Sigla = ?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM UCs WHERE Sigla = ?");
             ps.setString(1, (String) key);
             ps.executeUpdate();
         }
@@ -393,6 +393,31 @@ public class UCDAO implements Map<String,UC>{ //TODO: VER O QUE FAZER COM OS TUR
             map.put(key,this.get(key));
         }
         return map.entrySet();
+    }
+    
+    public void removeDocente(String username, String sigla){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM DocentesTemUCs\n" +
+                                                        "WHERE UC_Sigla = ? AND Docente_Username = ?");
+            ps.setString(1, sigla);
+            ps.setString(2, username);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(UCDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                System.out.printf(e.getMessage());
+            }
+        }
     }
     
     

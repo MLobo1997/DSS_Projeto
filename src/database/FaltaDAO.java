@@ -11,6 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -36,7 +41,7 @@ public class FaltaDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){ 
                 Falta f = new Falta();
-                f.setData(toGCalendar(rs.getString("Dia")));
+                f.setData(LocalDate.parse(rs.getString("Dia")));
                 String AlunoUsername = rs.getString("Aluno_Username");
                 
                 AlunoDAO d = new AlunoDAO();
@@ -63,26 +68,33 @@ public class FaltaDAO {
         return res;
     }
     
-    public void set(List<Falta> faltas){
-        
+    public void set(List<Falta> faltas, String turnoCodigo){
+        try{
+            con = Connect.connect();            
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Faltas (Turno_Codigo,Aluno_Username,Dia)\n" +
+                                                        "VALUES (?,?,?)\n" +
+                                                        "ON DUPLICATE KEY UPDATE Turno_Codigo=VALUES(Turno_Codigo),Aluno_Username=VALUES(Aluno_Username),Dia=VALUES(Dia)");
+            for(Falta f: faltas){
+                ps.setString(1, turnoCodigo);
+                ps.setString(2, f.getAluno().getUsername());
+                ps.setString(3, f.getData().toString());
+                ps.executeUpdate(); 
+            }
+        }
+        catch(SQLException e){
+            System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(FaltaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                System.out.printf(e.getMessage());
+            }
+        }
     }
     
-
-    public String toSQLDate(GregorianCalendar date) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(date.get(Calendar.YEAR)).append("-");
-        sb.append(date.get(Calendar.MONTH)).append("-");
-        sb.append(date.get(Calendar.DAY_OF_MONTH));
-        return sb.toString();
-    }
-    
-
-    public GregorianCalendar toGCalendar(String date) {
-        int ano, mes, dia;
-        String toks[] = date.split("[- ]");
-        ano = Integer.parseInt(toks[0].trim());
-        mes = Integer.parseInt(toks[1].trim());
-        dia = Integer.parseInt(toks[2].trim());
-        return new GregorianCalendar(ano,mes,dia);      
-    }
 }

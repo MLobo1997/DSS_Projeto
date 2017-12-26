@@ -5,6 +5,7 @@
  */
 package business;
 
+import java.time.LocalDate;
 import java.util.GregorianCalendar;
 
 /**
@@ -13,7 +14,7 @@ import java.util.GregorianCalendar;
  */
 public class Troca {//Este objeto só existe no turno para o qual o Aluno quer ir
     
-    private GregorianCalendar data;
+    private LocalDate data;
     private Aluno aluno;
     private Turno turnoAtual;
 
@@ -23,17 +24,17 @@ public class Troca {//Este objeto só existe no turno para o qual o Aluno quer i
         this.turnoAtual = null;
     }
 
-    public Troca(GregorianCalendar data, Aluno aluno, Turno turnoAtual) {
+    public Troca(LocalDate data, Aluno aluno, Turno turnoAtual) {
         this.data = data;
         this.aluno = aluno;
         this.turnoAtual = turnoAtual;
     }
 
-    public GregorianCalendar getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(GregorianCalendar data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

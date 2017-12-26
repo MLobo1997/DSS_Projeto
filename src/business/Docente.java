@@ -35,11 +35,11 @@ public class Docente implements Utilizador{
         this.ucs = new UCDAO();
     }
 
-    public List<UC> getUcs() { 
+    public List<UC> getUCs() { 
         return this.ucs.list(this);
     }
 
-    public void setUcs(List<UC> ucs) {
+    public void setUCs(List<UC> ucs) {
        /*
         for(UC u: ucs){
             this.ucs.put(u.getSigla(), u);

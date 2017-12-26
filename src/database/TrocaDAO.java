@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -38,8 +39,7 @@ public class TrocaDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){ 
                 Troca t = new Troca();
-                t.setData(toGCalendar(rs.getString("Data")));
-                
+                t.setData(LocalDate.parse(rs.getString("Data")));
                 AlunoDAO a = new AlunoDAO();
                 Aluno aluno = a.getAluno(rs.getString("Aluno_Username"));
                 t.setAluno(aluno);
@@ -70,23 +70,4 @@ public class TrocaDAO {
         }
         return res;
     }
-    
-    public String toSQLDate(GregorianCalendar date) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(date.get(Calendar.YEAR)).append("-");
-        sb.append(date.get(Calendar.MONTH)).append("-");
-        sb.append(date.get(Calendar.DAY_OF_MONTH));
-        return sb.toString();
-    }
-    
-
-    public GregorianCalendar toGCalendar(String date) {
-        int ano, mes, dia;
-        String toks[] = date.split("[- ]");
-        ano = Integer.parseInt(toks[0].trim());
-        mes = Integer.parseInt(toks[1].trim());
-        dia = Integer.parseInt(toks[2].trim());
-        return new GregorianCalendar(ano,mes,dia);      
-    }
-    
 }

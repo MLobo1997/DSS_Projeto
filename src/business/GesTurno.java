@@ -61,6 +61,18 @@ public class GesTurno {
         
         return docentes;
     }
+    
+    public Utilizador getUtilizadorByUsername(String username){
+        return this.utilizadores.get(username);
+    }
+    
+    public Utilizador getUtilizador(){
+        return this.utilizador;
+    }
+    
+    public void setUtilizador(Utilizador u){
+        this.utilizador = u;
+    }
      
     public int iniciarSessao(String username, String password){ //TODO: ser especifico no erro de acesso????
        
@@ -233,11 +245,34 @@ public class GesTurno {
         this.ucs.put(u.getSigla(), u);
     }
     
-    public void atualizaTurno(UC u,String turnoCodigo, String docUsername, String hora){
+    public void atualizaTurno(UC u, String turnoCodigo, String docUsername, String hora, String diaSem, String capacidade){
         Turno t = u.getTurno(turnoCodigo);
-        System.out.println(hora);
+        String docAnterior = t.getDocente().getUsername();
+        
+        if(!docAnterior.equals(docUsername)){
+            if(u.getTurnos().stream().map(f -> f.getDocente().getUsername()).filter(x -> x.equals(docAnterior)).count() == 1){
+                this.ucs.removeDocente(docAnterior, u.getSigla());
+            }
+        }
+        
         t.setHora(hora);
         t.setDocente((Docente)this.utilizadores.get(docUsername));
+        t.setDiaSem(diaSem);
+        t.setCapacidade(new Integer(capacidade));
+        
         u.atualizaTurno(t);
+    }
+    
+    public void removeUC(String sigla){
+        this.ucs.remove(sigla);
+    }
+    
+    public Turno removeTurno(String siglaUC, String codigoTurno){
+        UC u = this.ucs.get(siglaUC);
+        return u.removeTurno(codigoTurno);
+    }
+    
+    public void registaFaltas(String turnoCodigo, List<Falta> faltas){
+        this.getTurno(turnoCodigo).setFaltas(faltas);
     }
 }

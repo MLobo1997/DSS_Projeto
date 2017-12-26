@@ -5,18 +5,51 @@
  */
 package presentation;
 
+import business.Aluno;
+import business.Docente;
+import business.Falta;
+import business.GesTurno;
+import business.Turno;
+import business.UC;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
+
 /**
  *
  * @author diogoleitao
  */
 public class RegistarFaltas extends javax.swing.JDialog {
+    
+    private GesTurno gesTurno;
+    private UC ucEscolhida;
 
     /**
      * Creates new form Informacoes
      */
-    public RegistarFaltas(java.awt.Frame parent, boolean modal) {
+    public RegistarFaltas(java.awt.Frame parent, boolean modal, GesTurno gesTurno) {
         super(parent, modal);
+        this.gesTurno = gesTurno;
         initComponents();
+        this.jComboBox1.setSelectedIndex(0); 
+        this.jComboBox2.setSelectedIndex(0);
+    }
+    
+    public void updateListAlunos(Turno t){
+        DefaultListModel<String> lista = new DefaultListModel<>();
+        try{
+            for(Aluno a : t.getAlunos()){
+                lista.addElement(a.getUsername() + "\t" + a.getNome());
+            }
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+        jList1.setModel(lista);
     }
 
     /**
@@ -36,9 +69,11 @@ public class RegistarFaltas extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jList1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,6 +86,11 @@ public class RegistarFaltas extends javax.swing.JDialog {
         jLabel4.setText("Selecione os alunos que vão ter falta:");
 
         jButton1.setText("Confirmar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -59,11 +99,20 @@ public class RegistarFaltas extends javax.swing.JDialog {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        String[] n = ((Docente)this.gesTurno.getUtilizador()).getUCs().stream().map(f -> f.getNome()).toArray(String[]::new);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(n));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -72,6 +121,14 @@ public class RegistarFaltas extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jList1);
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("(DD-MM-AAAA)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,16 +136,15 @@ public class RegistarFaltas extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(0, 282, Short.MAX_VALUE))
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -98,10 +154,16 @@ public class RegistarFaltas extends javax.swing.JDialog {
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1)))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addContainerGap(597, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addContainerGap())))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,8 +178,10 @@ public class RegistarFaltas extends javax.swing.JDialog {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -130,6 +194,29 @@ public class RegistarFaltas extends javax.swing.JDialog {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String nomeUC = (String)jComboBox1.getSelectedItem();
+                for(UC uc: gesTurno.getUCs()){
+                    if(uc.getNome().equals(nomeUC)){
+                        ucEscolhida = uc;
+                        int i = uc.getSigla().length()+1;
+                        List<Turno> lt = uc.getTurnos().stream().filter(f -> f.getDocente().getUsername().equals(gesTurno.getUtilizador().getUsername())).collect(Collectors.toList());;
+                        String[] turnos = lt.stream().map(f -> f.getCodigo()).map(f -> f.substring(i)).toArray(String[]::new);
+                        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(turnos));
+                        jComboBox2.setSelectedIndex(0);
+                    }
+                }
+            }
+        });
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String turno = (String)jComboBox2.getSelectedItem();
+                Turno t = gesTurno.getTurno(ucEscolhida.getSigla()+"-"+turno);
+                updateListAlunos(t);
+            }
+        });
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -137,18 +224,53 @@ public class RegistarFaltas extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String turno = (String)jComboBox2.getSelectedItem();
+        String turnoCodigo = this.ucEscolhida.getSigla()+"-"+turno;
+        String dataField = jTextField1.getText();
+        if(dataField.matches("[0-3][0-9]-[01][0-9]-[0-9]{4}") && turno != null){
+            String[] dados = dataField.split("-");
+            LocalDate data = LocalDate.of(new Integer(dados[2]), new Integer(dados[1]), new Integer(dados[0]));
+            List<String> usernameNomes = jList1.getSelectedValuesList();
+            List<Falta> faltas = new ArrayList<Falta>();
+            for(String s : usernameNomes){
+                Aluno a = (Aluno)this.gesTurno.getUtilizadorByUsername(s.split("\t")[0]);
+                Falta f = new Falta(a, data);
+                faltas.add(f);
+            }
+            this.gesTurno.registaFaltas(turnoCodigo, faltas);
+        }
+        else {
+            MensagemDeErro f = new MensagemDeErro(this, true, "Data inválida");
+            f.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

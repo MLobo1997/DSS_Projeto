@@ -5,17 +5,22 @@
  */
 package presentation;
 
+import business.GesTurno;
+
 /**
  *
  * @author diogoleitao
  */
 public class AlterarTurnos extends javax.swing.JDialog {
 
+    private GesTurno gesTurno;
+    
     /**
      * Creates new form AlterarTurnos
      */
-    public AlterarTurnos(java.awt.Frame parent, boolean modal) {
+    public AlterarTurnos(java.awt.Frame parent, boolean modal, GesTurno gesTurno) {
         super(parent, modal);
+        this.gesTurno = gesTurno;
         initComponents();
     }
 
