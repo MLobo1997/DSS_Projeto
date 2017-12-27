@@ -218,7 +218,6 @@ public class GesTurno {
                             String hora = t.getString("Hora");
                             String docente = t.getString("Docente");
                             System.out.println("Vou para as trocas");
-                            int nTrocas=t.getInt("NTrocas");
                             
                             turno.setCodigo(codigo); 
                             turno.setCapacidade(capacidade);
@@ -227,7 +226,7 @@ public class GesTurno {
                             turno.setHora(hora);
                             turno.setDocente((Docente)this.utilizadores.get(docente));
                             System.out.println("Vou para as trocas");
-                            turno.setNTrocas(nTrocas);
+                            turno.setNTrocas(0);
                             /*
                             System.out.println("------------------------------");
                             System.out.println("Codigo     : " + codigo);
