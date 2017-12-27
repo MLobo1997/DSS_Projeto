@@ -22,14 +22,49 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author diogoleitao
  */
-public class UCDAO implements Map<String,UC>{ //TODO: VER O QUE FAZER COM OS TURNOS
+public class UCDAO implements Map<String,UC>{ 
     
     private Connection con;
+    
+    public List<String> getAlunosUsername(String siglaUC){
+        ArrayList<String> res = new ArrayList<String>();
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("SELECT  * FROM AlunosTemUCs WHERE UC_SIGLA = ?");
+            ps.setString(1, siglaUC);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                res.add(rs.getString("Aluno_Username"));
+            }
+
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(UCDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+        return res;
+    }
+    
+    public List<UC> getUCsAno(int ano){
+        return this.list().stream().filter(f -> f.getAno() == ano).collect(Collectors.toList());
+    }
     
     public List<UC> list(){
         ArrayList<UC> res = new ArrayList<UC>();
@@ -410,6 +445,89 @@ public class UCDAO implements Map<String,UC>{ //TODO: VER O QUE FAZER COM OS TUR
         catch (ClassNotFoundException ex) {
             Logger.getLogger(UCDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                System.out.printf(e.getMessage());
+            }
+        }
+    }
+    
+    public void adicionaUCs(String alunoUsername, List<UC> ucs){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO AlunosTemUCs (Aluno_Username,UC_Sigla)\n" +
+                                                        "VALUES (?,?)\n" +
+                                                        "ON DUPLICATE KEY UPDATE Aluno_Username=VALUES(Aluno_Username),UC_Sigla=VALUES(UC_Sigla)", Statement.RETURN_GENERATED_KEYS);
+            for(UC u: ucs){
+                ps.setString(1, alunoUsername);
+                ps.setString(2, u.getSigla());
+                ps.executeUpdate(); 
+            }
+
+        }
+        catch(SQLException e){
+            System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(UCDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                System.out.printf(e.getMessage());
+            }
+        }
+    }
+    
+    public void remInscricaoAluno(String sigla, String username){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM AlunosTemUCs\n" +
+                                                        "WHERE UC_Sigla = ? AND Aluno_Username = ?");
+            ps.setString(1, sigla);
+            ps.setString(2, username);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(UCDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                System.out.printf(e.getMessage());
+            }
+        }
+    }
+    
+    public void addInscricaoAluno(String sigla, String username){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO AlunosTemUCs (Aluno_Username,UC_Sigla)\n" +
+                                                        "VALUES (?,?)\n" +
+                                                        "ON DUPLICATE KEY UPDATE Aluno_Username=VALUES(Aluno_Username),UC_Sigla=VALUES(UC_Sigla)", Statement.RETURN_GENERATED_KEYS);
+            
+            ps.setString(1, username);
+            ps.setString(2, sigla);
+            ps.executeUpdate(); 
+
+
+        }
+        catch(SQLException e){
+            System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(UCDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         finally{
             try{
                 Connect.close(con);
