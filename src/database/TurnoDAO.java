@@ -121,7 +121,7 @@ public class TurnoDAO {
             ps.setInt(2, t.getCapacidade());
             ps.setString(3, t.getTipo());
             ps.setString(4, SiglaUC);
-            ps.setString(5, t.getDocente().getUsername()); //////ALTERAR ISTO!!!!!
+            ps.setString(5, t.getDocente().getUsername()); 
             ps.setString(6, t.getDiaSem());
             ps.setString(7, t.getHora());
             ps.executeUpdate(); 

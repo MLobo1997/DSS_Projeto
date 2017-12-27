@@ -51,7 +51,7 @@ public class Aluno implements Utilizador{ //TODO: alterar o DAO ou criar um novo
     }
 
     public void setUcs(List<UC> ucs) {
-        
+        this.ucs.adicionaUCs(this.username, ucs);
     }
 
     public String getNome() {
@@ -108,6 +108,14 @@ public class Aluno implements Utilizador{ //TODO: alterar o DAO ou criar um novo
 
     public void setNotificacoes(List<String> notificacoes) {
         
+    }
+    
+    public void remInscricao(String sigla){
+        this.ucs.remInscricaoAluno(sigla, this.username);
+    }
+    
+    public void addInscricao(String sigla){
+        this.ucs.addInscricaoAluno(sigla, this.username);
     }
 
     @Override
