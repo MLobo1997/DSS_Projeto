@@ -39,6 +39,7 @@ public class RegistarFaltas extends javax.swing.JDialog {
         this.jComboBox2.setSelectedIndex(0);
     }
     
+    
     public void updateListAlunos(Turno t){
         DefaultListModel<String> lista = new DefaultListModel<>();
         try{
@@ -51,6 +52,7 @@ public class RegistarFaltas extends javax.swing.JDialog {
         }
         jList1.setModel(lista);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
