@@ -126,7 +126,6 @@ public class TurnoDAO {
             ps.setString(5, t.getDocente().getUsername()); //////ALTERAR ISTO!!!!!
             ps.setString(6, t.getDiaSem());
             ps.setString(7, t.getHora());
-            System.out.println("É aqui");
             ps.setInt(8, t.getNTrocas());
             ps.executeUpdate(); 
             

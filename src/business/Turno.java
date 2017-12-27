@@ -51,6 +51,7 @@ public class Turno { //TODO: mudar o get e set do DAOS
     public Integer getNTrocas(){
         return nTrocas;
     }
+    
     public void setNTrocas(Integer nTrocas){
         this.nTrocas=nTrocas;
     }

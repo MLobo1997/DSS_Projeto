@@ -164,9 +164,7 @@ public class GesTurno {
         InputStream fis = new FileInputStream(path);
 
             JsonReader reader = Json.createReader(fis);
-            System.out.println("no inicio");
             JsonArray x = reader.readArray();
-            System.out.println("readArray");
             reader.close();
             
             try{
@@ -179,22 +177,18 @@ public class GesTurno {
                     int semestre = uc.getInt("Semestre");
                     UC u = new UC(sigla, ano, semestre, nome);
                     this.ucs.put(sigla, u);
-                    System.out.println("Vou para os turnos");
                     JsonArray turnos = uc.getJsonArray("Turnos");
                     ArrayList<Turno> ts = new ArrayList<Turno>();
                     try{
                         for (int j = 0; ; j++) {
                             Turno turno = new Turno();
-                            System.out.println("buscar jason turnos");
                             JsonObject t = turnos.getJsonObject(j);
-                            System.out.println("Afinal não é daqui!");
                             String codigo = t.getString("Codigo");
                             int capacidade = t.getInt("Capacidade");
                             String tipo = t.getString("Tipo");
                             String diaSem = t.getString("DiaSem");
                             String hora = t.getString("Hora");
                             String docente = t.getString("Docente");
-                            System.out.println("Vou para as trocas");
                             
                             turno.setCodigo(codigo); 
                             turno.setCapacidade(capacidade);
@@ -202,8 +196,8 @@ public class GesTurno {
                             turno.setDiaSem(diaSem);
                             turno.setHora(hora);
                             turno.setDocente((Docente)this.utilizadores.get(docente));
-                            System.out.println("Vou para as trocas");
                             turno.setNTrocas(0);
+                            ts.add(turno);
                             /*
                             System.out.println("------------------------------");
                             System.out.println("Codigo     : " + codigo);
