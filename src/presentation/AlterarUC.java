@@ -271,7 +271,7 @@ public class AlterarUC extends javax.swing.JDialog {
         String diaSem = (String)jComboBox1.getSelectedItem();
         String capacidade = jTextField1.getText();
         if(hora != null && turnoCodigo != null && linhaDocente != null && diaSem != null && capacidade != null){
-            this.gesTurno.atualizaTurno(u, turnoCodigo, linhaDocente.split("\t")[0], hora, diaSem, capacidade);
+            this.gesTurno.atualizaTurno(u, turnoCodigo, linhaDocente.split("\t")[0], hora, diaSem, capacidade,String.valueOf(this.u.getTurno(turnoCodigo).getNTrocas()));
             this.gesTurno.atualizaUC(u);
         }
     }//GEN-LAST:event_jButton2ActionPerformed

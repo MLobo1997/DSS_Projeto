@@ -303,6 +303,7 @@ public class MenuDirecao extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String path = jTextField2.getText();    
         try {
+            System.out.println("Mesmo no inicio");
             gesTurno.registarUCs(path);
             jTextField2.setText("Registos Efetuados");
             jTextField2.setBackground(Color.GREEN);
@@ -312,6 +313,7 @@ public class MenuDirecao extends javax.swing.JFrame {
             e.setVisible(true);
         }
         catch(Exception ex){
+            System.out.println("Mesmo no inicio, erro");
             ex.printStackTrace();
             MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
             e.setVisible(true);

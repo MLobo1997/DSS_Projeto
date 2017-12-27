@@ -43,6 +43,7 @@ public class TurnoDAO {
                 t.setTipo(rs.getString("Tipo"));
                 t.setHora(rs.getString("Hora"));
                 t.setDiaSem(rs.getString("DiaSemana"));
+                t.setNTrocas(rs.getInt("NTrocas"));
                 String DocUsername = rs.getString("Docente_Username");
                 
                 DocenteDAO d = new DocenteDAO();
@@ -85,6 +86,7 @@ public class TurnoDAO {
                 t.setTipo(rs.getString("Tipo"));
                 t.setDiaSem(rs.getString("DiaSemana"));
                 t.setHora(rs.getString("Hora"));
+                t.setNTrocas(rs.getInt("NTrocas"));
                 
                 DocenteDAO d = new DocenteDAO();
                 t.setDocente(d.getDocente(rs.getString("Docente_Username")));
@@ -114,9 +116,9 @@ public class TurnoDAO {
     public void addTurno(Turno t, String SiglaUC){ 
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Turnos (Codigo,Capacidade,Tipo,UC_Sigla,Docente_Username,DiaSemana,Hora)\n" +
-                                                        "VALUES (?,?,?,?,?,?,?)\n" +
-                                                        "ON DUPLICATE KEY UPDATE Capacidade=VALUES(Capacidade),Tipo=VALUES(Tipo),UC_Sigla=VALUES(UC_Sigla),Docente_Username=VALUES(Docente_Username),DiaSemana=VALUES(DiaSemana),Hora=VALUES(HORA)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Turnos (Codigo,Capacidade,Tipo,UC_Sigla,Docente_Username,DiaSemana,Hora,NTrocas)\n" +
+                                                        "VALUES (?,?,?,?,?,?,?,?)\n" +
+                                                        "ON DUPLICATE KEY UPDATE Capacidade=VALUES(Capacidade),Tipo=VALUES(Tipo),UC_Sigla=VALUES(UC_Sigla),Docente_Username=VALUES(Docente_Username),DiaSemana=VALUES(DiaSemana),Hora=VALUES(HORA),NTrocas=VALUES(NTrocas)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, t.getCodigo());
             ps.setInt(2, t.getCapacidade());
             ps.setString(3, t.getTipo());
@@ -124,6 +126,8 @@ public class TurnoDAO {
             ps.setString(5, t.getDocente().getUsername()); //////ALTERAR ISTO!!!!!
             ps.setString(6, t.getDiaSem());
             ps.setString(7, t.getHora());
+            System.out.println("É aqui");
+            ps.setInt(8, t.getNTrocas());
             ps.executeUpdate(); 
             
             ps = con.prepareStatement("INSERT INTO DocentesTemUCs (UC_Sigla,Docente_Username)\n" +

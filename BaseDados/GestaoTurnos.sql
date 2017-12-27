@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `GestaoTurnos`.`Turnos` (
   `Docente_Username` VARCHAR(6) NOT NULL,
   `DiaSemana` VARCHAR(45) NOT NULL,
   `Hora` VARCHAR(45) NOT NULL,
+  `NTrocas` SMALLINT(6) NOT NULL,
   PRIMARY KEY (`Codigo`),
   INDEX `fk_Turno_UC1_idx` (`UC_Sigla` ASC),
   INDEX `fk_Turno_Docente1_idx` (`Docente_Username` ASC),
