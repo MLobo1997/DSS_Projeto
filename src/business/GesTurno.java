@@ -129,15 +129,7 @@ public class GesTurno {
                     String estatuto = aluno.getString("Estatuto");
                     
                     if(!username.matches("A[0-9]{5}")) throw new Exception(); 
-                    /*    
-                    System.out.println("------------------------------");
-                    System.out.println("Nome    : " + nome);
-                    System.out.println("Email   : " + email);
-                    System.out.println("Username: " + username);
-                    System.out.println("Ano     : " + ano);
-                    System.out.println("Estatuto: " + estatuto);
-                    System.out.println("------------------------------");
-                    */
+
                     Aluno a = new Aluno(nome, email, username, "", estatuto, Integer.parseInt(ano));
                     this.utilizadores.put(username, a);
                 }
@@ -160,14 +152,7 @@ public class GesTurno {
                     String password = docente.getString("Password");
                     
                     if(!username.matches("D[0-9]{5}")) throw new Exception();
-                    /*
-                    System.out.println("------------------------------");
-                    System.out.println("Nome    : " + nome);
-                    System.out.println("Email   : " + email);
-                    System.out.println("Username: " + username);
-                    System.out.println("Password: " + password);
-                    System.out.println("------------------------------");
-                    */
+                    
                     Docente d = new Docente(nome, email, username, password);
                     this.utilizadores.put(username, d);
 
@@ -192,14 +177,6 @@ public class GesTurno {
                     String nome = uc.getString("UC");
                     int ano = uc.getInt("Ano");
                     int semestre = uc.getInt("Semestre");
-                    /*
-                    System.out.println("------------------------------");
-                    System.out.println("Nome    : " + nome);
-                    System.out.println("Sigla   : " + sigla);
-                    System.out.println("Ano     : " + ano);
-                    System.out.println("Semestre: " + semestre);
-                    System.out.println("------------------------------");
-                    */
                     UC u = new UC(sigla, ano, semestre, nome);
                     this.ucs.put(sigla, u);
                     System.out.println("Vou para os turnos");
@@ -237,7 +214,6 @@ public class GesTurno {
                             System.out.println("Docente    : " + docente);
                             System.out.println("------------------------------");
                             */
-                            ts.add(turno);
                         }
                     }catch(IndexOutOfBoundsException e){}
                     u.setTurnos(ts);//vai inserir na base da dados

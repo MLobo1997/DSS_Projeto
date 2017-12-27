@@ -5,7 +5,14 @@
  */
 package presentation;
 
+import business.Aluno;
+import business.Docente;
 import business.GesTurno;
+import business.Turno;
+import business.UC;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -14,6 +21,8 @@ import business.GesTurno;
 public class AlterarTurnos extends javax.swing.JDialog {
 
     private GesTurno gesTurno;
+    private UC ucEscolhida;
+    
     
     /**
      * Creates new form AlterarTurnos
@@ -22,8 +31,33 @@ public class AlterarTurnos extends javax.swing.JDialog {
         super(parent, modal);
         this.gesTurno = gesTurno;
         initComponents();
+        this.jComboBox1.setSelectedIndex(0); 
+        this.jComboBox2.setSelectedIndex(0);
+        
     }
-
+    
+    public void updateFrame(Turno turno){
+        updateListInscritos(turno);
+        updateListNInscritos();
+    }
+    
+    public void updateListNInscritos(){
+        
+    }
+    
+    public void updateListInscritos(Turno t){
+        DefaultListModel<String> lista = new DefaultListModel<>();
+        try{
+            for(Aluno a : t.getAlunos()){
+                lista.addElement(a.getUsername() + "\t" + a.getNome());
+            }
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+        jList1.setModel(lista);
+    }
+            
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,7 +91,8 @@ public class AlterarTurnos extends javax.swing.JDialog {
 
         jLabel4.setText("Turno:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        String[] n = ((Docente)this.gesTurno.getUtilizador()).getUCs().stream().map(f -> f.getNome()).toArray(String[]::new);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(n));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -97,24 +132,30 @@ public class AlterarTurnos extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(227, 227, 227)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(0, 171, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,8 +183,31 @@ public class AlterarTurnos extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
+                .addGap(16, 16, 16))
         );
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String nomeUC = (String)jComboBox1.getSelectedItem();
+                for(UC uc: gesTurno.getUCs()){
+                    if(uc.getNome().equals(nomeUC)){
+                        ucEscolhida = uc;
+                        int i = uc.getSigla().length()+1;
+                        List<Turno> lt = uc.getTurnos().stream().filter(f -> f.getDocente().getUsername().equals(gesTurno.getUtilizador().getUsername())).collect(Collectors.toList());;
+                        String[] turnos = lt.stream().map(f -> f.getCodigo()).map(f -> f.substring(i)).toArray(String[]::new);
+                        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(turnos));
+                        jComboBox2.setSelectedIndex(0);
+                    }
+                }
+            }
+        });
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String turno = (String)jComboBox2.getSelectedItem();
+                Turno t = gesTurno.getTurno(ucEscolhida.getSigla()+"-"+turno);
+                updateFrame(t);
+            }
+        });
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
