@@ -112,8 +112,8 @@ public class GesTurno {
                 
     }
      
-    public void registarAlunos(String path) throws FileNotFoundException, Exception { 
-         InputStream fis = new FileInputStream(path);
+    public void registarAlunos(String path) throws FileNotFoundException, Exception {
+            InputStream fis = new FileInputStream(path);
 
             JsonReader reader = Json.createReader(fis);
             JsonArray utilizadores = reader.readArray();
@@ -133,6 +133,7 @@ public class GesTurno {
                     Aluno a = new Aluno(nome, email, username, "", estatuto, Integer.parseInt(ano));
                     this.utilizadores.put(username, a);
                 }
+                
             }catch(IndexOutOfBoundsException e){}
      }
      
