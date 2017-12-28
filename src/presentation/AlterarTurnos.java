@@ -37,18 +37,32 @@ public class AlterarTurnos extends javax.swing.JDialog {
     }
     
     public void updateFrame(Turno turno){
-        updateListInscritos(turno);
-        updateListNInscritos();
+        List<Aluno> inscritos = turno.getAlunos();
+        List<String> usernames = inscritos.stream().map(f -> f.getUsername()).collect(Collectors.toList());
+        List<Aluno> todos = this.gesTurno.getAlunos(turno.getCodigo().split("-")[0]);
+        List<Aluno> nInscritos = todos.stream().filter(f -> !usernames.contains(f.getUsername())).collect(Collectors.toList());
+                
+        updateListInscritos(inscritos);
+        updateListNInscritos(nInscritos);
     }
     
-    public void updateListNInscritos(){
-        
-    }
-    
-    public void updateListInscritos(Turno t){
+    public void updateListNInscritos(List<Aluno> alunos){
         DefaultListModel<String> lista = new DefaultListModel<>();
         try{
-            for(Aluno a : t.getAlunos()){
+            for(Aluno a : alunos){
+                lista.addElement(a.getUsername() + "\t" + a.getNome());
+            }
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+        jList2.setModel(lista);
+    }
+    
+    public void updateListInscritos(List<Aluno> alunos){
+        DefaultListModel<String> lista = new DefaultListModel<>();
+        try{
+            for(Aluno a : alunos){
                 lista.addElement(a.getUsername() + "\t" + a.getNome());
             }
         }
@@ -87,7 +101,7 @@ public class AlterarTurnos extends javax.swing.JDialog {
 
         jLabel2.setText("Alunos inscritos no turno:");
 
-        jLabel3.setText("Alunos inscritos na UC que não estão no turno:");
+        jLabel3.setText("Alunos inscritos na UC que não tem turno: FALTA FAZER");
 
         jLabel4.setText("Turno:");
 
@@ -139,7 +153,7 @@ public class AlterarTurnos extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
-                        .addGap(0, 171, Short.MAX_VALUE))
+                        .addGap(0, 114, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()

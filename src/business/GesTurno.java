@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -60,6 +61,18 @@ public class GesTurno {
         }
         
         return docentes;
+    }
+    
+    public List<Aluno> getAlunos(){
+        ArrayList<Aluno> alunos = new ArrayList<Aluno>();
+        
+        for(Utilizador u : this.utilizadores.values()){
+            if(u instanceof Aluno){
+                alunos.add((Aluno)u);
+            }
+        }
+        
+        return alunos;
     }
     
     public Utilizador getUtilizadorByUsername(String username){
@@ -113,99 +126,142 @@ public class GesTurno {
     }
      
     public void registarAlunos(String path) throws FileNotFoundException, Exception { 
-         InputStream fis = new FileInputStream(path);
+        InputStream fis = new FileInputStream(path);
+        
+        List<UC> ano1 =  this.ucs.getUCsAno(1);
+        List<UC> ano2 =  this.ucs.getUCsAno(2);
+        List<UC> ano3 =  this.ucs.getUCsAno(3);
 
-            JsonReader reader = Json.createReader(fis);
-            JsonArray utilizadores = reader.readArray();
-            reader.close();
-            
-            try{
-                for (int i = 0; ; i++){
-                    JsonObject aluno = utilizadores.getJsonObject(i);
-                    String username = aluno.getString("Username");
-                    String nome = aluno.getString("Nome") + " " + aluno.getString("Apelido");
-                    String email = aluno.getString("Email");
-                    String ano = aluno.getString("Ano");
-                    String estatuto = aluno.getString("Estatuto");
-                    
-                    if(!username.matches("A[0-9]{5}")) throw new Exception(); 
+        JsonReader reader = Json.createReader(fis);
+        JsonArray utilizadores = reader.readArray();
+        reader.close();
 
-                    Aluno a = new Aluno(nome, email, username, "", estatuto, Integer.parseInt(ano));
-                    this.utilizadores.put(username, a);
-                }
-            }catch(IndexOutOfBoundsException e){}
+        for (int i = 0; i < utilizadores.size(); i++){
+            JsonObject aluno = utilizadores.getJsonObject(i);
+            String username = aluno.getString("Username");
+            String nome = aluno.getString("Nome") + " " + aluno.getString("Apelido");
+            String email = aluno.getString("Email");
+            String ano = aluno.getString("Ano");
+            String estatuto = aluno.getString("Estatuto");
+
+            if(!username.matches("A[0-9]{5}")) throw new Exception(); 
+
+            Aluno a = new Aluno(nome, email, username, "", estatuto, Integer.parseInt(ano));
+            this.utilizadores.put(username, a);
+            switch (new Integer(ano)) {
+                case 1:
+                    a.setUcs(ano1);
+                    break;
+                case 2:
+                    a.setUcs(ano2);
+                    break;
+                case 3:
+                    a.setUcs(ano3);
+                    break;
+                default:
+                    break;
+            }
+        }
      }
      
     public void registarDocentes(String path) throws FileNotFoundException, Exception { 
          InputStream fis = new FileInputStream(path);
 
-            JsonReader reader = Json.createReader(fis);
-            JsonArray utilizadores = reader.readArray();
-            reader.close();
-            
-            try{
-                for (int i = 0; ; i++){
-                    JsonObject docente = utilizadores.getJsonObject(i);
-                    String username = docente.getString("Username");
-                    String nome = docente.getString("Nome") + " " + docente.getString("Apelido");
-                    String email = docente.getString("Email");
-                    String password = docente.getString("Password");
-                    
-                    if(!username.matches("D[0-9]{5}")) throw new Exception();
-                    
-                    Docente d = new Docente(nome, email, username, password);
-                    this.utilizadores.put(username, d);
+        JsonReader reader = Json.createReader(fis);
+        JsonArray utilizadores = reader.readArray();
+        reader.close();
 
-                }
-            }catch(IndexOutOfBoundsException e){}
+        for (int i = 0; i < utilizadores.size(); i++){
+            JsonObject docente = utilizadores.getJsonObject(i);
+            String username = docente.getString("Username");
+            String nome = docente.getString("Nome") + " " + docente.getString("Apelido");
+            String email = docente.getString("Email");
+            String password = docente.getString("Password");
+
+            if(!username.matches("D[0-9]{5}")) throw new Exception();
+
+            Docente d = new Docente(nome, email, username, password);
+            this.utilizadores.put(username, d);
+
+        }
      }
      
     public void registarUCs(String path) throws FileNotFoundException, Exception{
         InputStream fis = new FileInputStream(path);
 
-            JsonReader reader = Json.createReader(fis);
-            JsonArray x = reader.readArray();
-            reader.close();
+        JsonReader reader = Json.createReader(fis);
+        JsonArray x = reader.readArray();
+        reader.close();
             
-            try{
-                for (int i = 0; ; i++){
-                    JsonObject uc = x.getJsonObject(i);
-                    
-                    String sigla = uc.getString("Sigla");
-                    String nome = uc.getString("UC");
-                    int ano = uc.getInt("Ano");
-                    int semestre = uc.getInt("Semestre");
-                    UC u = new UC(sigla, ano, semestre, nome);
-                    this.ucs.put(sigla, u);
-                    
-                    JsonArray turnos = uc.getJsonArray("Turnos");
-                    ArrayList<Turno> ts = new ArrayList<Turno>();
-                    try{
-                        for (int j = 0; ; j++) {
-                            Turno turno = new Turno();
-                            JsonObject t = turnos.getJsonObject(j);
-                            String codigo = t.getString("Codigo");
-                            int capacidade = t.getInt("Capacidade");
-                            String tipo = t.getString("Tipo");
-                            String diaSem = t.getString("DiaSem");
-                            String hora = t.getString("Hora");
-                            String docente = t.getString("Docente");
-                            
-                            turno.setCodigo(codigo); 
-                            turno.setCapacidade(capacidade);
-                            turno.setTipo(tipo);
-                            turno.setDiaSem(diaSem);
-                            turno.setHora(hora);
-                            turno.setDocente((Docente)this.utilizadores.get(docente));
-                            
-                            ts.add(turno);
-                        }
-                    }catch(IndexOutOfBoundsException e){}
-                    u.setTurnos(ts);//vai inserir na base da dados
-                    
-                    
+            
+        for (int i = 0; i < x.size(); i++){
+            JsonObject uc = x.getJsonObject(i);
+
+            String sigla = uc.getString("Sigla");
+            String nome = uc.getString("UC");
+            int ano = uc.getInt("Ano");
+            int semestre = uc.getInt("Semestre");
+            UC u = new UC(sigla, ano, semestre, nome);
+            this.ucs.put(sigla, u);
+
+            JsonArray turnos = uc.getJsonArray("Turnos");
+            ArrayList<Turno> ts = new ArrayList<Turno>();
+
+            for (int j = 0; j < turnos.size(); j++) {
+                Turno turno = new Turno();
+                JsonObject t = turnos.getJsonObject(j);
+                String codigo = t.getString("Codigo");
+                int capacidade = t.getInt("Capacidade");
+                String tipo = t.getString("Tipo");
+                String diaSem = t.getString("DiaSem");
+                String hora = t.getString("Hora");
+                String docente = t.getString("Docente");
+
+                turno.setCodigo(codigo); 
+                turno.setCapacidade(capacidade);
+                turno.setTipo(tipo);
+                turno.setDiaSem(diaSem);
+                turno.setHora(hora);
+                turno.setDocente((Docente)this.utilizadores.get(docente));
+
+                ts.add(turno);
+            }
+
+            u.setTurnos(ts);//vai inserir na base da dados
+
+
+        }
+    }
+    
+    public void atribuiHorarios(String path) throws FileNotFoundException, Exception{
+        InputStream fis = new FileInputStream(path);
+
+        JsonReader reader = Json.createReader(fis);
+        JsonArray x = reader.readArray();
+        reader.close();
+        DistribuiHorario dh = new DistribuiHorario(1); //TODO: ALTERAR PARA POR AUTOMATICAMENTE O SEMESTRE
+
+        String[] n = {"H1.1","H1.2","H2.1","H2.2","H3.1","H3.2"};
+        for (int i = 0; i < x.size(); i++){
+
+            JsonObject horario = x.getJsonObject(i);
+
+            JsonArray turnos = horario.getJsonArray(n[i]);
+
+            for(int j = 0; j < turnos.size(); j++){
+                JsonArray js = turnos.getJsonArray(j);
+                int ano = Integer.valueOf(n[i].substring(1, 2));
+                int semestre = Integer.valueOf(n[i].substring(3,4));
+                
+                Horario h = new Horario(ano, semestre);
+                for(int k = 0; k < js.size(); k++){
+                    String t = js.getString(k);
+                    h.addTurno(t);
                 }
-            }catch(IndexOutOfBoundsException e){}
+                dh.addHorario(h);
+            }
+        }
+        dh.distribui(this.getAlunos());
     }
      
     public void atualizaUC(UC u){
@@ -241,5 +297,14 @@ public class GesTurno {
     
     public void registaFaltas(String turnoCodigo, List<Falta> faltas){
         this.getTurno(turnoCodigo).setFaltas(faltas);
+    }
+    
+    public List<Aluno> getAlunos(String siglaUC){
+        List<String> usernames = this.ucs.getAlunosUsername(siglaUC);
+        return this.utilizadores.values().stream().filter(f -> usernames.contains(f.getUsername())).map(c -> (Aluno) c).collect(Collectors.toList());
+    }
+    
+    public List<UC> getUCsAno(int ano){
+        return this.ucs.getUCsAno(ano);
     }
 }

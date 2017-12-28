@@ -8,6 +8,8 @@ package presentation;
 import business.Aluno;
 import business.GesTurno;
 import business.UC;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.DefaultListModel;
 
 /**
@@ -26,29 +28,43 @@ public class GestorUCs extends javax.swing.JDialog {
         this.gesTurno = gesTurno;
         this.aluno = (Aluno)this.gesTurno.getUtilizador();
         initComponents();
+        this.jLabel4.setText(this.aluno.getAno().toString());
         updateFrame();
     }
     
     public void updateFrame(){
-        updateListUCInscrito();
-        updateListUCInscrever();
+        List<UC> inscrito = this.aluno.getUcs();
+        List<String> siglas = inscrito.stream().map(f -> f.getSigla()).collect(Collectors.toList());
+        List<UC> todasDoAno = this.gesTurno.getUCsAno(this.aluno.getAno());
+        List<UC> porInscrever = todasDoAno.stream().filter(f -> !siglas.contains(f.getSigla())).collect(Collectors.toList());
+        updateListUCInscrito(inscrito);
+        updateListUCInscrever(porInscrever);
     }
     
-    public void updateListUCInscrito(){
+    public void updateListUCInscrito(List<UC> inscritos){
         DefaultListModel<String> lista = new DefaultListModel<>();
         try{
-            for(UC u : this.aluno.getUcs()){
-                lista.addElement(u.getNome());
+            for(UC u : inscritos){
+                lista.addElement(u.getSigla() + "\t" + u.getNome());
+            }
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+        jList2.setModel(lista);
+    }
+    
+    public void updateListUCInscrever(List<UC> porInscrever){
+        DefaultListModel<String> lista = new DefaultListModel<>();
+        try{
+            for(UC u : porInscrever){
+                lista.addElement(u.getSigla() + "\t" + u.getNome());
             }
         }
         catch (Exception e){
             e.getMessage();
         }
         jList1.setModel(lista);
-    }
-    
-    public void updateListUCInscrever(){
-        
     }
 
     /**
@@ -85,6 +101,11 @@ public class GestorUCs extends javax.swing.JDialog {
 
         jButton2.setText("Inscrever");
         jButton2.setPreferredSize(new java.awt.Dimension(108, 29));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Voltar");
         jButton3.setPreferredSize(new java.awt.Dimension(108, 29));
@@ -128,7 +149,7 @@ public class GestorUCs extends javax.swing.JDialog {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)))
                         .addGap(0, 14, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -176,12 +197,24 @@ public class GestorUCs extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String nome = this.jList2.getSelectedValue();
+        if(nome != null){
+            this.aluno.remInscricao(nome.split("\t")[0]);
+            updateFrame();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String nome = this.jList1.getSelectedValue();
+        if(nome != null){
+            this.aluno.addInscricao(nome.split("\t")[0]);
+            updateFrame();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
