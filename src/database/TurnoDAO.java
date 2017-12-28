@@ -6,6 +6,7 @@
 package database;
 
 import business.Aluno;
+import business.Horario;
 import business.Turno;
 import business.UC;
 import java.sql.Connection;
@@ -27,7 +28,38 @@ public class TurnoDAO {
 
     private Connection con;
     
-    // Implementacao lazy. Faltas, trocas e alunos só são carregados quando são precisoos
+    public void inscreveTurnos(Aluno a, Horario h){
+        String username = a.getUsername();
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO AlunosTemTurnos (Aluno_Username, Turno_Codigo)\n"
+                                                      + "VALUES (?,?)");
+            
+            for(String codigo: h.getTurnos()){ 
+                ps.setString(1, username);
+                ps.setString(2, codigo);
+                ps.executeUpdate();
+            }
+
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(TurnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+    }
+    
+    
     public List<Turno> list(UC u){
         ArrayList<Turno> res = new ArrayList<Turno>();
         try{
@@ -121,7 +153,7 @@ public class TurnoDAO {
             ps.setInt(2, t.getCapacidade());
             ps.setString(3, t.getTipo());
             ps.setString(4, SiglaUC);
-            ps.setString(5, t.getDocente().getUsername()); //////ALTERAR ISTO!!!!!
+            ps.setString(5, t.getDocente().getUsername()); 
             ps.setString(6, t.getDiaSem());
             ps.setString(7, t.getHora());
             ps.executeUpdate(); 
