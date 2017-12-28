@@ -63,6 +63,18 @@ public class GesTurno {
         return docentes;
     }
     
+    public List<Aluno> getAlunos(){
+        ArrayList<Aluno> alunos = new ArrayList<Aluno>();
+        
+        for(Utilizador u : this.utilizadores.values()){
+            if(u instanceof Aluno){
+                alunos.add((Aluno)u);
+            }
+        }
+        
+        return alunos;
+    }
+    
     public Utilizador getUtilizadorByUsername(String username){
         return this.utilizadores.get(username);
     }
@@ -219,6 +231,37 @@ public class GesTurno {
 
 
         }
+    }
+    
+    public void atribuiHorarios(String path) throws FileNotFoundException, Exception{
+        InputStream fis = new FileInputStream(path);
+
+        JsonReader reader = Json.createReader(fis);
+        JsonArray x = reader.readArray();
+        reader.close();
+        DistribuiHorario dh = new DistribuiHorario(1); //TODO: ALTERAR PARA POR AUTOMATICAMENTE O SEMESTRE
+
+        String[] n = {"H1.1","H1.2","H2.1","H2.2","H3.1","H3.2"};
+        for (int i = 0; i < x.size(); i++){
+
+            JsonObject horario = x.getJsonObject(i);
+
+            JsonArray turnos = horario.getJsonArray(n[i]);
+
+            for(int j = 0; j < turnos.size(); j++){
+                JsonArray js = turnos.getJsonArray(j);
+                int ano = Integer.valueOf(n[i].substring(1, 2));
+                int semestre = Integer.valueOf(n[i].substring(3,4));
+                
+                Horario h = new Horario(ano, semestre);
+                for(int k = 0; k < js.size(); k++){
+                    String t = js.getString(k);
+                    h.addTurno(t);
+                }
+                dh.addHorario(h);
+            }
+        }
+        dh.distribui(this.getAlunos());
     }
      
     public void atualizaUC(UC u){

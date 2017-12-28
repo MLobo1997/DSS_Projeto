@@ -101,7 +101,7 @@ public class AlterarTurnos extends javax.swing.JDialog {
 
         jLabel2.setText("Alunos inscritos no turno:");
 
-        jLabel3.setText("Alunos inscritos na UC que não estão no turno:");
+        jLabel3.setText("Alunos inscritos na UC que não tem turno: FALTA FAZER");
 
         jLabel4.setText("Turno:");
 
@@ -153,7 +153,7 @@ public class AlterarTurnos extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
-                        .addGap(0, 171, Short.MAX_VALUE))
+                        .addGap(0, 114, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
