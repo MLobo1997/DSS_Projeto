@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author diogoleitao
  */
-public class Aluno implements Utilizador{ //TODO: alterar o DAO ou criar um novo?
+public class Aluno implements Utilizador{ 
     private String nome;
     private String email;
     private String username;
@@ -121,6 +121,37 @@ public class Aluno implements Utilizador{ //TODO: alterar o DAO ou criar um novo
     @Override
     public String toString() {
         return "Aluno{" + "nome=" + nome + ", email=" + email + ", username=" + username + ", password=" + password + ", estatuto=" + estatuto + ", ano=" + ano + ", notificacoes=" + notificacoes + '}';
+    }
+    
+    public List<Turno> getTurnos(){
+        List<Turno> turnos = new ArrayList<Turno>();
+        List<UC> ucsDoAluno = this.getUcs();
+        
+        for(UC u : ucsDoAluno){
+            for(Turno t : u.getTurnos()){
+                if(t.temAluno(this)){
+                    turnos.add(t);
+                }
+            }
+        }
+        
+        return turnos;
+    }
+    
+    public List<Troca> getTrocas(){
+        List<Troca> trocas = new ArrayList<Troca>();
+        List<UC> ucsDoAluno = this.getUcs();
+        
+        for(UC u : ucsDoAluno){
+            for(Turno turno : u.getTurnos()){
+                for(Troca t : turno.getTrocas()){
+                    if(t.getAluno().getUsername().equals(username)){
+                        trocas.add(t);
+                    }
+                }
+            }
+        }
+        return trocas;
     }
 
 }

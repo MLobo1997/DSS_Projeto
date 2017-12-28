@@ -307,4 +307,17 @@ public class GesTurno {
     public List<UC> getUCsAno(int ano){
         return this.ucs.getUCsAno(ano);
     }
+    
+    public UC getUC(String sigla){
+        return this.ucs.get(sigla);
+    }
+    
+    //RETORNAR BOOLEAN SE FOI POSSIVEL OU NAO!! OU EXCEPTION
+    public void TrocaTurno(String alunoUsername, String codigoTurnoAtual, String codigoTurnoPretendido){
+        String siglaUC = codigoTurnoAtual.split("-")[0];
+        UC u = this.getUC(siglaUC);
+        //TESTAR SE E POSSIVEL FAZER A TROCA PRIMEIRO
+        u.removeDoTurno(alunoUsername, codigoTurnoAtual);
+        u.inscreveNoTurno(alunoUsername, codigoTurnoPretendido);
+    }
 }

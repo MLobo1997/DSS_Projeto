@@ -99,4 +99,12 @@ public class UC {
         return this.turnos.remove(codigo);
     }
     
+    public void removeDoTurno(String alunoUsername, String turnoCodigo){
+        this.turnos.removeDoTurno(alunoUsername, turnoCodigo);
+    }
+    
+    public void inscreveNoTurno(String alunoUsername, String turnoCodigo){
+        this.turnos.inscreveNoTurno(alunoUsername, turnoCodigo);
+    }
+    
 }

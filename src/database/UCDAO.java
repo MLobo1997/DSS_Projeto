@@ -256,8 +256,8 @@ public class UCDAO implements Map<String,UC>{
 
     @Override
     public UC get(Object key) {
-        UC uc = null;
         String chave = (String) key;
+        UC uc = null;
         try{
             con = Connect.connect();
             PreparedStatement ps = con.prepareStatement("SELECT * FROM UCs WHERE Sigla = ?");

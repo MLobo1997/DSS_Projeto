@@ -28,6 +28,66 @@ public class TurnoDAO {
 
     private Connection con;
     
+    public void removeDoTurno(String alunoUsername, String codigoTurno){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM AlunosTemTurnos\n"
+                                                      + "WHERE Aluno_Username = ? AND Turno_Codigo = ?");
+            
+             
+            ps.setString(1, alunoUsername);
+            ps.setString(2, codigoTurno);
+            ps.executeUpdate();
+            
+
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(TurnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+    }
+    
+    public void inscreveNoTurno(String alunoUsername, String codigoTurno){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO AlunosTemTurnos (Aluno_Username, Turno_Codigo)\n"
+                                                      + "VALUES (?,?)");
+            
+             
+            ps.setString(1, alunoUsername);
+            ps.setString(2, codigoTurno);
+            ps.executeUpdate();
+            
+
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(TurnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+    }
+    
     public void inscreveTurnos(Aluno a, Horario h){
         String username = a.getUsername();
         try{

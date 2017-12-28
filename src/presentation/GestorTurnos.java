@@ -5,20 +5,94 @@
  */
 package presentation;
 
+import business.Aluno;
+import business.GesTurno;
+import business.Troca;
+import business.Turno;
+import business.UC;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 /**
  *
  * @author diogoleitao
  */
 public class GestorTurnos extends javax.swing.JDialog {
+    
+    private GesTurno gesTurno;
+    private Aluno aluno;
 
     /**
      * Creates new form GestorTurnos
      */
-    public GestorTurnos(java.awt.Frame parent, boolean modal) {
+    public GestorTurnos(java.awt.Frame parent, boolean modal, GesTurno gesTurno) {
         super(parent, modal);
+        this.gesTurno = gesTurno;
+        this.aluno = (Aluno) gesTurno.getUtilizador();
         initComponents();
+        updateFrame();
+        this.jList1.setSelectedIndex(0);
+    }
+    
+    public void updateFrame(){
+        List<Turno> turnos = this.aluno.getTurnos();
+        updateListInscrito(turnos);
+        List<Troca> trocas = this.aluno.getTrocas();
+        //updateListPedidos();
+        updateListTrocas(trocas, turnos);
+    }
+    
+    public void updateListInscrito(List<Turno> turnos){
+        int index = jList1.getSelectedIndex();
+        DefaultListModel<String> lista = new DefaultListModel<>();
+        try{
+            for(Turno t : turnos){
+                UC u = this.gesTurno.getUC(t.getCodigo().split("-")[0]);
+                lista.addElement(t.getCodigo().split("-")[1] + "\t" + u.getNome() + "\t" + u.getSigla());
+            }
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+        jList1.setModel(lista);
+        jList1.setSelectedIndex(index);
+    }
+    
+    
+    public void updateListTrocas(List<Troca> trocas, List<Turno> turnos){
+        /*
+        DefaultListModel<String> lista = new DefaultListModel<>();
+        try{
+            for(Troca t : trocas){
+                lista.addElement(t.getTurnoAtual().getCodigo());
+            }
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+        jList3.setModel(lista);
+        */
     }
 
+    public void updateListPedidos(String codigoTurno){
+        DefaultListModel<String> lista = new DefaultListModel<>();
+        try{
+            UC u = this.gesTurno.getUC(codigoTurno.split("-")[0]);
+            for(Turno t: u.getTurnos()){
+                String codigo = t.getCodigo();
+                if(!codigo.equals(codigoTurno) && !t.getTipo().equals("T")){
+                    lista.addElement(codigo.split("-")[1]);
+                }
+            }
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+        jList2.setModel(lista);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +123,18 @@ public class GestorTurnos extends javax.swing.JDialog {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent evt) {
+                if (!evt.getValueIsAdjusting()) {
+                    String linha = jList1.getSelectedValue();
+                    if(linha != null){
+                        String siglaUC = linha.split("\t")[2];
+                        String turno = linha.split("\t")[0];
+                        updateListPedidos(siglaUC+"-"+turno);
+                    }
+                }
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
@@ -73,6 +159,11 @@ public class GestorTurnos extends javax.swing.JDialog {
         });
 
         jButton2.setText("Remover Pedido");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Voltar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -96,27 +187,28 @@ public class GestorTurnos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3))
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(85, 85, 85))
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(23, 23, 23)))
-                .addGap(22, 22, 22))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(45, 45, 45))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +236,7 @@ public class GestorTurnos extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,8 +247,20 @@ public class GestorTurnos extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String escolhido = jList2.getSelectedValue();
+        String linha1 = jList1.getSelectedValue();
+        if(linha1 != null && escolhido != null){
+            String siglaUC = linha1.split("\t")[2];
+            String turnoCodigoAtual = siglaUC+"-"+linha1.split("\t")[0];
+            String turnoCodigoPretendido = siglaUC+"-"+escolhido;        
+            this.gesTurno.TrocaTurno(this.aluno.getUsername(), turnoCodigoAtual, turnoCodigoPretendido);
+        }
+        updateFrame();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

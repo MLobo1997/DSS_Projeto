@@ -109,7 +109,10 @@ public class Turno { //TODO: mudar o get e set do DAOS
     public void setAlunos(List<Aluno> alunos) {
         
     }
-
+    
+    public boolean temAluno(Aluno a){
+        return this.getAlunos().stream().anyMatch(f -> f.getUsername().equals(a.getUsername()));
+    }
         
     
     

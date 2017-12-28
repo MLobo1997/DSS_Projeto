@@ -170,7 +170,7 @@ public class MenuAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        GestorTurnos f = new GestorTurnos(this,true);
+        GestorTurnos f = new GestorTurnos(this, true, this.gesTurno);
         f.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
