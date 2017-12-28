@@ -5,6 +5,7 @@
  */
 package main;
 
+import business.GesTurno;
 import presentation.Login;
 
 /**
@@ -17,8 +18,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        Login f = new Login();
+        GesTurno gesTurno = new GesTurno();
+        Login f = new Login(gesTurno);
         f.setVisible(true);
     }
     

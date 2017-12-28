@@ -1,0 +1,52 @@
+[
+    {"H1.1":[
+        ["Calc-TP1","AL-TP1","TMD-TP1","PF-TP1","LI1-PL2","EES-PL3"],
+        ["Calc-TP1","AL-TP1","TMD-TP1","PF-TP2","LI1-PL3","EES-PL3"],
+        ["Calc-TP3","AL-TP3","TMD-TP2","PF-TP3","LI1-PL4","EES-PL4"],
+        ["Calc-TP3","AL-TP3","TMD-TP2","PF-TP4","LI1-PL4","EES-PL4"],
+        ["Calc-TP2", "AL-TP2", "TMD-TP4", "PF-TP1", "LI1-PL4", "EES-PL1"],
+        ["Calc-TP2", "AL-TP2", "TMD-TP1", "PF-TP1", "LI-PL2", "EES-PL1"],
+        ["Calc-TP4", "AL-TP4", "TMD-TP3", "PF-TP4", "LI1-PL1", "EES-PL2"]
+        ]
+    },
+
+    {"H1.2":[
+        ["SC-TP1","ANALISE-TP3","TFM-TP2","Log-TP1","PI-TP3","LI2-PL2"],
+        ["SC-TP2","ANALISE-TP2","TFM-TP1","Log-TP3","PI-TP3","LI2-PL4"],
+        ["SC-TP3","ANALISE-TP3","TFM-TP3","Log-TP2","PI-TP1","LI2-PL1"],
+        ["SC-TP4","ANALISE-TP1","TFM-TP1","Log-TP2","PI-TP2","LI2-PL3"]
+        ]
+    },
+
+    {"H2.1":[
+        ["EA-TP3","EE-TP1","ISD-TP3","CD-TP1","ALG-TP2","AC-PL2"],
+        ["EA-TP3","EE-TP1","ISD-TP3","CD-TP1","ALG-TP3","AC-PL3"],
+        ["EA-TP1","EE-TP2","ISD-TP1","CD-TP3","ALG-TP4","AC-PL1"],
+        ["EA-TP2","EE-TP3","ISD-TP2","CD-TP2","ALG-TP1","AC-PL3"]
+        ]
+    },
+
+    {"H2.2":[
+        ["SO-TP1","POO-TP1","EM-TP1","CP-TP3","LI3-TP4"],
+        ["SO-TP2","POO-TP3","EM-TP4","CP-TP2","LI3-TP1"],
+        ["SO-TP3","POO-TP2","EM-TP2","CP-TP3","LI3-TP2"],
+        ["SO-TP4","POO-TP2","EM-TP3","CP-TP1","LI3-TP3"]
+        ]
+    },
+
+    {"H3.1":[
+        ["RC-PL2","BD-PL2","SD-PL1","MNOnL-PL3","DSS-PL3","MDIO-TP3"],
+        ["RC-PL1","BD-PL1","SD-PL3","MNOnL-PL2","DSS-PL2","MDIO-TP2"],
+        ["RC-PL3","BD-PL3","SD-PL2","MNOnL-PL1","DSS-PL1","MDIO-TP1"],
+        ["RC-PL1","BD-PL2","SD-PL2","MNOnL-PL3","DSS-PL3","MDIO-TP1"]
+        ]
+    },
+
+    {"H3.2":[
+        ["SRCR-TP1","CG-TP1","MEIO-TP2","CC-TP2","PL-TP2","LI4-PL3"],
+        ["SRCR-TP2","CG-TP2","MEIO-TP1","CC-TP3","PL-TP3","LI4-PL2"],
+        ["SRCR-TP3","CG-TP3","MEIO-TP1","CC-TP1","PL-TP1","LI4-PL4"],
+        ["SRCR-TP2","CG-TP2","MEIO-TP3","CC-TP2","PL-TP2","LI4-PL1"]
+        ]
+    }
+]
