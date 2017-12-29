@@ -153,7 +153,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jComboBox1.addActionListener(new java.awt.event.ActionListener() {&#xa;    public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;        String nomeUC = (String)jComboBox1.getSelectedItem();&#xa;        for(UC uc: gesTurno.getUCs()){&#xa;            if(uc.getNome().equals(nomeUC)){&#xa;                ucEscolhida = uc;&#xa;                int i = uc.getSigla().length()+1;&#xa;                List&lt;Turno&gt; lt = uc.getTurnos().stream().filter(f -&gt; f.getDocente().getUsername().equals(gesTurno.getUtilizador().getUsername())).collect(Collectors.toList());;&#xa;                String[] turnos = lt.stream().map(f -&gt; f.getCodigo()).map(f -&gt; f.substring(i)).toArray(String[]::new);&#xa;                jComboBox2.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(turnos));&#xa;                jComboBox2.setSelectedIndex(0);&#xa;            }&#xa;        }&#xa;    }&#xa;});"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] n = ((Docente)this.gesTurno.getUtilizador()).getUCs().stream().map(f -&gt; f.getNome()).toArray(String[]::new);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int semestre = this.gesTurno.getSemestre();&#xa;String[] n = ((Docente)this.gesTurno.getUtilizador()).getUCs().stream().filter(f -&gt; f.getSemestre() == semestre).map(f -&gt; f.getNome()).toArray(String[]::new);"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>

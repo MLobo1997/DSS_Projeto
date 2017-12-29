@@ -44,9 +44,11 @@ public class GestorUCs extends javax.swing.JDialog {
     
     public void updateListUCInscrito(List<UC> inscritos){
         DefaultListModel<String> lista = new DefaultListModel<>();
+        int semestre = this.gesTurno.getSemestre();
         try{
             for(UC u : inscritos){
-                lista.addElement(u.getSigla() + "\t" + u.getNome());
+                if(u.getSemestre() == semestre)
+                    lista.addElement(u.getSigla() + "\t" + u.getNome());
             }
         }
         catch (Exception e){
@@ -57,9 +59,11 @@ public class GestorUCs extends javax.swing.JDialog {
     
     public void updateListUCInscrever(List<UC> porInscrever){
         DefaultListModel<String> lista = new DefaultListModel<>();
+        int semestre = this.gesTurno.getSemestre();
         try{
             for(UC u : porInscrever){
-                lista.addElement(u.getSigla() + "\t" + u.getNome());
+                if(u.getSemestre() == semestre)
+                    lista.addElement(u.getSigla() + "\t" + u.getNome());
             }
         }
         catch (Exception e){

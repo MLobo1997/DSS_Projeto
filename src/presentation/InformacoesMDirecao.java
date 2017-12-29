@@ -24,7 +24,7 @@ public class InformacoesMDirecao extends javax.swing.JDialog {
         StringBuilder sb = new StringBuilder();
         sb.append("UC:\t\t").append(u.getNome()).append(" (").append(u.getSigla()).append(")\n");
         sb.append("Ano:\t\t").append(u.getAno()).append("\n");
-        sb.append("Semestre:\t\t").append(u.getSemester()).append("\n\n");
+        sb.append("Semestre:\t\t").append(u.getSemestre()).append("\n\n");
         for(Turno t: u.getTurnos()){
             Docente d = t.getDocente();
             

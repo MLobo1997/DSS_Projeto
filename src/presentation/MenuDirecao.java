@@ -39,10 +39,12 @@ public class MenuDirecao extends javax.swing.JFrame {
     }
     
     public void updateListUC(){
+        int semestre = this.gesTurno.getSemestre();
         DefaultListModel<String> lista = new DefaultListModel<>();
         try{
             for(UC u : this.gesTurno.getUCs()){
-                lista.addElement(u.getNome());
+                if(u.getSemestre() == semestre)
+                    lista.addElement(u.getNome());
             }
         }
         catch (Exception e){
@@ -534,6 +536,7 @@ public class MenuDirecao extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         String escolha = (String) jComboBox1.getSelectedItem();
         this.gesTurno.setSemestre(new Integer(escolha));
+        updateListUC();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed

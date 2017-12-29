@@ -101,7 +101,8 @@ public class RegistarFaltas extends javax.swing.JDialog {
             }
         });
 
-        String[] n = ((Docente)this.gesTurno.getUtilizador()).getUCs().stream().map(f -> f.getNome()).toArray(String[]::new);
+        int semestre = this.gesTurno.getSemestre();
+        String[] n = ((Docente)this.gesTurno.getUtilizador()).getUCs().stream().filter(f -> f.getSemestre() == semestre).map(f -> f.getNome()).toArray(String[]::new);
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(n));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

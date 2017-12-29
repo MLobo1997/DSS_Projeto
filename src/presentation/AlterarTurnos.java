@@ -106,7 +106,8 @@ public class AlterarTurnos extends javax.swing.JDialog {
 
         jLabel4.setText("Turno:");
 
-        String[] n = ((Docente)this.gesTurno.getUtilizador()).getUCs().stream().map(f -> f.getNome()).toArray(String[]::new);
+        int semestre = this.gesTurno.getSemestre();
+        String[] n = ((Docente)this.gesTurno.getUtilizador()).getUCs().stream().filter(f -> f.getSemestre() == semestre).map(f -> f.getNome()).toArray(String[]::new);
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(n));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));

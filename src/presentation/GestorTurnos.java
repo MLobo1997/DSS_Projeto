@@ -53,8 +53,11 @@ public class GestorTurnos extends javax.swing.JDialog {
         try{
             for(Turno t : turnos){
                 UC u = this.gesTurno.getUC(t.getCodigo().split("-")[0]);
-                if(!t.getTipo().equals("T")){
-                    lista.addElement(t.getCodigo().split("-")[1] + "\t" + u.getNome() + "\t" + u.getSigla());
+                int semestre = this.gesTurno.getSemestre();
+                if(u.getSemestre() == semestre){
+                    if(!t.getTipo().equals("T")){
+                        lista.addElement(t.getCodigo().split("-")[1] + "\t" + u.getNome() + "\t" + u.getSigla());
+                    }
                 }
             }
         }

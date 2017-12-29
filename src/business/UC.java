@@ -16,14 +16,14 @@ public class UC {
     
     private String sigla;
     private Integer ano;
-    private Integer semester;
+    private Integer semestre;
     private String nome;
     private TurnoDAO turnos;
 
     public UC() {
         this.sigla = null;
         this.ano = null;
-        this.semester = null;
+        this.semestre = null;
         this.nome = null;
         this.turnos = new TurnoDAO();
     }
@@ -31,7 +31,7 @@ public class UC {
     public UC(String sigla, Integer ano, Integer semester, String nome) {
         this.sigla = sigla;
         this.ano = ano;
-        this.semester = semester;
+        this.semestre = semester;
         this.nome = nome;
         this.turnos = new TurnoDAO();
     }
@@ -60,12 +60,12 @@ public class UC {
         this.ano = ano;
     }
 
-    public Integer getSemester() {
-        return semester;
+    public Integer getSemestre() {
+        return semestre;
     }
 
-    public void setSemester(Integer semester) {
-        this.semester = semester;
+    public void setSemestre(Integer semester) {
+        this.semestre = semester;
     }
 
     public String getNome() {
@@ -78,7 +78,7 @@ public class UC {
 
     @Override
     public String toString() {
-        return "UC{" + "sigla=" + sigla + ", ano=" + ano + ", semester=" + semester + ", nome=" + nome + ", turnos=" + turnos + '}';
+        return "UC{" + "sigla=" + sigla + ", ano=" + ano + ", semester=" + semestre + ", nome=" + nome + ", turnos=" + turnos + '}';
     }
     
     public void atualizaTurno(Turno t){

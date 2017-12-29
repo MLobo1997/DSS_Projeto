@@ -76,7 +76,7 @@ public class UCDAO implements Map<String,UC>{
                 UC u = new UC();
                 u.setSigla(rs.getString("Sigla"));
                 u.setAno(rs.getInt("Ano"));
-                u.setSemester(rs.getInt("Semestre"));
+                u.setSemestre(rs.getInt("Semestre"));
                 u.setNome(rs.getString("Nome"));
                 res.add(u);
             }
@@ -113,7 +113,7 @@ public class UCDAO implements Map<String,UC>{
                 UC u = new UC();
                 u.setSigla(rs.getString("Sigla"));
                 u.setAno(rs.getInt("Ano"));
-                u.setSemester(rs.getInt("Semestre"));
+                u.setSemestre(rs.getInt("Semestre"));
                 u.setNome(rs.getString("Nome"));
                 res.add(u);
             }
@@ -150,7 +150,7 @@ public class UCDAO implements Map<String,UC>{
                 UC u = new UC();
                 u.setSigla(rs.getString("Sigla"));
                 u.setAno(rs.getInt("Ano"));
-                u.setSemester(rs.getInt("Semestre"));
+                u.setSemestre(rs.getInt("Semestre"));
                 u.setNome(rs.getString("Nome"));
                 res.add(u);
             }
@@ -267,7 +267,7 @@ public class UCDAO implements Map<String,UC>{
                 uc = new UC();
                 uc.setSigla(rs.getString("Sigla"));
                 uc.setAno(rs.getInt("Ano"));
-                uc.setSemester(rs.getInt("Semestre"));
+                uc.setSemestre(rs.getInt("Semestre"));
                 uc.setNome(rs.getString("Nome"));
             }
         }
@@ -298,7 +298,7 @@ public class UCDAO implements Map<String,UC>{
                                                         "ON DUPLICATE KEY UPDATE Ano=VALUES(Ano),Semestre=VALUES(Semestre),Nome=VALUES(Nome)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, value.getSigla());
             ps.setInt(2, value.getAno());
-            ps.setInt(3, value.getSemester());
+            ps.setInt(3, value.getSemestre());
             ps.setString(4, value.getNome());
             ps.executeUpdate(); 
 

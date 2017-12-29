@@ -243,7 +243,7 @@ public class GesTurno {
         JsonReader reader = Json.createReader(fis);
         JsonArray x = reader.readArray();
         reader.close();
-        DistribuiHorario dh = new DistribuiHorario(1); //TODO: ALTERAR PARA POR AUTOMATICAMENTE O SEMESTRE
+        DistribuiHorario dh = new DistribuiHorario(this.getSemestre()); 
 
         String[] n = {"H1.1","H1.2","H2.1","H2.2","H3.1","H3.2"};
         for (int i = 0; i < x.size(); i++){
