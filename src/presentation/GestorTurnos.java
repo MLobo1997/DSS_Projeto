@@ -6,6 +6,7 @@
 package presentation;
 
 import business.Aluno;
+import business.AuxTroca;
 import business.GesTurno;
 import business.Troca;
 import business.Turno;
@@ -42,8 +43,7 @@ public class GestorTurnos extends javax.swing.JDialog {
     public void updateFrame(){
         List<Turno> turnos = this.aluno.getTurnos();
         updateListInscrito(turnos);
-        List<Troca> trocas = this.aluno.getTrocas();
-        //updateListPedidos();
+        List<AuxTroca> trocas = this.aluno.getTrocas();
         updateListTrocas(trocas, turnos);
     }
     
@@ -69,19 +69,18 @@ public class GestorTurnos extends javax.swing.JDialog {
     }
     
     
-    public void updateListTrocas(List<Troca> trocas, List<Turno> turnos){
-        /*
+    public void updateListTrocas(List<AuxTroca> trocas, List<Turno> turnos){
         DefaultListModel<String> lista = new DefaultListModel<>();
         try{
-            for(Troca t : trocas){
-                lista.addElement(t.getTurnoAtual().getCodigo());
+            for(AuxTroca t : trocas){
+                lista.addElement(t.getDetalhes());
             }
         }
         catch (Exception e){
             e.getMessage();
         }
         jList3.setModel(lista);
-        */
+        
     }
 
     public void updateListPedidos(String codigoTurno){
@@ -211,8 +210,8 @@ public class GestorTurnos extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -262,10 +261,24 @@ public class GestorTurnos extends javax.swing.JDialog {
             String turnoCodigoAtual = siglaUC+"-"+linha1.split("\t")[0];
             String turnoCodigoPretendido = siglaUC+"-"+escolhido;
             
+            int size = jList3.getModel().getSize(); 
+
+            // Get all item objects
+            for (int i = 0; i < size; i++) {
+              String item = jList3.getModel().getElementAt(i);
+              if(item.split("\t")[0].equals(siglaUC)){
+                  Mensagem f = new Mensagem(this, true, "Já tens um pedido de Troca nessa UC");
+                  f.setVisible(true);
+                  return;
+              }
+            }
+            
+            
+            
             try{
                 this.gesTurno.TrocaTurno(this.aluno, turnoCodigoAtual, turnoCodigoPretendido);
             } catch (PedidoRegistadoException ex) {
-                MensagemDeErro f = new MensagemDeErro(this, true, "O seu pedido ficou registado");
+                Mensagem f = new Mensagem(this, true, "O seu pedido ficou registado");
                 f.setVisible(true);
             }
             
@@ -274,7 +287,15 @@ public class GestorTurnos extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String s = jList3.getSelectedValue();
+        if(s != null){
+            String username = this.aluno.getUsername();
+            String sigla = s.split("\t")[0];
+            String turnoAtual = sigla+"-"+s.split("\t")[2];
+            String turnoEscolhido = sigla+"-"+s.split("\t")[4];
+            this.gesTurno.removeTroca(username, turnoAtual, turnoEscolhido);
+            updateFrame();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

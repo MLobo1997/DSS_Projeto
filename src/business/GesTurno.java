@@ -323,9 +323,10 @@ public class GesTurno {
         UC u = this.getUC(siglaUC);
         Turno atual = u.getTurno(codigoTurnoAtual);
         Turno escolhido = u.getTurno(codigoTurnoPretendido);
+        String estatuto = aluno.getEstatuto();
         
         //TESTAR SE NESTA FASE É POSSÍVEL FAZER TROCAS
-        if(escolhido.getCapacidade() > escolhido.getAlunos().size()){ // ainda há vagas
+        if(escolhido.getCapacidade() > escolhido.getAlunos().size() && estatuto.equals("TE")){ // ainda há vagas e aluno é trabalhador estudante
             u.removeDoTurno(alunoUsername, codigoTurnoAtual);
             u.inscreveNoTurno(alunoUsername, codigoTurnoPretendido);
         }
@@ -333,7 +334,7 @@ public class GesTurno {
         else{
             List<Troca> trocas = atual.getTrocas();
             boolean flag = false;
-            for(Troca t: trocas){ //POR A RECEBER UM TREESET ORDENADO PELA DATA
+            for(Troca t: trocas){ //POR A RECEBER UM TREESET ORDENADO PELA DATA e DEFINIR O COMPARATOR
                 
                 if(t.getTurnoAtual().getCodigo().equals(codigoTurnoPretendido)){//foi possível fazer a troca
                     String outroAlunoUsername = t.getAluno().getUsername();
@@ -357,6 +358,12 @@ public class GesTurno {
             }
             
         }
+    }
+    
+    public void removeTroca(String alunoUsername, String atual, String escolhido){
+        UC u = this.ucs.get(atual.split("-")[0]);
+        Turno t = u.getTurno(escolhido);
+        t.removeTroca(alunoUsername, atual);
     }
     
     public int getSemestre(){

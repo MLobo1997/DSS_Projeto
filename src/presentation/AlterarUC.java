@@ -273,7 +273,7 @@ public class AlterarUC extends javax.swing.JDialog {
         if(hora != null && turnoCodigo != null && linhaDocente != null && diaSem != null && capacidade != null){
             Turno t =  this.gesTurno.getTurno(turnoCodigo);
             if(t.getAlunos().size() > new Integer(capacidade)){
-                MensagemDeErro f = new MensagemDeErro(this, true, "Impossível mudar a capacidade\n A capacidade indicada é menor do \nque a capacidade atual do turno");
+                Mensagem f = new Mensagem(this, true, "Impossível mudar a capacidade\n A capacidade indicada é menor do \nque a capacidade atual do turno");
                 f.setVisible(true);
             }
             else{

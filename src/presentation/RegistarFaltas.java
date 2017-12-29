@@ -256,7 +256,7 @@ public class RegistarFaltas extends javax.swing.JDialog {
             this.gesTurno.registaFaltas(turnoCodigo, faltas);
         }
         else {
-            MensagemDeErro f = new MensagemDeErro(this, true, "Data inválida");
+            Mensagem f = new Mensagem(this, true, "Data inválida");
             f.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -386,7 +386,7 @@ public class MenuDirecao extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String path = jTextField2.getText(); 
         if(this.gesTurno.getDocentes().size() == 0){
-            MensagemDeErro f = new MensagemDeErro(this, true, "Registe primeiro os Docentes");
+            Mensagem f = new Mensagem(this, true, "Registe primeiro os Docentes");
             f.setVisible(true);
         }
         else{
@@ -396,12 +396,12 @@ public class MenuDirecao extends javax.swing.JFrame {
                 jTextField2.setBackground(Color.GREEN);
             } 
             catch (FileNotFoundException ex) {
-                MensagemDeErro e = new MensagemDeErro(this, true, "Ficheiro não encontrado!");
+                Mensagem e = new Mensagem(this, true, "Ficheiro não encontrado!");
                 e.setVisible(true);
             }
             catch(Exception ex){
                 ex.printStackTrace();
-                MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
+                Mensagem e = new Mensagem(this, true, "Impossível ler ficheiro!");
                 e.setVisible(true);
             }
             this.updateListUC();
@@ -454,7 +454,7 @@ public class MenuDirecao extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if(this.gesTurno.getUCs().size() == 0){
-            MensagemDeErro f = new MensagemDeErro(this, true, "Registe primeiro as UCs");
+            Mensagem f = new Mensagem(this, true, "Registe primeiro as UCs");
             f.setVisible(true);
         }
         else{
@@ -465,12 +465,12 @@ public class MenuDirecao extends javax.swing.JFrame {
                 jTextField4.setBackground(Color.GREEN);
             } 
             catch (FileNotFoundException ex) {
-                MensagemDeErro e = new MensagemDeErro(this, true, "Ficheiro não encontrado!");
+                Mensagem e = new Mensagem(this, true, "Ficheiro não encontrado!");
                 e.setVisible(true);
             }
             catch(Exception ex){
                 ex.printStackTrace();
-                MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
+                Mensagem e = new Mensagem(this, true, "Impossível ler ficheiro!");
                 e.setVisible(true);
             }
         }
@@ -484,11 +484,11 @@ public class MenuDirecao extends javax.swing.JFrame {
             jTextField3.setBackground(Color.GREEN);
         } 
         catch (FileNotFoundException ex) {
-            MensagemDeErro e = new MensagemDeErro(this, true, "Ficheiro não encontrado!");
+            Mensagem e = new Mensagem(this, true, "Ficheiro não encontrado!");
             e.setVisible(true);
         }
         catch(Exception ex){
-            MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
+            Mensagem e = new Mensagem(this, true, "Impossível ler ficheiro!");
             e.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -512,7 +512,7 @@ public class MenuDirecao extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         if(this.gesTurno.getAlunos().size() == 0){
-            MensagemDeErro f = new MensagemDeErro(this, true, "Registe primeiro os Alunos");
+            Mensagem f = new Mensagem(this, true, "Registe primeiro os Alunos");
             f.setVisible(true);
         }
         else{
@@ -523,11 +523,11 @@ public class MenuDirecao extends javax.swing.JFrame {
                 jTextField5.setBackground(Color.GREEN);
             } 
             catch (FileNotFoundException ex) {
-                MensagemDeErro e = new MensagemDeErro(this, true, "Ficheiro não encontrado!");
+                Mensagem e = new Mensagem(this, true, "Ficheiro não encontrado!");
                 e.setVisible(true);
             }
             catch(Exception ex){
-                MensagemDeErro e = new MensagemDeErro(this, true, "Impossível ler ficheiro!");
+                Mensagem e = new Mensagem(this, true, "Impossível ler ficheiro!");
                 e.setVisible(true);
             }     
         }

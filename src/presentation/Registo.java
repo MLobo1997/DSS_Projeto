@@ -180,7 +180,7 @@ public class Registo extends javax.swing.JDialog {
             this.gesTurno.registo(nome, username, email, password);
         }
         catch(RegistoInvalidoException e){
-            MensagemDeErro f = new MensagemDeErro(this, true, "Registo Inválido!");
+            Mensagem f = new Mensagem(this, true, "Registo Inválido!");
             f.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

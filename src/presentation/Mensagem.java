@@ -9,18 +9,18 @@ package presentation;
  *
  * @author diogoleitao
  */
-public class MensagemDeErro extends javax.swing.JDialog {
+public class Mensagem extends javax.swing.JDialog {
 
     /**
      * Creates new form Exception
      */
-    public MensagemDeErro(java.awt.Frame parent, boolean modal, String mensagem) {
+    public Mensagem(java.awt.Frame parent, boolean modal, String mensagem) {
         super(parent, modal);
         initComponents();
         jLabel1.setText(mensagem);
     }
     
-    public MensagemDeErro(java.awt.Dialog parent, boolean modal, String mensagem) {
+    public Mensagem(java.awt.Dialog parent, boolean modal, String mensagem) {
         super(parent, modal);
         initComponents();
         jLabel1.setText(mensagem);

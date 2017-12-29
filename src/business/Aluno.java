@@ -138,15 +138,20 @@ public class Aluno implements Utilizador{
         return turnos;
     }
     
-    public List<Troca> getTrocas(){
-        List<Troca> trocas = new ArrayList<Troca>();
+    public List<AuxTroca> getTrocas(){
+        List<AuxTroca> trocas = new ArrayList<AuxTroca>();
         List<UC> ucsDoAluno = this.getUcs();
         
         for(UC u : ucsDoAluno){
             for(Turno turno : u.getTurnos()){
                 for(Troca t : turno.getTrocas()){
                     if(t.getAluno().getUsername().equals(username)){
-                        trocas.add(t);
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(turno.getCodigo().split("-")[0]).append("\t"); //Sigla da UC
+                        sb.append(u.getNome()).append("\t");  //Nome da UC
+                        sb.append(t.getTurnoAtual().getCodigo().split("-")[1]).append("\t->\t"); //Turno atual
+                        sb.append(turno.getCodigo().split("-")[1]); //Turno escolhido
+                        trocas.add(new AuxTroca(sb.toString(), t));
                     }
                 }
             }
