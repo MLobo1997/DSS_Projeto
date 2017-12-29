@@ -41,8 +41,7 @@ public class UC {
     }
 
     public void setTurnos(List<Turno> turnos) {
-        TurnoDAO d = new TurnoDAO();
-        d.addMTurnos(turnos, sigla);
+        this.turnos.addMTurnos(turnos, sigla);
     }
 
     public String getSigla() {

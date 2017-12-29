@@ -5,6 +5,7 @@
  */
 package presentation;
 
+import business.Aluno;
 import business.Docente;
 import business.GesTurno;
 import business.Turno;
@@ -31,12 +32,17 @@ public class InformacoesMDocente extends javax.swing.JDialog {
         initComponents();
         this.jComboBox1.setSelectedIndex(0); 
         this.jComboBox2.setSelectedIndex(0);
-
+        
     }
     
     public void informacoes(Turno t){
         StringBuilder sb = new StringBuilder();
         sb.append(t.getCodigo());
+        /*
+        for(Aluno a : t.getAlunos()){
+            a.ge
+        }
+        */
         sb.append("POR MAIS CENAS!!");
         jTextArea1.setText(sb.toString());
     }

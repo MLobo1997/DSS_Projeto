@@ -7,6 +7,7 @@ package presentation;
 
 import business.Aluno;
 import business.GesTurno;
+import business.Turno;
 import business.UC;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -199,7 +200,16 @@ public class GestorUCs extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String nome = this.jList2.getSelectedValue();
         if(nome != null){
-            this.aluno.remInscricao(nome.split("\t")[0]);
+            String sigla = nome.split("\t")[0];
+            
+            String username = this.aluno.getUsername();
+            UC u = this.gesTurno.getUC(sigla);
+            
+            for(Turno t: u.getTurnos()){
+                u.removeDoTurno(username, t.getCodigo());
+            }
+                    
+            this.aluno.remInscricao(sigla);
             updateFrame();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

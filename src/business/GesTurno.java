@@ -7,10 +7,12 @@ package business;
 
 import database.UCDAO;
 import database.UtilizadorDAO;
+import exceptions.PedidoRegistadoException;
 import exceptions.RegistoInvalidoException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,11 +30,13 @@ public class GesTurno {
      private Utilizador utilizador;
      private UtilizadorDAO utilizadores;
      private UCDAO ucs;
+     private InfoLocais info;
      
     public GesTurno(){
         this.utilizador = null;
         this.utilizadores = new UtilizadorDAO();
         this.ucs = new UCDAO();
+        this.info = new InfoLocais();
     }
      
     public List<UC> getUCs(){
@@ -312,12 +316,62 @@ public class GesTurno {
         return this.ucs.get(sigla);
     }
     
-    //RETORNAR BOOLEAN SE FOI POSSIVEL OU NAO!! OU EXCEPTION
-    public void TrocaTurno(String alunoUsername, String codigoTurnoAtual, String codigoTurnoPretendido){
+    
+    public void TrocaTurno(Aluno aluno, String codigoTurnoAtual, String codigoTurnoPretendido) throws PedidoRegistadoException{
         String siglaUC = codigoTurnoAtual.split("-")[0];
+        String alunoUsername = aluno.getUsername();
         UC u = this.getUC(siglaUC);
-        //TESTAR SE E POSSIVEL FAZER A TROCA PRIMEIRO
-        u.removeDoTurno(alunoUsername, codigoTurnoAtual);
-        u.inscreveNoTurno(alunoUsername, codigoTurnoPretendido);
+        Turno atual = u.getTurno(codigoTurnoAtual);
+        Turno escolhido = u.getTurno(codigoTurnoPretendido);
+        
+        //TESTAR SE NESTA FASE É POSSÍVEL FAZER TROCAS
+        if(escolhido.getCapacidade() > escolhido.getAlunos().size()){ // ainda há vagas
+            u.removeDoTurno(alunoUsername, codigoTurnoAtual);
+            u.inscreveNoTurno(alunoUsername, codigoTurnoPretendido);
+        }
+        
+        else{
+            List<Troca> trocas = atual.getTrocas();
+            boolean flag = false;
+            for(Troca t: trocas){ //POR A RECEBER UM TREESET ORDENADO PELA DATA
+                
+                if(t.getTurnoAtual().getCodigo().equals(codigoTurnoPretendido)){//foi possível fazer a troca
+                    String outroAlunoUsername = t.getAluno().getUsername();
+                    
+                    u.removeDoTurno(alunoUsername, codigoTurnoAtual);
+                    u.removeDoTurno(outroAlunoUsername, codigoTurnoPretendido);
+                    u.inscreveNoTurno(alunoUsername, codigoTurnoPretendido);
+                    u.inscreveNoTurno(outroAlunoUsername, codigoTurnoAtual);
+                    
+                    atual.removeTroca(outroAlunoUsername, codigoTurnoPretendido);
+                    flag = true;
+                    break;
+                }
+            }
+            
+            if(flag == false){ //não foi possível fazer a troca
+                LocalDate agora = LocalDate.now();
+                Troca t = new Troca(agora, aluno, atual);
+                escolhido.addTroca(t);
+                throw new PedidoRegistadoException();
+            }
+            
+        }
+    }
+    
+    public int getSemestre(){
+        return this.info.getSemestre();
+    }
+    
+    public void setSemestre(int semestre){
+        this.info.setSemestre(semestre);
+    }
+    
+    public int getFase(){
+        return this.info.getFase();
+    }
+    
+    public void setFase(int fase){
+        this.info.setFase(fase);
     }
 }

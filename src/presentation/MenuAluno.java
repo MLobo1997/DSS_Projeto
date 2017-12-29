@@ -7,6 +7,9 @@ package presentation;
 
 import business.Aluno;
 import business.GesTurno;
+import business.Turno;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +26,7 @@ public class MenuAluno extends javax.swing.JFrame {
         this.gesTurno = gesTurno;
         initComponents();
         this.jLabel1.setText(((Aluno)this.gesTurno.getUtilizador()).getNome());
+        this.updateTabela();
     }
 
     /**
@@ -156,22 +160,89 @@ public class MenuAluno extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private int daDia(String dia){
+        if(dia.equals("2ª")) return 1;
+        if(dia.equals("3ª")) return 2;
+        if(dia.equals("4ª")) return 3;
+        if(dia.equals("5ª")) return 4;
+        if(dia.equals("6ª")) return 5;
+        else return 0;
+    }
+    
+    private int daHora(String hora){
+        if(hora.equals("9:00"))  return 0;
+        if(hora.equals("11:00")) return 1;
+        if(hora.equals("13:00")) return 2;
+        if(hora.equals("14:00")) return 3;
+        if(hora.equals("16:00")) return 4;
+        else return 0;
+    }
+    
+    public void preenche(String[][] dados , List<Turno> turnos){
+        for(Turno t: turnos){
+            String hora = t.getHora();
+            String dia = t.getDiaSem();
+            String codigo = t.getCodigo();
+            if(dados[daHora(hora)][daDia(dia)] == null){ 
+                dados[daHora(hora)][daDia(dia)] = codigo;
+            }
+            else{
+                StringBuilder sb = new StringBuilder();
+                sb.append(dados[daHora(hora)][daDia(dia)]).append(System.getProperty("line.separator"));
+                sb.append(codigo);
+                dados[daHora(hora)][daDia(dia)] = sb.toString();
+            }
+         
+        }
+    }
+    
+    private void updateTabela(){
+        List<Turno> turnos = ((Aluno)this.gesTurno.getUtilizador()).getTurnos();
+        DefaultTableModel val = (DefaultTableModel) jTable1.getModel();
+        val.setRowCount(0);
+        
+        String[][] dados = new String[5][6];
+        preenche(dados, turnos);
+        for (int i = 0 ;i < 5; i++){
+            switch(i){
+                case 0:
+                    dados[i][0] = "9:00";
+                    break;
+                case 1:
+                    dados[i][0] = "11:00";
+                    break;
+                case 2:
+                    dados[i][0] = "13:00";
+                    break;
+                case 3:
+                    dados[i][0] = "14:00";
+                    break;
+                case 4:
+                    dados[i][0] = "16:00";
+                    break;
+            }
+            val.addRow(dados[i]);
+        }
+    }
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.gesTurno.setUtilizador(null);
         this.dispose();
         Login f = new Login(this.gesTurno);
         f.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         GestorUCs f = new GestorUCs(this, true, gesTurno);
         f.setVisible(true);
+        updateTabela();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         GestorTurnos f = new GestorTurnos(this, true, this.gesTurno);
         f.setVisible(true);
+        updateTabela();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -113,7 +113,13 @@ public class Turno { //TODO: mudar o get e set do DAOS
     public boolean temAluno(Aluno a){
         return this.getAlunos().stream().anyMatch(f -> f.getUsername().equals(a.getUsername()));
     }
-        
     
+    public void removeTroca(String username, String codigoTurno){
+        this.trocas.remove(username, codigoTurno);
+    }
+    
+    public void addTroca(Troca t){
+        this.trocas.add(t, this.codigo);
+    }
     
 }

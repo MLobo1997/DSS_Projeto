@@ -271,8 +271,15 @@ public class AlterarUC extends javax.swing.JDialog {
         String diaSem = (String)jComboBox1.getSelectedItem();
         String capacidade = jTextField1.getText();
         if(hora != null && turnoCodigo != null && linhaDocente != null && diaSem != null && capacidade != null){
-            this.gesTurno.atualizaTurno(u, turnoCodigo, linhaDocente.split("\t")[0], hora, diaSem, capacidade);
-            this.gesTurno.atualizaUC(u);
+            Turno t =  this.gesTurno.getTurno(turnoCodigo);
+            if(t.getAlunos().size() > new Integer(capacidade)){
+                MensagemDeErro f = new MensagemDeErro(this, true, "Impossível mudar a capacidade\n A capacidade indicada é menor do \nque a capacidade atual do turno");
+                f.setVisible(true);
+            }
+            else{
+                this.gesTurno.atualizaTurno(u, turnoCodigo, linhaDocente.split("\t")[0], hora, diaSem, capacidade);
+                this.gesTurno.atualizaUC(u);
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

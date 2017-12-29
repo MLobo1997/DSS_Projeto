@@ -179,7 +179,9 @@
                 </Column>
               </TableColumnModel>
             </Property>
-            <Property name="rowHeight" type="int" value="55" postCode="jTable1.setRowSelectionAllowed(false);&#xa;jTable1.setColumnSelectionAllowed(false);"/>
+            <Property name="rowHeight" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="jTable1.setRowSelectionAllowed(false);&#xa;jTable1.setColumnSelectionAllowed(false);">
+              <Connection code="55" type="code"/>
+            </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>

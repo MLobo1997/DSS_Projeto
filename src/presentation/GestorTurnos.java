@@ -10,7 +10,10 @@ import business.GesTurno;
 import business.Troca;
 import business.Turno;
 import business.UC;
+import exceptions.PedidoRegistadoException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -50,7 +53,9 @@ public class GestorTurnos extends javax.swing.JDialog {
         try{
             for(Turno t : turnos){
                 UC u = this.gesTurno.getUC(t.getCodigo().split("-")[0]);
-                lista.addElement(t.getCodigo().split("-")[1] + "\t" + u.getNome() + "\t" + u.getSigla());
+                if(!t.getTipo().equals("T")){
+                    lista.addElement(t.getCodigo().split("-")[1] + "\t" + u.getNome() + "\t" + u.getSigla());
+                }
             }
         }
         catch (Exception e){
@@ -216,9 +221,9 @@ public class GestorTurnos extends javax.swing.JDialog {
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -252,10 +257,17 @@ public class GestorTurnos extends javax.swing.JDialog {
         if(linha1 != null && escolhido != null){
             String siglaUC = linha1.split("\t")[2];
             String turnoCodigoAtual = siglaUC+"-"+linha1.split("\t")[0];
-            String turnoCodigoPretendido = siglaUC+"-"+escolhido;        
-            this.gesTurno.TrocaTurno(this.aluno.getUsername(), turnoCodigoAtual, turnoCodigoPretendido);
+            String turnoCodigoPretendido = siglaUC+"-"+escolhido;
+            
+            try{
+                this.gesTurno.TrocaTurno(this.aluno, turnoCodigoAtual, turnoCodigoPretendido);
+            } catch (PedidoRegistadoException ex) {
+                MensagemDeErro f = new MensagemDeErro(this, true, "O seu pedido ficou registado");
+                f.setVisible(true);
+            }
+            
+            updateFrame();
         }
-        updateFrame();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

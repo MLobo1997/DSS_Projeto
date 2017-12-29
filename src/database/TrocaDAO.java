@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -69,5 +70,65 @@ public class TrocaDAO {
             }
         }
         return res;
+    }
+    
+    public void add(Troca t, String codigo){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO TROCAS (Data, Turno_Codigo, Aluno_Username, TurnosAtual)\n"
+                                                      + "VALUES (?,?,?,?)\n"
+                                                      + "ON DUPLICATE KEY UPDATE Data=VALUES(Data),Turno_Codigo=VALUES(Turno_Codigo),Aluno_Username=VALUES(Aluno_Username),TurnosAtual=VALUES(TurnosAtual)", Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, t.getData().toString());
+            ps.setString(2, codigo);
+            ps.setString(3, t.getAluno().getUsername());
+            ps.setString(4, t.getTurnoAtual().getCodigo());
+            ps.executeUpdate();
+           
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(TurnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+    }
+    
+    public void remove(String username, String codigo){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Trocas \n" +
+                                                        "WHERE Aluno_Username = ? AND TurnosAtual = ?\n");
+                                                     
+            ps.setString(1, username);
+            ps.setString(2, codigo);
+            ps.executeUpdate();
+           
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(TurnoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
     }
 }

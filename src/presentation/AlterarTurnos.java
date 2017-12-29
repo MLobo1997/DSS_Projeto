@@ -37,13 +37,14 @@ public class AlterarTurnos extends javax.swing.JDialog {
     }
     
     public void updateFrame(Turno turno){
-        List<Aluno> inscritos = turno.getAlunos();
-        List<String> usernames = inscritos.stream().map(f -> f.getUsername()).collect(Collectors.toList());
-        List<Aluno> todos = this.gesTurno.getAlunos(turno.getCodigo().split("-")[0]);
-        List<Aluno> nInscritos = todos.stream().filter(f -> !usernames.contains(f.getUsername())).collect(Collectors.toList());
+        List<Aluno> inscritosTurno = turno.getAlunos();
+        List<String> usernamesInscritos = inscritosTurno.stream().map(f -> f.getUsername()).collect(Collectors.toList());
+        
+        List<Aluno> todos = this.gesTurno.getAlunos(turno.getCodigo().split("-")[0]);       
+        List<Aluno> nInscritosTurno = todos.stream().filter(f -> !usernamesInscritos.contains(f.getUsername())).collect(Collectors.toList());
                 
-        updateListInscritos(inscritos);
-        updateListNInscritos(nInscritos);
+        updateListInscritos(inscritosTurno);
+        updateListNInscritos(nInscritosTurno);
     }
     
     public void updateListNInscritos(List<Aluno> alunos){
