@@ -183,33 +183,33 @@
                 "Docente":"D69069"
             },
             {
-                "Codigo":"EES-TP1",
+                "Codigo":"EES-PL1",
                 "Capacidade":30,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"3ª",
                 "Hora":"9:00",
                 "Docente":"D69069"
             },            
             {
-                "Codigo":"EES-TP2",
+                "Codigo":"EES-PL2",
                 "Capacidade":30,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"5ª",
                 "Hora":"9:00",
                 "Docente":"D43938"
             },            
             {
-                "Codigo":"EES-TP3",
+                "Codigo":"EES-PL3",
                 "Capacidade":30,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"6ª",
                 "Hora":"9:00",
                 "Docente":"D43938"
             },            
             {
-                "Codigo":"EES-TP4",
+                "Codigo":"EES-PL4",
                 "Capacidade":30,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"4ª",
                 "Hora":"11:00",
                 "Docente":"D43938"
@@ -223,7 +223,7 @@
         "Semestre": 1,
         "Turnos": [
             {
-                "Codigo":"LI1-L4",
+                "Codigo":"LI1-PL4",
                 "Capacidade":40,
                 "Tipo":"PL",
                 "DiaSem":"3ª",
@@ -615,25 +615,25 @@
                 "Docente":"D50305"
             },
             {
-                "Codigo":"AC-TP1",
+                "Codigo":"AC-PL1",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"3ª",
                 "Hora":"14:00",
                 "Docente":"D50305"
             },            
             {
-                "Codigo":"AC-TP2",
+                "Codigo":"AC-PL2",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"5ª",
                 "Hora":"11:00",
                 "Docente":"D50305"
             },            
             {
-                "Codigo":"AC-TP3",
+                "Codigo":"AC-PL3",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"Pl",
                 "DiaSem":"6ª",
                 "Hora":"11:00",
                 "Docente":"D50305"
@@ -922,7 +922,7 @@
             {
                 "Codigo":"LI3-PL1",
                 "Capacidade":40,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"2ª",
                 "Hora":"11:00",
                 "Docente":"D83776"
@@ -930,7 +930,7 @@
             {
                 "Codigo":"LI3-PL2",
                 "Capacidade":40,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"2ª",
                 "Hora":"11:00",
                 "Docente":"D24852"
@@ -938,7 +938,7 @@
             {
                 "Codigo":"LI3-PL3",
                 "Capacidade":40,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"3ª",
                 "Hora":"11:00",
                 "Docente":"D24852"
@@ -960,25 +960,25 @@
                 "Docente":"D50305"
             },
             {
-                "Codigo":"BD-TP1",
+                "Codigo":"BD-PL1",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"3ª",
                 "Hora":"11:00",
                 "Docente":"D85445"
             },            
             {
-                "Codigo":"BD-TP2",
+                "Codigo":"BD-PL2",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"4ª",
                 "Hora":"11:00",
                 "Docente":"D85445"
             },            
             {
-                "Codigo":"BD-TP3",
+                "Codigo":"BD-PL3",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"5ª",
                 "Hora":"11:00",
                 "Docente":"D50305"
@@ -1000,25 +1000,25 @@
                 "Docente":"D37647"
             },
             {
-                "Codigo":"DSS-TP1",
+                "Codigo":"DSS-PL1",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"4ª",
                 "Hora":"11:00",
                 "Docente":"D68380"
             },            
             {
-                "Codigo":"DSS-TP2",
+                "Codigo":"DSS-PL2",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"5ª",
                 "Hora":"11:00",
                 "Docente":"D68380"
             },            
             {
-                "Codigo":"DSS-TP3",
+                "Codigo":"DSS-PL3",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"6ª",
                 "Hora":"11:00",
                 "Docente":"D10241"
@@ -1080,25 +1080,25 @@
                 "Docente":"D00736"
             },
             {
-                "Codigo":"SD-TP1",
+                "Codigo":"SD-PL1",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"2ª",
                 "Hora":"14:00",
                 "Docente":"D00736"
             },            
             {
-                "Codigo":"SD-TP2",
+                "Codigo":"SD-PL2",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"3ª",
                 "Hora":"14:00",
                 "Docente":"D59834"
             },            
             {
-                "Codigo":"SD-TP3",
+                "Codigo":"SD-PL3",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"6ª",
                 "Hora":"11:00",
                 "Docente":"D59834"
@@ -1120,25 +1120,25 @@
                 "Docente":"D24852"
             },
             {
-                "Codigo":"RC-TP1",
+                "Codigo":"RC-PL1",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"2ª",
                 "Hora":"14:00",
                 "Docente":"D24852"
             },            
             {
-                "Codigo":"RC-TP2",
+                "Codigo":"RC-PL2",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"3ª",
                 "Hora":"11:00",
                 "Docente":"D91532"
             },            
             {
-                "Codigo":"RC-TP3",
+                "Codigo":"RC-PL3",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"6ª",
                 "Hora":"11:00",
                 "Docente":"D91532"
@@ -1160,25 +1160,25 @@
                 "Docente":"D69299"
             },
             {
-                "Codigo":"MNOnL-TP1",
+                "Codigo":"MNOnL-PL1",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"2ª",
                 "Hora":"14:00",
                 "Docente":"D85445"
             },            
             {
-                "Codigo":"MNOnL-TP2",
+                "Codigo":"MNOnL-PL2",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"3ª",
                 "Hora":"14:00",
                 "Docente":"D85445"
             },            
             {
-                "Codigo":"MNOnL-TP3",
+                "Codigo":"MNOnL-PL3",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"5ª",
                 "Hora":"11:00",
                 "Docente":"D69299"
@@ -1402,7 +1402,7 @@
             {
                 "Codigo":"LI4-PL1",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"3ª",
                 "Hora":"14:00",
                 "Docente":"D50305"
@@ -1410,7 +1410,7 @@
             {
                 "Codigo":"LI4-PL2",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"PL",
                 "DiaSem":"2ª",
                 "Hora":"11:00",
                 "Docente":"D90067"
@@ -1418,7 +1418,7 @@
             {
                 "Codigo":"LI4-PL3",
                 "Capacidade":50,
-                "Tipo":"TP",
+                "Tipo":"L",
                 "DiaSem":"6ª",
                 "Hora":"11:00",
                 "Docente":"D90067"
