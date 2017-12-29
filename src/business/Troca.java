@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
  *
  * @author diogoleitao
  */
-public class Troca {//Este objeto só existe no turno para o qual o Aluno quer ir
+public class Troca implements Comparable{//Este objeto só existe no turno para o qual o Aluno quer ir
     
     private LocalDate data;
     private Aluno aluno;
@@ -52,5 +52,28 @@ public class Troca {//Este objeto só existe no turno para o qual o Aluno quer i
 
     public void setTurnoAtual(Turno turnoAtual) {
         this.turnoAtual = turnoAtual;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Troca t = (Troca) o;
+        String estatutoT = t.getAluno().getEstatuto();
+        String estatutoThis = this.getAluno().getEstatuto();
+        
+        if(estatutoThis.equals("TE") && estatutoT.equals("TE")){
+            return this.getData().compareTo(t.getData());
+        }
+        
+        if(estatutoThis.equals("TE")){
+            return -1;
+        }
+        
+        if(estatutoT.equals("TE")){
+            return 1;
+        }
+        
+        else{
+            return this.getData().compareTo(t.getData());
+        } 
     }
 }

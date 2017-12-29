@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -332,9 +333,9 @@ public class GesTurno {
         }
         
         else{
-            List<Troca> trocas = atual.getTrocas();
+            Set<Troca> trocas = atual.getTrocas(); //Ordenado pelo compareTo de Troca
             boolean flag = false;
-            for(Troca t: trocas){ //POR A RECEBER UM TREESET ORDENADO PELA DATA e DEFINIR O COMPARATOR
+            for(Troca t: trocas){ 
                 
                 if(t.getTurnoAtual().getCodigo().equals(codigoTurnoPretendido)){//foi possível fazer a troca
                     String outroAlunoUsername = t.getAluno().getUsername();

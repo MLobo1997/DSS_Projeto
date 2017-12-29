@@ -90,7 +90,7 @@ public class GestorTurnos extends javax.swing.JDialog {
             for(Turno t: u.getTurnos()){
                 String codigo = t.getCodigo();
                 if(!codigo.equals(codigoTurno) && !t.getTipo().equals("T")){
-                    lista.addElement(codigo.split("-")[1]);
+                    lista.addElement(codigo.split("-")[1] + "\t" + t.getDiaSem() + "\t" + t.getHora());
                 }
             }
         }
@@ -259,7 +259,7 @@ public class GestorTurnos extends javax.swing.JDialog {
         if(linha1 != null && escolhido != null){
             String siglaUC = linha1.split("\t")[2];
             String turnoCodigoAtual = siglaUC+"-"+linha1.split("\t")[0];
-            String turnoCodigoPretendido = siglaUC+"-"+escolhido;
+            String turnoCodigoPretendido = siglaUC+"-"+escolhido.split("\t")[0];
             
             int size = jList3.getModel().getSize(); 
 

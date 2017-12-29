@@ -123,6 +123,18 @@ public class Aluno implements Utilizador{
         return "Aluno{" + "nome=" + nome + ", email=" + email + ", username=" + username + ", password=" + password + ", estatuto=" + estatuto + ", ano=" + ano + ", notificacoes=" + notificacoes + '}';
     }
     
+    public void addNotificacao(String notificacao){
+        this.notificacoes.addNotificao(this.username, notificacao);
+    }
+    
+    public void remNotificacao(String notificacao){
+        this.notificacoes.remNotificao(this.username, notificacao);
+    }
+    
+    public void remNotificacoes(){
+        this.notificacoes.remAll(this.username);
+    }
+    
     public List<Turno> getTurnos(){
         List<Turno> turnos = new ArrayList<Turno>();
         List<UC> ucsDoAluno = this.getUcs();
