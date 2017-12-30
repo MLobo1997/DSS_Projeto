@@ -123,4 +123,8 @@ public class Turno { //TODO: mudar o get e set do DAOS
         this.trocas.add(t, this.codigo);
     }
     
+    public int getNFaltas(String username){
+        return this.faltas.getNFaltas(this.codigo, username);//Definir o metodo em 
+    }
+    
 }

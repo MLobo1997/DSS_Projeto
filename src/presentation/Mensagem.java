@@ -50,8 +50,8 @@ public class Mensagem extends javax.swing.JDialog {
             jLabel3.setText("");
         }
         else{
-            jLabel1.setText("");
-            jLabel2.setText(linhas[0]);
+            jLabel1.setText(linhas[0]);
+            jLabel2.setText("");
             jLabel3.setText("");
         }
     }

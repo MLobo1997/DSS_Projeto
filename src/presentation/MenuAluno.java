@@ -8,6 +8,7 @@ package presentation;
 import business.Aluno;
 import business.GesTurno;
 import business.Turno;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -220,8 +221,11 @@ public class MenuAluno extends javax.swing.JFrame {
             }
             else{
                 StringBuilder sb = new StringBuilder();
-                sb.append(dados[daHora(hora)][daDia(dia)]).append(System.getProperty("line.separator"));
+                sb.append("<html>");
+                sb.append(dados[daHora(hora)][daDia(dia)]);
+                sb.append("<br/>");
                 sb.append(codigo);
+                sb.append("</html>");
                 dados[daHora(hora)][daDia(dia)] = sb.toString();
             }
          
@@ -253,8 +257,8 @@ public class MenuAluno extends javax.swing.JFrame {
                     dados[i][0] = "16:00";
                     break;
             }
-            val.addRow(dados[i]);
-        }
+            val.addRow(dados[i]);     
+         }
     }
     
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

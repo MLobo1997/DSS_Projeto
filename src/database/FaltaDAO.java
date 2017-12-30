@@ -97,4 +97,36 @@ public class FaltaDAO {
         }
     }
     
+    public int getNFaltas(String turnoCodigo, String username){
+        int size = 0;
+
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM Faltas"
+                                                      + "WHERE Turno_Codigo = ? AND Aluno_Username = ?");
+            ps.setString(1, turnoCodigo);
+            ps.setString(2, username);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){ 
+                size = rs.getInt(1);
+            }
+
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FaltaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+        return size;
+    }
+    
 }

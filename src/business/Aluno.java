@@ -190,5 +190,9 @@ public class Aluno implements Utilizador{
         return true;
     }
     
-    
+    public int nFaltas(String codigoTurno){
+        UC u = this.ucs.get(codigoTurno.split("-")[0]);
+        Turno t = u.getTurno(codigoTurno);
+        return t.getNFaltas(this.username);
+    }
 }
