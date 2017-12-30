@@ -40,6 +40,7 @@ public class InformacoesMDocente extends javax.swing.JDialog {
         sb.append("Capacidade: ").append(t.getCapacidade()).append("\n");
         sb.append("Nº inscritos: ").append(t.getAlunos().size()).append("\n");
         sb.append("Pedidos de troca: ").append(t.getTrocas().size()).append("\n");
+        sb.append("Trocas já efetuadas:").append(t.getNTrocas()).append("\n");
         sb.append("Dia de semana: ").append(t.getDiaSem()).append("\n");
         sb.append("Hora: ").append(t.getHora()).append("\n\n");
         
