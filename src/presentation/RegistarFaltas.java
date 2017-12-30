@@ -250,6 +250,12 @@ public class RegistarFaltas extends javax.swing.JDialog {
             List<Falta> faltas = new ArrayList<Falta>();
             for(String s : usernameNomes){
                 Aluno a = (Aluno)this.gesTurno.getUtilizadorByUsername(s.split("\t")[0]);
+                StringBuilder sb = new StringBuilder();
+                sb.append("Falta a: ");
+                sb.append(turnoCodigo);
+                sb.append(" em ");
+                sb.append(data.toString());
+                a.addNotificacao(sb.toString());
                 Falta f = new Falta(a, data);
                 faltas.add(f);
             }

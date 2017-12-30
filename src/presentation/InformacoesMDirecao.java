@@ -40,6 +40,7 @@ public class InformacoesMDirecao extends javax.swing.JDialog {
         }
         
         jTextArea1.setText(sb.toString());
+        jTextArea1.setCaretPosition(0);
     }
 
     /**

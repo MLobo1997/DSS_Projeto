@@ -10,6 +10,7 @@ import business.Docente;
 import business.GesTurno;
 import business.Turno;
 import business.UC;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.DefaultListModel;
@@ -22,8 +23,7 @@ public class AlterarTurnos extends javax.swing.JDialog {
 
     private GesTurno gesTurno;
     private UC ucEscolhida;
-    
-    
+      
     /**
      * Creates new form AlterarTurnos
      */
@@ -33,18 +33,22 @@ public class AlterarTurnos extends javax.swing.JDialog {
         initComponents();
         this.jComboBox1.setSelectedIndex(0); 
         this.jComboBox2.setSelectedIndex(0);
-        
     }
     
     public void updateFrame(Turno turno){
         List<Aluno> inscritosTurno = turno.getAlunos();
-        List<String> usernamesInscritos = inscritosTurno.stream().map(f -> f.getUsername()).collect(Collectors.toList());
+        List<Aluno> todos = this.gesTurno.getAlunos(turno.getCodigo().split("-")[0]);
+        List<Aluno> temTurno = new ArrayList<Aluno>();       
         
-        List<Aluno> todos = this.gesTurno.getAlunos(turno.getCodigo().split("-")[0]);       
-        List<Aluno> nInscritosTurno = todos.stream().filter(f -> !usernamesInscritos.contains(f.getUsername())).collect(Collectors.toList());
+        for(Turno t: this.ucEscolhida.getTurnos()){
+            if(!t.getTipo().equals("T"))
+                temTurno.addAll(t.getAlunos());
+        }
+        
+        todos.removeAll(temTurno);
                 
         updateListInscritos(inscritosTurno);
-        updateListNInscritos(nInscritosTurno);
+        updateListNInscritos(todos);
     }
     
     public void updateListNInscritos(List<Aluno> alunos){
@@ -102,7 +106,7 @@ public class AlterarTurnos extends javax.swing.JDialog {
 
         jLabel2.setText("Alunos inscritos no turno:");
 
-        jLabel3.setText("Alunos inscritos na UC que não tem turno: FALTA FAZER");
+        jLabel3.setText("Alunos inscritos na UC que não tem turno:");
 
         jLabel4.setText("Turno:");
 
@@ -120,6 +124,11 @@ public class AlterarTurnos extends javax.swing.JDialog {
         });
 
         jButton2.setText("Remover");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Voltar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +164,7 @@ public class AlterarTurnos extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
-                        .addGap(0, 114, Short.MAX_VALUE))
+                        .addGap(0, 201, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -210,7 +219,7 @@ public class AlterarTurnos extends javax.swing.JDialog {
                         ucEscolhida = uc;
                         int i = uc.getSigla().length()+1;
                         List<Turno> lt = uc.getTurnos().stream().filter(f -> f.getDocente().getUsername().equals(gesTurno.getUtilizador().getUsername())).collect(Collectors.toList());;
-                        String[] turnos = lt.stream().map(f -> f.getCodigo()).map(f -> f.substring(i)).toArray(String[]::new);
+                        String[] turnos = lt.stream().map(f -> f.getCodigo()).map(f -> f.substring(i)).filter(f -> !f.equals("T")).toArray(String[]::new);
                         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(turnos));
                         jComboBox2.setSelectedIndex(0);
                     }
@@ -233,8 +242,33 @@ public class AlterarTurnos extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String linha = this.jList2.getSelectedValue();
+        if(linha != null){
+            String turno = (String)this.jComboBox2.getSelectedItem();
+            String codigoTurno = this.ucEscolhida.getSigla()+"-"+turno;
+            Turno t = this.ucEscolhida.getTurno(codigoTurno);
+            if(t.getCapacidade() > t.getAlunos().size()){
+                String alunoUsername = linha.split("\t")[0];
+                this.ucEscolhida.inscreveNoTurno(alunoUsername, codigoTurno);
+                this.jComboBox2.setSelectedItem(turno); //apenas para fazer o update da frame 
+            }
+            else{
+                Mensagem f = new Mensagem(this, true, "O turno já está na sua capacidade máxima");
+                f.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String linha = this.jList1.getSelectedValue();
+        if(linha != null){
+            String turno = (String)this.jComboBox2.getSelectedItem();
+            String codigoTurno = this.ucEscolhida.getSigla()+"-"+turno;
+            String alunoUsername = linha.split("\t")[0];
+            this.ucEscolhida.removeDoTurno(alunoUsername, codigoTurno);
+            this.jComboBox2.setSelectedItem(turno); //apenas para fazer o update da frame
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

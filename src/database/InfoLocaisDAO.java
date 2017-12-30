@@ -177,4 +177,29 @@ public class InfoLocaisDAO {
             }
         }
     }
+
+    public void reset(){//Limpa a BD
+        try{
+        con = Connect.connect();            
+        PreparedStatement ps = con.prepareStatement("DELETE FROM UCs;");                         
+        ps.executeUpdate(); 
+        ps = con.prepareStatement("DELETE FROM Alunos;");                         
+        ps.executeUpdate();         
+        ps = con.prepareStatement("DELETE FROM Docentes;");                         
+        ps.executeUpdate();   
+        }
+        catch(SQLException e){
+            System.out.printf(e.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InfoLocaisDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                System.out.printf(e.getMessage());
+            }
+        }
+    }
 }

@@ -139,7 +139,7 @@ public class UtilizadorDAO implements Map<String,Utilizador>{
                     a.setNome(rs.getString("Nome"));
                     a.setPassword(rs.getString("Password"));
                     a.setUsername(rs.getString("Username"));
-                    a.setEstatuto("Estatuto");
+                    a.setEstatuto(rs.getString("Estatuto"));
                     a.setAno(rs.getInt("Ano"));
                     
                     List<String> notificacoes = new ArrayList<String>();

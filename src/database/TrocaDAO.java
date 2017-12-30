@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,8 +32,8 @@ public class TrocaDAO {
     
     private Connection con;
     
-    public List<Troca> list(Turno turno){
-        ArrayList<Troca> res = new ArrayList<Troca>();
+    public Set<Troca> list(Turno turno){
+        TreeSet<Troca> res = new TreeSet<Troca>();
         try{
             con = Connect.connect();
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Trocas t\n"

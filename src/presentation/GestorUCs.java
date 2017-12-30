@@ -225,7 +225,10 @@ public class GestorUCs extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String nome = this.jList1.getSelectedValue();
         if(nome != null){
-            this.aluno.addInscricao(nome.split("\t")[0]);
+            String sigla = nome.split("\t")[0];
+            this.aluno.addInscricao(sigla);
+            UC u = this.gesTurno.getUC(sigla);
+            u.inscreveNoTurno(this.aluno.getUsername(), sigla+"-T");
             updateFrame();
         }
     }//GEN-LAST:event_jButton2ActionPerformed

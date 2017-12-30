@@ -9,6 +9,7 @@ import database.NotificacaoDAO;
 import database.UCDAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -123,6 +124,18 @@ public class Aluno implements Utilizador{
         return "Aluno{" + "nome=" + nome + ", email=" + email + ", username=" + username + ", password=" + password + ", estatuto=" + estatuto + ", ano=" + ano + ", notificacoes=" + notificacoes + '}';
     }
     
+    public void addNotificacao(String notificacao){
+        this.notificacoes.addNotificao(this.username, notificacao);
+    }
+    
+    public void remNotificacao(String notificacao){
+        this.notificacoes.remNotificao(this.username, notificacao);
+    }
+    
+    public void remNotificacoes(){
+        this.notificacoes.remAll(this.username);
+    }
+    
     public List<Turno> getTurnos(){
         List<Turno> turnos = new ArrayList<Turno>();
         List<UC> ucsDoAluno = this.getUcs();
@@ -159,4 +172,23 @@ public class Aluno implements Utilizador{
         return trocas;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Aluno other = (Aluno) obj;
+        if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

@@ -9,6 +9,7 @@ import database.AlunoDAO;
 import database.FaltaDAO;
 import database.TrocaDAO;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -104,7 +105,7 @@ public class Turno { //TODO: mudar o get e set do DAOS
         this.faltas.set(faltas, this.codigo);
     }
 
-    public List<Troca> getTrocas() {
+    public Set<Troca> getTrocas() {
         return trocas.list(this);
     }
 

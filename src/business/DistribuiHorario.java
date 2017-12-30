@@ -84,7 +84,7 @@ public class DistribuiHorario {
                     break;
 
                 case 3:
-                    h = this.ano3s1.get(totalAlunosAno2%nHorariosAno3);
+                    h = this.ano3s1.get(totalAlunosAno3%nHorariosAno3);
                     this.turnos.inscreveTurnos(a, h);
                     this.totalAlunosAno3++;
                     break;
@@ -99,13 +99,13 @@ public class DistribuiHorario {
                     break;
 
                 case 2:
-                    h = this.ano2s2.get(totalAlunosAno1%nHorariosAno2);
+                    h = this.ano2s2.get(totalAlunosAno2%nHorariosAno2);
                     this.turnos.inscreveTurnos(a, h);
                     this.totalAlunosAno2++;
                     break;
 
                 case 3:
-                    h = this.ano3s2.get(totalAlunosAno1%nHorariosAno3);
+                    h = this.ano3s2.get(totalAlunosAno3%nHorariosAno3);
                     this.turnos.inscreveTurnos(a, h);
                     this.totalAlunosAno3++;
                     break;

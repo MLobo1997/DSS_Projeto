@@ -55,4 +55,81 @@ public class NotificacaoDAO {
         }
         return res;
     }
+    
+    public void addNotificao(String username, String notificacao){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Notificacoes(Texto, Alunos_Username)\n"
+                                                      + "VALUES (?,?)");
+            ps.setString(1, notificacao);
+            ps.setString(2, username);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(NotificacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+    }
+    
+    public void remNotificao(String username, String notificacao){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Notificacoes\n"
+                                                      + "WHERE Alunos_Username = ? AND Texto = ?");
+            ps.setString(1, username);
+            ps.setString(2, notificacao);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(NotificacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
+    }
+
+    public void remAll(String username) {
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Notificacoes\n"
+                                                      + "WHERE Alunos_Username = ?");
+            ps.setString(1, username);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } 
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(NotificacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }}
+    
 }

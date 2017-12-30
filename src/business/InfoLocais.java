@@ -38,4 +38,8 @@ public class InfoLocais {
     public void setFase(int fase){
         this.info.setFase(fase);
     }
+
+    void reset() {
+        this.info.reset();
+    }
 }

@@ -7,6 +7,7 @@ package presentation;
 
 import business.Aluno;
 import business.AuxTroca;
+import business.Docente;
 import business.GesTurno;
 import business.Troca;
 import business.Turno;
@@ -90,7 +91,7 @@ public class GestorTurnos extends javax.swing.JDialog {
             for(Turno t: u.getTurnos()){
                 String codigo = t.getCodigo();
                 if(!codigo.equals(codigoTurno) && !t.getTipo().equals("T")){
-                    lista.addElement(codigo.split("-")[1]);
+                    lista.addElement(codigo.split("-")[1] + "\t" + t.getDiaSem() + "\t" + t.getHora());
                 }
             }
         }
@@ -259,30 +260,44 @@ public class GestorTurnos extends javax.swing.JDialog {
         if(linha1 != null && escolhido != null){
             String siglaUC = linha1.split("\t")[2];
             String turnoCodigoAtual = siglaUC+"-"+linha1.split("\t")[0];
-            String turnoCodigoPretendido = siglaUC+"-"+escolhido;
+            String turnoCodigoPretendido = siglaUC+"-"+escolhido.split("\t")[0];
             
             int size = jList3.getModel().getSize(); 
 
-            // Get all item objects
+            
             for (int i = 0; i < size; i++) {
               String item = jList3.getModel().getElementAt(i);
               if(item.split("\t")[0].equals(siglaUC)){
-                  Mensagem f = new Mensagem(this, true, "Já tens um pedido de Troca nessa UC");
+                  Mensagem f = new Mensagem(this, true, "Já existe um pedido de Troca nessa UC");
                   f.setVisible(true);
                   return;
               }
             }
-            
-            
-            
-            try{
-                this.gesTurno.TrocaTurno(this.aluno, turnoCodigoAtual, turnoCodigoPretendido);
-            } catch (PedidoRegistadoException ex) {
-                Mensagem f = new Mensagem(this, true, "O seu pedido ficou registado");
+            if(this.gesTurno.getFase() == 1){
+                Mensagem f = new Mensagem(this, true, "Nesta fase apenas a direção pode alterar os turnos\n "
+                                                    + "Por favor tente mais tarde");
                 f.setVisible(true);
             }
-            
-            updateFrame();
+            else if(this.gesTurno.getFase() == 3){
+                Docente d = this.gesTurno.getTurno(turnoCodigoPretendido).getDocente();
+                String email = d.getEmail();
+                String nome = d.getNome();
+                Mensagem f = new Mensagem(this, true, "Contacte o Docente apenas este pode alterar o Turno\n "
+                                                    +   nome+"\n"
+                                                    + "Email: " + email);
+                f.setVisible(true);
+            }
+            else{                       
+                try{
+                    this.gesTurno.TrocaTurno(this.aluno, turnoCodigoAtual, turnoCodigoPretendido);
+                    Mensagem f = new Mensagem(this, true, "Troca efetuada");
+                    f.setVisible(true);
+                } catch (PedidoRegistadoException ex) {
+                    Mensagem f = new Mensagem(this, true, "O seu pedido ficou registado");
+                    f.setVisible(true);
+                }           
+                updateFrame();
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
