@@ -277,7 +277,7 @@ public class AlterarUC extends javax.swing.JDialog {
                 f.setVisible(true);
             }
             else{
-                this.gesTurno.atualizaTurno(u, turnoCodigo, linhaDocente.split("\t")[0], hora, diaSem, capacidade);
+                this.gesTurno.atualizaTurno(u, turnoCodigo, linhaDocente.split("\t")[0], hora, diaSem, capacidade,this.u.getTurno(turnoCodigo).getNTrocas());
                 this.gesTurno.atualizaUC(u);
             }
         }

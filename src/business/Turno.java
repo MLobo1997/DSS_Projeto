@@ -21,6 +21,7 @@ public class Turno { //TODO: mudar o get e set do DAOS
     private String tipo;
     private String diaSem;
     private String hora;
+    private Integer nTrocas;
     private Docente docente;
     private FaltaDAO faltas; //List<Falta> faltas; 
     private TrocaDAO trocas; //List<Troca> trocas;
@@ -33,6 +34,7 @@ public class Turno { //TODO: mudar o get e set do DAOS
         this.diaSem = null;
         this.hora = null;
         this.docente = null;
+        this.nTrocas= null;
         this.faltas = new FaltaDAO(); 
         this.trocas = new TrocaDAO(); 
         this.alunos = new AlunoDAO();
@@ -44,6 +46,14 @@ public class Turno { //TODO: mudar o get e set do DAOS
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+    
+    public Integer getNTrocas(){
+        return nTrocas;
+    }
+    
+    public void setNTrocas(Integer nTrocas){
+        this.nTrocas=nTrocas;
     }
 
     public Integer getCapacidade() {
