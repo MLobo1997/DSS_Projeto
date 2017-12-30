@@ -36,7 +36,8 @@ public class InformacoesMDirecao extends javax.swing.JDialog {
             sb.append("Hora:\t\t").append(t.getHora()).append("\n");
             sb.append("Nº Faltas:\t\t").append(t.getFaltas().size()).append("\n");
             sb.append("Nº Alunos:\t\t").append(t.getAlunos().size()).append("\n");
-            sb.append("Nº Pedidos de Trocas:\t").append(t.getTrocas().size()).append("\n\n");
+            sb.append("Nº Pedidos de Trocas:\t").append(t.getTrocas().size()).append("\n");
+            sb.append("Nª Trocas efetuadas:\t").append(t.getNTrocas()).append("\n\n");
         }
         
         jTextArea1.setText(sb.toString());
