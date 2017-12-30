@@ -33,7 +33,7 @@
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="114" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="201" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -108,7 +108,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Alunos inscritos na UC que n&#xe3;o tem turno: FALTA FAZER"/>
+        <Property name="text" type="java.lang.String" value="Alunos inscritos na UC que n&#xe3;o tem turno:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -123,7 +123,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jComboBox1.addActionListener(new java.awt.event.ActionListener() {&#xa;    public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;        String nomeUC = (String)jComboBox1.getSelectedItem();&#xa;        for(UC uc: gesTurno.getUCs()){&#xa;            if(uc.getNome().equals(nomeUC)){&#xa;                ucEscolhida = uc;&#xa;                int i = uc.getSigla().length()+1;&#xa;                List&lt;Turno&gt; lt = uc.getTurnos().stream().filter(f -&gt; f.getDocente().getUsername().equals(gesTurno.getUtilizador().getUsername())).collect(Collectors.toList());;&#xa;                String[] turnos = lt.stream().map(f -&gt; f.getCodigo()).map(f -&gt; f.substring(i)).toArray(String[]::new);&#xa;                jComboBox2.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(turnos));&#xa;                jComboBox2.setSelectedIndex(0);&#xa;            }&#xa;        }&#xa;    }&#xa;});"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jComboBox1.addActionListener(new java.awt.event.ActionListener() {&#xa;    public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;        String nomeUC = (String)jComboBox1.getSelectedItem();&#xa;        for(UC uc: gesTurno.getUCs()){&#xa;            if(uc.getNome().equals(nomeUC)){&#xa;                ucEscolhida = uc;&#xa;                int i = uc.getSigla().length()+1;&#xa;                List&lt;Turno&gt; lt = uc.getTurnos().stream().filter(f -&gt; f.getDocente().getUsername().equals(gesTurno.getUtilizador().getUsername())).collect(Collectors.toList());;&#xa;                String[] turnos = lt.stream().map(f -&gt; f.getCodigo()).map(f -&gt; f.substring(i)).filter(f -&gt; !f.equals(&quot;T&quot;)).toArray(String[]::new);&#xa;                jComboBox2.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(turnos));&#xa;                jComboBox2.setSelectedIndex(0);&#xa;            }&#xa;        }&#xa;    }&#xa;});"/>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int semestre = this.gesTurno.getSemestre();&#xa;String[] n = ((Docente)this.gesTurno.getUtilizador()).getUCs().stream().filter(f -&gt; f.getSemestre() == semestre).map(f -&gt; f.getNome()).toArray(String[]::new);"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -156,6 +156,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Remover"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>

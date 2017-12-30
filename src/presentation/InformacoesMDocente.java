@@ -37,14 +37,21 @@ public class InformacoesMDocente extends javax.swing.JDialog {
     
     public void informacoes(Turno t){
         StringBuilder sb = new StringBuilder();
-        sb.append(t.getCodigo());
-        /*
+        sb.append("Capacidade: ").append(t.getCapacidade()).append("\n");
+        sb.append("Nº inscritos: ").append(t.getAlunos().size()).append("\n");
+        sb.append("Pedidos de troca: ").append(t.getTrocas().size()).append("\n");
+        sb.append("Dia de semana: ").append(t.getDiaSem()).append("\n");
+        sb.append("Hora: ").append(t.getHora()).append("\n\n");
+        
+        sb.append("Alunos: \n\n");       
         for(Aluno a : t.getAlunos()){
-            a.ge
+            sb.append(a.getUsername()).append("\n");
+            sb.append(a.getNome()).append("\n");
+            sb.append(a.getEmail()).append("\n\n");
         }
-        */
-        sb.append("POR MAIS CENAS!!");
+        
         jTextArea1.setText(sb.toString());
+        jTextArea1.setCaretPosition(0);
     }
 
     /**
@@ -70,6 +77,7 @@ public class InformacoesMDocente extends javax.swing.JDialog {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setAutoscrolls(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         int semestre = this.gesTurno.getSemestre();

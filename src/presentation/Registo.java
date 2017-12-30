@@ -178,6 +178,9 @@ public class Registo extends javax.swing.JDialog {
         String password = new String(jPasswordField1.getPassword());
         try{
             this.gesTurno.registo(nome, username, email, password);
+            Mensagem f = new Mensagem(this, true, "Registo efetuado");
+            f.setVisible(true);
+            dispose();
         }
         catch(RegistoInvalidoException e){
             Mensagem f = new Mensagem(this, true, "Registo Inválido!");

@@ -17,14 +17,46 @@ public class Mensagem extends javax.swing.JDialog {
     public Mensagem(java.awt.Frame parent, boolean modal, String mensagem) {
         super(parent, modal);
         initComponents();
-        jLabel1.setText(mensagem);
+        String linhas[] = mensagem.split("\n");
+        if(linhas.length == 3){
+            jLabel1.setText(linhas[0]);
+            jLabel2.setText(linhas[1]);
+            jLabel3.setText(linhas[2]);
+        }
+        else if(linhas.length == 2){
+            jLabel1.setText(linhas[0]);
+            jLabel2.setText(linhas[1]);
+            jLabel3.setText("");
+        }
+        else{
+            jLabel1.setText("");
+            jLabel2.setText(linhas[0]);
+            jLabel3.setText("");
+        }
     }
     
     public Mensagem(java.awt.Dialog parent, boolean modal, String mensagem) {
         super(parent, modal);
         initComponents();
-        jLabel1.setText(mensagem);
+        String linhas[] = mensagem.split("\n");
+        if(linhas.length == 3){
+            jLabel1.setText(linhas[0]);
+            jLabel2.setText(linhas[1]);
+            jLabel3.setText(linhas[2]);
+        }
+        else if(linhas.length == 2){
+            jLabel1.setText(linhas[0]);
+            jLabel2.setText(linhas[1]);
+            jLabel3.setText("");
+        }
+        else{
+            jLabel1.setText("");
+            jLabel2.setText(linhas[0]);
+            jLabel3.setText("");
+        }
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,6 +69,8 @@ public class Mensagem extends javax.swing.JDialog {
 
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -47,28 +81,42 @@ public class Mensagem extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Mensagem de erro");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Mensagem de erro 1");
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Mensagem de erro 2");
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Mensagem de erro 3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(jLabel1)))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addGap(162, 162, 162)
+                .addComponent(jButton1)
+                .addContainerGap(171, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(15, 15, 15))
         );
@@ -83,5 +131,7 @@ public class Mensagem extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
