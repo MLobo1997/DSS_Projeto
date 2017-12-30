@@ -330,7 +330,7 @@ public class GesTurno {
         Turno escolhido = u.getTurno(codigoTurnoPretendido);
         String estatuto = aluno.getEstatuto();
         
-        //TESTAR SE NESTA FASE É POSSÍVEL FAZER TROCAS
+        
         if(escolhido.getCapacidade() > escolhido.getAlunos().size() && estatuto.equals("TE")){ // ainda há vagas e aluno é trabalhador estudante
             u.removeDoTurno(alunoUsername, codigoTurnoAtual);
             u.inscreveNoTurno(alunoUsername, codigoTurnoPretendido);
@@ -361,6 +361,11 @@ public class GesTurno {
                     u.inscreveNoTurno(outroAlunoUsername, codigoTurnoAtual);
                     
                     atual.removeTroca(outroAlunoUsername, codigoTurnoPretendido);
+                    
+                    atual.incrementaNTrocas();
+                    escolhido.incrementaNTrocas();
+                    u.atualizaTurno(atual);
+                    u.atualizaTurno(escolhido);
                     flag = true;
                     break;
                 }

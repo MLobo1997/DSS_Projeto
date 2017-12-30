@@ -15,7 +15,7 @@ import java.util.Set;
  *
  * @author diogoleitao
  */
-public class Turno { //TODO: mudar o get e set do DAOS
+public class Turno { 
     
     private String codigo; //(Ex: DSS-TP1)
     private Integer capacidade;
@@ -134,7 +134,11 @@ public class Turno { //TODO: mudar o get e set do DAOS
     }
     
     public int getNFaltas(String username){
-        return this.faltas.getNFaltas(this.codigo, username);//Definir o metodo em 
+        return this.faltas.getNFaltas(this.codigo, username);
+    }
+    
+    public void incrementaNTrocas(){
+        this.nTrocas++;
     }
     
 }
