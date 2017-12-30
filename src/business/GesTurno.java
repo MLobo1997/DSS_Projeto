@@ -130,6 +130,7 @@ public class GesTurno {
                 
     }
      
+
     public void registarAlunos(String path) throws FileNotFoundException, Exception { 
         InputStream fis = new FileInputStream(path);
         
@@ -167,6 +168,7 @@ public class GesTurno {
                     break;
             }
         }
+
      }
      
     public void registarDocentes(String path) throws FileNotFoundException, Exception { 
@@ -197,8 +199,7 @@ public class GesTurno {
         JsonReader reader = Json.createReader(fis);
         JsonArray x = reader.readArray();
         reader.close();
-            
-            
+
         for (int i = 0; i < x.size(); i++){
             JsonObject uc = x.getJsonObject(i);
 
@@ -228,6 +229,7 @@ public class GesTurno {
                 turno.setDiaSem(diaSem);
                 turno.setHora(hora);
                 turno.setDocente((Docente)this.utilizadores.get(docente));
+                turno.setNTrocas(0);
 
                 ts.add(turno);
             }
@@ -262,6 +264,7 @@ public class GesTurno {
                 for(int k = 0; k < js.size(); k++){
                     String t = js.getString(k);
                     h.addTurno(t);
+
                 }
                 dh.addHorario(h);
             }
@@ -273,7 +276,7 @@ public class GesTurno {
         this.ucs.put(u.getSigla(), u);
     }
     
-    public void atualizaTurno(UC u, String turnoCodigo, String docUsername, String hora, String diaSem, String capacidade){
+    public void atualizaTurno(UC u, String turnoCodigo, String docUsername, String hora, String diaSem, String capacidade,Integer nTrocas){
         Turno t = u.getTurno(turnoCodigo);
         String docAnterior = t.getDocente().getUsername();
         
@@ -287,6 +290,7 @@ public class GesTurno {
         t.setDocente((Docente)this.utilizadores.get(docUsername));
         t.setDiaSem(diaSem);
         t.setCapacidade(new Integer(capacidade));
+        t.setNTrocas(nTrocas);
         
         u.atualizaTurno(t);
     }

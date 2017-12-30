@@ -17,14 +17,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author diogoleitao
- */
+import java.sql.Connection;
+
 public class InfoLocaisDAO {
     
     private Connection con;
     
+
     public void novo(){
         try{
             con = Connect.connect();
@@ -178,7 +177,7 @@ public class InfoLocaisDAO {
             }
         }
     }
-    
+
     public void reset(){//Limpa a BD
         try{
         con = Connect.connect();            
@@ -203,5 +202,4 @@ public class InfoLocaisDAO {
             }
         }
     }
-    
 }

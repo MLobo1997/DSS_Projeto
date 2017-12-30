@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `GestaoTurnos`.`Turnos` (
   `Docente_Username` VARCHAR(6) NOT NULL,
   `DiaSemana` VARCHAR(45) NOT NULL,
   `Hora` VARCHAR(45) NOT NULL,
+  `NTrocas` SMALLINT(6) NOT NULL,
   PRIMARY KEY (`Codigo`),
   INDEX `fk_Turno_UC1_idx` (`UC_Sigla` ASC),
   INDEX `fk_Turno_Docente1_idx` (`Docente_Username` ASC),
@@ -184,7 +185,6 @@ CREATE TABLE IF NOT EXISTS `GestaoTurnos`.`InfoLocais` (
   PRIMARY KEY (`Fase`)) 
 ENGINE = InnoDB 
 DEFAULT CHARACTER SET = utf8; 
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
