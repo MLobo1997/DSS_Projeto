@@ -11,6 +11,7 @@ import business.Falta;
 import business.GesTurno;
 import business.Turno;
 import business.UC;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -243,26 +244,23 @@ public class RegistarFaltas extends javax.swing.JDialog {
         String turno = (String)jComboBox2.getSelectedItem();
         String turnoCodigo = this.ucEscolhida.getSigla()+"-"+turno;
         String dataField = jTextField1.getText();
-        if(dataField.matches("[0-3][0-9]-[01][0-9]-[0-9]{4}") && turno != null){
-            String[] dados = dataField.split("-");
-            LocalDate data = LocalDate.of(new Integer(dados[2]), new Integer(dados[1]), new Integer(dados[0]));
-            List<String> usernameNomes = jList1.getSelectedValuesList();
-            List<Falta> faltas = new ArrayList<Falta>();
-            for(String s : usernameNomes){
-                Aluno a = (Aluno)this.gesTurno.getUtilizadorByUsername(s.split("\t")[0]);
-                StringBuilder sb = new StringBuilder();
-                sb.append("Falta a: ");
-                sb.append(turnoCodigo);
-                sb.append(" em ");
-                sb.append(data.toString());
-                a.addNotificacao(sb.toString());
-                Falta f = new Falta(a, data);
-                faltas.add(f);
+        List<String> usernames = jList1.getSelectedValuesList();
+        if(dataField != null && turno != null && usernames.size() != 0){    
+            try{
+                String[] dados = dataField.split("-");
+                LocalDate data = LocalDate.of(new Integer(dados[2]), new Integer(dados[1]), new Integer(dados[0])); 
+                this.gesTurno.registaFaltas(turnoCodigo, usernames, data);
+                Mensagem f = new Mensagem(this, true, "Faltas registadas");
+                f.setVisible(true);
+                jComboBox2.setSelectedItem(turno); //apenas para atualizar a lista de alunos
             }
-            this.gesTurno.registaFaltas(turnoCodigo, faltas);
+            catch(DateTimeException|ArrayIndexOutOfBoundsException e){
+                Mensagem f = new Mensagem(this, true, "Data inválida");
+                f.setVisible(true); 
+            }
         }
         else {
-            Mensagem f = new Mensagem(this, true, "Data inválida");
+            Mensagem f = new Mensagem(this, true, "Preencha os campos e selecione os alunos");
             f.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

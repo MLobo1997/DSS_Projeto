@@ -102,7 +102,7 @@ public class FaltaDAO {
 
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM Faltas"
+            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM Faltas\n"
                                                       + "WHERE Turno_Codigo = ? AND Aluno_Username = ?");
             ps.setString(1, turnoCodigo);
             ps.setString(2, username);
@@ -127,6 +127,31 @@ public class FaltaDAO {
             }
         }
         return size;
+    }
+    
+    public void removeFaltas(String turnoCodigo, String username){
+        try{
+            con = Connect.connect();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Faltas\n"
+                                                      + "WHERE Turno_Codigo = ? AND Aluno_Username = ?");
+            ps.setString(1, turnoCodigo);
+            ps.setString(2, username);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+             System.out.printf(e.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FaltaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        finally{
+            try{
+                Connect.close(con);
+            }
+            catch(Exception e){
+                 System.out.printf(e.getMessage());
+            }
+        }
     }
     
 }

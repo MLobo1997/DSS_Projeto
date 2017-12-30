@@ -92,7 +92,7 @@ public class GesTurno {
         this.utilizador = u;
     }
      
-    public int iniciarSessao(String username, String password){ //TODO: ser especifico no erro de acesso????
+    public int iniciarSessao(String username, String password){ 
        
         if(this.utilizadores.containsKey(username)){
             Utilizador u = utilizadores.get(username);
@@ -281,7 +281,8 @@ public class GesTurno {
         String docAnterior = t.getDocente().getUsername();
         
         if(!docAnterior.equals(docUsername)){
-            if(u.getTurnos().stream().map(f -> f.getDocente().getUsername()).filter(x -> x.equals(docAnterior)).count() == 1){
+            if(u.getTurnos().stream().map(f -> f.getDocente().getUsername())
+                                     .filter(x -> x.equals(docAnterior)).count() == 1){
                 this.ucs.removeDocente(docAnterior, u.getSigla());
             }
         }
@@ -304,13 +305,41 @@ public class GesTurno {
         return u.removeTurno(codigoTurno);
     }
     
-    public void registaFaltas(String turnoCodigo, List<Falta> faltas){
-        this.getTurno(turnoCodigo).setFaltas(faltas);
+    public void registaFaltas(String turnoCodigo, List<String> usernames, LocalDate data){
+        Turno turno = this.getTurno(turnoCodigo);
+        String tipo = turno.getTipo();
+        List<Falta> faltas = new ArrayList<Falta>();
+            for(String s : usernames){
+                Aluno a = (Aluno)this.getUtilizadorByUsername(s.split("\t")[0]);
+                StringBuilder sb = new StringBuilder();
+                sb.append("Falta a: ");
+                sb.append(turnoCodigo);
+                sb.append(" em ");
+                sb.append(data.toString());
+                a.addNotificacao(sb.toString());
+                int nFaltas = turno.getNFaltas(s.split("\t")[0]);
+                if(!tipo.equals("T")){
+                    if(nFaltas == 2){
+                        a.addNotificacao("Atingiu o limite de faltas possíveis em " + turnoCodigo);
+                    }
+                    else if(nFaltas == 3){
+                        a.addNotificacao("Atingiu as 4 faltas em " + turnoCodigo);
+                        a.addNotificacao("Perdeu o seu lugar em " + turnoCodigo);
+                        turno.removeFaltas(s.split("\t")[0]);
+                        this.ucs.get(turnoCodigo.split("-")[0]).removeDoTurno(s.split("\t")[0], turnoCodigo);
+                        continue;
+                    }
+                }
+                Falta f = new Falta(a, data);
+                faltas.add(f);
+            }
+        turno.setFaltas(faltas);
     }
     
     public List<Aluno> getAlunos(String siglaUC){
         List<String> usernames = this.ucs.getAlunosUsername(siglaUC);
-        return this.utilizadores.values().stream().filter(f -> usernames.contains(f.getUsername())).map(c -> (Aluno) c).collect(Collectors.toList());
+        return this.utilizadores.values().stream().filter(f -> usernames.contains(f.getUsername()))
+                                                  .map(c -> (Aluno) c).collect(Collectors.toList());
     }
     
     public List<UC> getUCsAno(int ano){
@@ -334,6 +363,10 @@ public class GesTurno {
         if(escolhido.getCapacidade() > escolhido.getAlunos().size() && estatuto.equals("TE")){ // ainda há vagas e aluno é trabalhador estudante
             u.removeDoTurno(alunoUsername, codigoTurnoAtual);
             u.inscreveNoTurno(alunoUsername, codigoTurnoPretendido);
+            atual.incrementaNTrocas();
+            escolhido.incrementaNTrocas();
+            u.atualizaTurno(atual);
+            u.atualizaTurno(escolhido);
         }
         
         

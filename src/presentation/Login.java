@@ -145,17 +145,17 @@ public class Login extends javax.swing.JFrame {
         
         int tipo = this.gesTurno.iniciarSessao(username, password);
         
-        if(username.equals("docente") || (tipo == 2)){
+        if(tipo == 2){
             MenuDocente f = new MenuDocente(gesTurno);
             f.setVisible(true);
             this.setVisible(false);
         }
-        if(username.equals("aluno") || (tipo == 1)){
+        if(tipo == 1){
             MenuAluno f = new MenuAluno(gesTurno);
             f.setVisible(true);
             this.setVisible(false);
         }
-        if(username.equals("direcao") || (tipo == 3)){
+        if(tipo == 3){
             MenuDirecao f = new MenuDirecao(gesTurno);
             f.setVisible(true);
             this.setVisible(false);

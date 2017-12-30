@@ -39,16 +39,19 @@ public class InformacoesMDocente extends javax.swing.JDialog {
         StringBuilder sb = new StringBuilder();
         sb.append("Capacidade: ").append(t.getCapacidade()).append("\n");
         sb.append("Nº inscritos: ").append(t.getAlunos().size()).append("\n");
+        sb.append("Nº faltas: ").append(t.getFaltas().size()).append("\n");
         sb.append("Pedidos de troca: ").append(t.getTrocas().size()).append("\n");
         sb.append("Trocas já efetuadas:").append(t.getNTrocas()).append("\n");
         sb.append("Dia de semana: ").append(t.getDiaSem()).append("\n");
         sb.append("Hora: ").append(t.getHora()).append("\n\n");
         
-        sb.append("Alunos: \n\n");       
+        sb.append("Alunos: \n\n");   
         for(Aluno a : t.getAlunos()){
-            sb.append(a.getUsername()).append("\n");
+            String username = a.getUsername();
+            sb.append(username).append("\n");
             sb.append(a.getNome()).append("\n");
-            sb.append(a.getEmail()).append("\n\n");
+            sb.append(a.getEmail()).append("\n");
+            sb.append("Nº faltas: ").append(t.getNFaltas(username)).append("\n\n");
         }
         
         jTextArea1.setText(sb.toString());

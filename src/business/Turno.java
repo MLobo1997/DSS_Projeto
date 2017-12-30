@@ -141,4 +141,8 @@ public class Turno {
         this.nTrocas++;
     }
     
+    public void removeFaltas(String username){
+        this.faltas.removeFaltas(this.codigo, username);
+    }
+    
 }
